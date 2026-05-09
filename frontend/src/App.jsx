@@ -6,6 +6,7 @@ import LandingPage from './pages/auth/LandingPage';
 import SelectRole from './pages/auth/SelectRole';
 import LoginMhs from './pages/auth/LoginMhs';
 import LoginMitra from './pages/auth/LoginMitra';
+import DashboardMitra from './pages/mitra/DashboardMitra';
 
 function App() {
   return (
@@ -37,6 +38,10 @@ function App() {
           element={<LoginMitra />}
         />
 
+          <Route
+          path="/dashboard-mitra"
+          element={<DashboardMitra />}
+        />
       </Routes>
     </div>
   );
