@@ -7,6 +7,8 @@ import SelectRole from './pages/auth/SelectRole';
 import LoginMhs from './pages/auth/LoginMhs';
 import LoginMitra from './pages/auth/LoginMitra';
 import DashboardMitra from './pages/mitra/DashboardMitra';
+import SignUpMhs from './pages/auth/SignUpMhs';
+import SignUpMitra from './pages/auth/SignUpMitra';
 
 function App() {
   return (
@@ -38,10 +40,21 @@ function App() {
           element={<LoginMitra />}
         />
 
-          <Route
+        <Route
           path="/dashboard-mitra"
           element={<DashboardMitra />}
         />
+
+        <Route
+          path="/sign-up-mahasiswa"
+          element={<SignUpMhs />}
+        />
+
+        <Route
+          path="/sign-up-mitra"
+          element={<SignUpMitra />}
+        />
+
       </Routes>
     </div>
   );

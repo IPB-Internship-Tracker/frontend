@@ -21,7 +21,6 @@ const LoginMhs = () => {
 
       {/* Content */}
         <div className="relative z-10 text-center text-white px-6 items-center">
-
             <div className="flex flex-col items-center gap-8">
                 <Logo 
                     logoSize="w-100"
@@ -29,7 +28,7 @@ const LoginMhs = () => {
                 />
                 <LoginForm
                     role="Mahasiswa IPB"
-                    registerPath="/register-mahasiswa"
+                    signUpPath="/sign-up-mahasiswa"
                     dashboardPath="/dashboard-mahasiswa"
                     />
             </div>

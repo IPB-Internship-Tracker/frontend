@@ -8,7 +8,7 @@ import Button from "../ui/Button";
 
 const LoginForm = ({
   role = "User",
-  registerPath = "/register",
+  signUpPath = "/sign-up",
   dashboardPath = "/",
 }) => {
 
@@ -68,7 +68,7 @@ const LoginForm = ({
 
             <button
               type="button"
-              onClick={() => navigate(registerPath)}
+              onClick={() => navigate(signUpPath)}
               className="ml-3 font-bold text-bold-blue underline hover:opacity-80"
             >
               Buat Akun

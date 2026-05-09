@@ -20,21 +20,21 @@ const LoginMitra = () => {
         <BackButton to="/select-role" />
         
       {/* Content */}
-        <div className="relative z-10 text-center text-white px-6 items-center max-w-3xl">
+        <div className="relative z-10 text-center text-white px-6 items-center">
             <div className="flex flex-col items-center gap-8">
                 <Logo 
                     logoSize="w-100"
                     textSize="text-2xl"
                 />
                 <LoginForm
-                  role="Mitra"
-                  registerPath="/register-mitra"
-                  dashboardPath="/dashboard-mitra"
-                />
+                    role="Mitra"
+                    signUpPath="/sign-up-mitra"
+                    dashboardPath="/dashboard-mitra"
+                    />
             </div>
-          </div>
-          
         </div>
+          
+    </div>
       
   );
 };
