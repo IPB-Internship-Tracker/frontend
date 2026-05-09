@@ -28,26 +28,26 @@ const SidebarMhs = () => {
             <nav className="flex-1 p-4 space-y-2">
 
                 {/* BERANDA */}
-                <button className="flex items-center gap-3 w-full px-4 py-3 rounded-lg bg-indigo-800 hover:bg-indigo-700 transition">
-                <House size={20} />
+                <button className="text-md flex items-center gap-3 w-full px-4 py-3 rounded-lg bg-indigo-800 hover:bg-indigo-700 transition">
+                <House size={18} />
                 <span>Beranda</span>
                 </button>
 
                 {/* MAGANG */}
-                <button className="flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition">
-                <BriefcaseBusiness size={20} />
+                <button className="text-md flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition">
+                <BriefcaseBusiness size={18} />
                 <span>Magang</span>
                 </button>
 
                 {/* KOMPETISI */}
-                <button className="flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition">
-                <Trophy size={20} />
+                <button className="text-md flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition">
+                <Trophy size={18} />
                 <span>Kompetisi</span>
                 </button>
 
                 {/* STUDI INDEPENDEN */}
-                <button className="flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition">
-                <BookOpen size={20} />
+                <button className="text-md flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition">
+                <BookOpen size={18} />
                 <span>Studi Independen</span>
                 </button>
 
@@ -57,8 +57,8 @@ const SidebarMhs = () => {
                     onClick={() => setIsOpen(!isOpen)}
                     className="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition"
                 >
-                    <div className="flex items-center gap-3">
-                    <ChartNoAxesColumn size={20} />
+                    <div className="text-md flex items-center gap-3">
+                    <ChartNoAxesColumn size={18} />
                     <span>Aktivitas</span>
                     </div>
 
@@ -68,15 +68,15 @@ const SidebarMhs = () => {
                 {/* SUBMENU */}
                 {isOpen && (
                     <div className="ml-8 mt-2 space-y-2 text-sm">
-                    <p className="hover:text-yellow-300 cursor-pointer">
+                    <p className="text-md hover:text-yellow-300 cursor-pointer">
                         Lamaran Saya
                     </p>
 
-                    <p className="hover:text-yellow-300 cursor-pointer">
+                    <p className="text-md hover:text-yellow-300 cursor-pointer">
                         Logbook
                     </p>
 
-                    <p className="hover:text-yellow-300 cursor-pointer">
+                    <p className="text-md hover:text-yellow-300 cursor-pointer">
                         Wishlist
                     </p>
                     </div>
@@ -86,7 +86,7 @@ const SidebarMhs = () => {
 
             {/* SETTINGS */}
             <div className="p-4 border-t border-indigo-500">
-                <button className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-700 w-full">
+                <button className="text-md flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-700 w-full">
                 <Settings size={20} />
                 <span>Pengaturan</span>
                 </button>
