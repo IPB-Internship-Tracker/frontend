@@ -1,0 +1,24 @@
+import logo from "../../assets/logo-icon.png";
+
+const Logo = () => {
+  return (
+    <div className="flex flex-col items-center">
+
+      <img
+        src={logo}
+        alt="ICON Logo"
+        className="w-40 md:w-150 mb-2"
+      />
+
+      <p className="text-3xl font-medium text-white text-center">
+        <span className="text-yellow-400 font-bold">I</span>PB{" "}
+        <span className="text-yellow-400 font-bold">C</span>areer{" "}
+        <span className="text-yellow-400 font-bold">O</span>pportunity{" "}
+        <span className="text-yellow-400 font-bold">N</span>etwork
+      </p>
+
+    </div>
+  );
+};
+
+export default Logo;

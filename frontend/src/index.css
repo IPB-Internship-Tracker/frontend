@@ -14,3 +14,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@theme {
+  --color-bold-blue: #1B22A7;
+  --color-light-blue: #4260E6;
+  --color-light-blue-2: #E5E9FF;
+
+  --color-kuning-tua: #FDC500;
+  --color-kuning-muda: #FFF7E6;
+}
