@@ -1,9 +1,9 @@
+import CreateMagangForm from "../../components/forms/CreateMagangForm";
 
 const CreateMagang = () => {
     return (
-    <div className="text-center">
-        <h1 className="text-3xl font-bold text-indigo-700">Create Magang</h1>
-        <p>Form for creating a new magang opportunity.</p>
+    <div className="text-center items-center flex justify-center py-10">
+        <CreateMagangForm />
     </div>
 
     );
