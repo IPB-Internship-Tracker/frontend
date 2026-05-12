@@ -1,10 +1,10 @@
 const PelamarDetail = () => {
     return (
-        <DashboardLayoutMitra>
+        <div>
             <h1 className="text-3xl font-bold text-indigo-700">
                 Pelamar Detail
             </h1>
-        </DashboardLayoutMitra>
+        </div>
     );
 };
 

@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import bgImage from "../../assets/bg-ahn.png";
 import FormField from "./FormField";
 import Logo from "../common/Logo";
-import { Form } from "lucide-react";
 import daunIpb from "../../assets/daun-ipb.png";
 import Button from "../ui/Button";
 

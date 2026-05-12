@@ -1,10 +1,10 @@
 const MagangDetailMitra = () => {
     return (
-        <DashboardLayoutMitra>
+        <div>
             <h1 className="text-3xl font-bold text-indigo-700">
                 Magang Detail
             </h1>
-        </DashboardLayoutMitra>
+        </div>
     );
 };
 

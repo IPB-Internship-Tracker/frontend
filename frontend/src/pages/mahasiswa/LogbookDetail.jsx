@@ -1,10 +1,10 @@
 const LogbookDetail = () => {
     return (
-        <DashboardLayoutMhs>
+        <div>
             <h1 className="text-3xl font-bold text-indigo-700">
-                page logbook detail
+                Logbook Detail
             </h1>
-        </DashboardLayoutMhs>
+        </div>
     );
 };
 

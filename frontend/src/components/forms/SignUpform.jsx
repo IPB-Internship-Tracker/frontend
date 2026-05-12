@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
 import FormField from "./FormField";
 import Button from "../ui/Button";
-
 import daunIpb from "../../assets/daun-ipb.png";
 
 const SignUpForm = ({
@@ -98,6 +96,10 @@ const SignUpForm = ({
     }
   };
 
+  const middleIndex = Math.ceil(fields.length / 2);
+  const leftFields = fields.slice(0, middleIndex);
+  const rightFields = fields.slice(middleIndex);
+
   return (
 
     <div className="relative z-10 bg-white rounded-2xl w-4xl overflow-hidden shadow-2xl px-10 py-10">
@@ -122,9 +124,34 @@ const SignUpForm = ({
         className="relative z-10"
       >
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-          {fields.map((field, index) => (
+        {/* LEFT COLUMN */}
+        <div className="space-y-5">
+          {leftFields.map((field, index) => (
+
+            <FormField
+              key={index}
+
+              label={field.label}
+              type={field.type}
+              placeholder={field.placeholder}
+
+              name={field.name}
+
+              value={formData[field.name]}
+              onChange={handleChange}
+
+              options={field.options}
+
+              error={errors[field.name]}
+            />
+          ))}
+        </div>
+
+        {/* RIGHT COLUMN */}
+        <div className="space-y-5">
+          {rightFields.map((field, index) => (
 
             <FormField
               key={index}
@@ -144,8 +171,8 @@ const SignUpForm = ({
             />
 
           ))}
-
         </div>
+      </div>
 
         {/* BUTTON */}
         <div className="mt-10">

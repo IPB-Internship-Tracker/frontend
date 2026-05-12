@@ -60,7 +60,7 @@ function App() {
           <Route path="/dashboard-mitra" element={<DashboardMitra />} />
           <Route path="/pelamar-list" element={<PelamarList />} />
           <Route path="/pelamar-detail" element={<PelamarDetail />} />
-          <Route path="/magang-list" element={<MagangListMitra />} />
+          <Route path="/magang-list-mitra" element={<MagangListMitra />} />
           <Route path="/magang-detail" element={<MagangDetailMitra />} />
           <Route path="/create-magang" element={<CreateMagang />} />
         </Route>

@@ -1,10 +1,10 @@
 const LamaranDetail = () => {
     return (
-        <DashboardLayoutMhs>
+        <div>
             <h1 className="text-3xl font-bold text-indigo-700">
-                page lamaran detail
+                Lamaran Detail
             </h1>
-        </DashboardLayoutMhs>
+        </div>
     );
 };
 

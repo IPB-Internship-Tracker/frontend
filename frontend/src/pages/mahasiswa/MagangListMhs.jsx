@@ -1,10 +1,10 @@
 const MagangListMhs = () => {
     return (
-        <DashboardLayoutMhs>
+        <div>
             <h1 className="text-3xl font-bold text-indigo-700">
-                page magang list
+                Magang List
             </h1>
-        </DashboardLayoutMhs>
+        </div>
     );
 };
 

@@ -30,7 +30,7 @@ const LoginMhs = () => {
                     textSize="text-2xl"
                 />
                 <LoginForm
-                    role="Mahasiswa IPB"
+                    role={role}
                     signUpPath="/sign-up-mahasiswa"
                     dashboardPath="/dashboard-mahasiswa"
                     emailPlaceholder={emailPlaceholder}

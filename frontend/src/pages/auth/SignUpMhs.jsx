@@ -32,9 +32,7 @@ const SignUpMhs = () => {
                     role="Mahasiswa IPB"
                     fields={[
                         { name: "fullName", label: "Nama Lengkap", type: "text", placeholder: "Masukkan nama lengkap" },
-                        { name: "email", label: "Email", type: "email", placeholder: "Gunakan email IPB" },
                         { name: "nim", label: "NIM", type: "text", placeholder: "Masukkan NIM" },
-                        { name: "password", label: "Password", type: "password", placeholder: "Masukkan password" },
                         { name: "faculty", label: "Fakultas",
                           type: "select",
                           placeholder: "Pilih fakultas",
@@ -53,9 +51,11 @@ const SignUpMhs = () => {
                             "Fakultas Kedokteran dan Gizi",
                             "Sekolah Sains Data, Matematika, dan Informatika",
                           ]
-                        },  
+                        }, 
+                        { name: "studyProgram", label: "Program Studi", type: "text", placeholder: "Masukkan program studi" },
+                        { name: "email", label: "Email", type: "email", placeholder: "Gunakan email IPB" },
+                        { name: "password", label: "Password", type: "password", placeholder: "Masukkan password" },
                         { name: "confirmPassword", label: "Konfirmasi Password", type: "password", placeholder: "Konfirmasi password" },
-                        { name: "studyProgram", label: "Program Studi", type: "text", placeholder: "Masukkan program studi" }
                     ]}
                     className="text-light-blue"
                     loginPath="/login-mahasiswa"

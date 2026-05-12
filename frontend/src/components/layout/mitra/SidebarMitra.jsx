@@ -1,4 +1,5 @@
-//import {useState} from 'react';
+import { useNavigate } from "react-router-dom";
+
 import {
     House,
     ChartLine,
@@ -6,6 +7,21 @@ import {
 } from "lucide-react";
 
 const SidebarMitra = () => {
+    const navigate = useNavigate();
+        const menuItems = [
+        {
+        label: "Dashboard",
+        icon: House,
+        path: "/dashboard-mitra",
+        },
+
+        {
+        label: "Program Saya",
+        icon: ChartLine,
+        path: "/magang-list-mitra",
+        },
+    ];
+
     return (
         <aside className="w-64 min-h-screen bg-indigo-900 text-white flex flex-col">
             
@@ -20,17 +36,32 @@ const SidebarMitra = () => {
             {/* Navigation */}
             <nav className="flex-1 p-4 space-y-2">
 
-                {/* Dashboard */}
-                <button className="text-md flex items-center gap-3 w-full px-4 py-3 rounded-lg bg-indigo-800 hover:bg-indigo-700 transition">
-                <House size={18} />
-                <span>Dashboard</span>
-                </button>
+            {/* MAIN MENU */}
+                    {menuItems.map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                        <button
+                            key={index}
+                            onClick={() => navigate(item.path)}
+                            className="
+                                text-md
+                                flex
+                                items-center
+                                gap-3
+                                w-full
+                                px-4
+                                py-3
+                                rounded-lg
+                                hover:bg-indigo-700
+                                transition ">
+                            <Icon size={18} />
 
-                {/* Program Saya */}
-                <button className="text-md flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition">
-                <ChartLine size={18} />
-                <span>Program Saya</span>
-                </button>
+                            <span>
+                                {item.label}
+                            </span>
+                        </button>
+                    );
+                    })}
             </nav>
 
             {/* SETTINGS */}

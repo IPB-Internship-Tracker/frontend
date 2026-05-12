@@ -1,7 +1,8 @@
 import SidebarMitra from "./SidebarMitra";
 import TopbarMitra from "./TopbarMitra";
+import { Outlet } from "react-router-dom";
 
-const DashboardLayoutMitra = ({ children }) => {
+const DashboardLayoutMitra = () => {
     return (
         <div className="flex bg-gray-100">
 
@@ -16,7 +17,7 @@ const DashboardLayoutMitra = ({ children }) => {
 
                  {/* CONTENT */}
                 <main className="p-8">
-                    {children}
+                    < Outlet />
                 </main>
 
             </div>

@@ -1,99 +1,194 @@
-import {useState} from 'react';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
-    House,
-    BriefcaseBusiness,
-    Trophy,
-    BookOpen,
-    ChartNoAxesColumn,
-    ChevronUp,
-    ChevronDown,
-    Settings,
+  House,
+  BriefcaseBusiness,
+  Trophy,
+  BookOpen,
+  ChartNoAxesColumn,
+  ChevronUp,
+  ChevronDown,
+  Settings,
 } from "lucide-react";
 
 const SidebarMhs = () => {
-    const [isOpen, setIsOpen] = useState(false);
 
-    return (
-        <aside className="w-64 min-h-screen bg-indigo-900 text-white flex flex-col">
-            
-            {/* Logo */}
-            <div className="p-6 border-b border-indigo-500">
-                <h1 className="text-2xl font-bold">ICON</h1>
-                <p className="text-sm text-yellow-300">
-                    IPB Career Opportunity Network
-                </p>
+  const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+// main menu
+  const menuItems = [
+    {
+      label: "Beranda",
+      icon: House,
+      path: "/dashboard-mahasiswa",
+    },
+
+    {
+      label: "Magang",
+      icon: BriefcaseBusiness,
+      path: "/magang-list",
+    },
+
+    {
+      label: "Kompetisi",
+      icon: Trophy,
+      path: "/kompetisi",
+    },
+
+    {
+      label: "Studi Independen",
+      icon: BookOpen,
+      path: "/studi-independen",
+    },
+  ];
+
+// sub menu aktivitas
+  const aktivitasMenu = [
+    {
+      label: "Lamaran Saya",
+      path: "/lamaran-list",
+    },
+
+    {
+      label: "Logbook",
+      path: "/logbook-list",
+    },
+
+    {
+      label: "Wishlist",
+      path: "/wishlist",
+    },
+  ];
+
+  return (
+
+    <aside className="w-64 min-h-screen bg-indigo-900 text-white flex flex-col">
+
+      {/* LOGO */}
+      <div className="p-6 border-b border-indigo-500">
+
+        <h1 className="text-2xl font-bold">
+          ICON
+        </h1>
+
+        <p className="text-sm text-yellow-300">
+          IPB Career Opportunity Network
+        </p>
+
+      </div>
+
+      {/* NAVIGATION */}
+      <nav className="flex-1 p-4 space-y-2">
+
+        {/* MAIN MENU */}
+        {menuItems.map((item, index) => {
+
+          const Icon = item.icon;
+
+          return (
+
+            <button
+              key={index}
+              onClick={() => navigate(item.path)}
+              className="
+                text-md
+                flex
+                items-center
+                gap-3
+                w-full
+                px-4
+                py-3
+                rounded-lg
+                hover:bg-indigo-700
+                transition ">
+
+              <Icon size={18} />
+
+              <span>
+                {item.label}
+              </span>
+
+            </button>
+          );
+        })}
+
+        {/* DROPDOWN */}
+        <div>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="
+              flex
+              items-center
+              justify-between
+              w-full
+              px-4
+              py-3
+              rounded-lg
+              hover:bg-indigo-700
+              transition ">
+
+            <div className="text-md flex items-center gap-3">
+              <ChartNoAxesColumn size={18} />
+              <span>Aktivitas</span>
             </div>
 
-            {/* Navigation */}
-            <nav className="flex-1 p-4 space-y-2">
+            {isOpen
+              ? <ChevronUp />
+              : <ChevronDown />
+            }
 
-                {/* BERANDA */}
-                <button className="text-md flex items-center gap-3 w-full px-4 py-3 rounded-lg bg-indigo-800 hover:bg-indigo-700 transition">
-                <House size={18} />
-                <span>Beranda</span>
-                </button>
+          </button>
 
-                {/* MAGANG */}
-                <button className="text-md flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition">
-                <BriefcaseBusiness size={18} />
-                <span>Magang</span>
-                </button>
+          {/* SUBMENU */}
+          {isOpen && (
 
-                {/* KOMPETISI */}
-                <button className="text-md flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition">
-                <Trophy size={18} />
-                <span>Kompetisi</span>
-                </button>
+            <div className="ml-8 mt-2 space-y-2">
 
-                {/* STUDI INDEPENDEN */}
-                <button className="text-md flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition">
-                <BookOpen size={18} />
-                <span>Studi Independen</span>
-                </button>
+              {aktivitasMenu.map((item, index) => (
 
-                {/* DROPDOWN */}
-                <div>
                 <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-indigo-700 transition"
-                >
-                    <div className="text-md flex items-center gap-3">
-                    <ChartNoAxesColumn size={18} />
-                    <span>Aktivitas</span>
-                    </div>
-
-                    {isOpen ? <ChevronUp /> : <ChevronDown />}
+                  key={index}
+                  onClick={() => navigate(item.path)}
+                  className="
+                    block
+                    text-md
+                    hover:text-yellow-300
+                    transition ">
+                            
+                  {item.label}
                 </button>
-
-                {/* SUBMENU */}
-                {isOpen && (
-                    <div className="ml-8 mt-2 space-y-2 text-sm">
-                    <p className="text-md hover:text-yellow-300 cursor-pointer">
-                        Lamaran Saya
-                    </p>
-
-                    <p className="text-md hover:text-yellow-300 cursor-pointer">
-                        Logbook
-                    </p>
-
-                    <p className="text-md hover:text-yellow-300 cursor-pointer">
-                        Wishlist
-                    </p>
-                    </div>
-                )}
-                </div>
-            </nav>
-
-            {/* SETTINGS */}
-            <div className="p-4 border-t border-indigo-500">
-                <button className="text-md flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-700 w-full">
-                <Settings size={20} />
-                <span>Pengaturan</span>
-                </button>
+              ))}
             </div>
+          )}
+        </div>
+      </nav>
 
-        </aside>
-    );
+      {/* SETTINGS */}
+      <div className="p-4 border-t border-indigo-500">
+
+        <button
+          className="
+            text-md
+            flex
+            items-center
+            gap-3
+            px-4
+            py-3
+            rounded-lg
+            hover:bg-indigo-700
+            w-full ">
+
+          <Settings size={20} />
+          <span>Pengaturan</span>
+        </button>
+
+      </div>
+
+    </aside>
+  );
 };
 
 export default SidebarMhs;

@@ -1,10 +1,10 @@
 const LogbookList = () => {
     return (
-        <DashboardLayoutMhs>
+        <div>
             <h1 className="text-3xl font-bold text-indigo-700">
-                page logbook list
+                Logbook List
             </h1>
-        </DashboardLayoutMhs>
+        </div>
     );
 };
 

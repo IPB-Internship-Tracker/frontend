@@ -1,7 +1,8 @@
 import SidebarMhs from "./SidebarMhs";
 import TopbarMhs from "./TopbarMhs";
+import { Outlet } from "react-router-dom";
 
-const DashboardLayoutMhs = ({ children }) => {
+const DashboardLayoutMhs = () => {
     return (
         <div className="flex bg-gray-100">
 
@@ -16,7 +17,7 @@ const DashboardLayoutMhs = ({ children }) => {
 
                 {/* CONTENT */}
                 <main className="p-8">
-                    {children}
+                    < Outlet />
                 </main>
 
             </div>
