@@ -7,6 +7,8 @@ const FormField = ({
   onChange,
   error,
   options = [],
+  min,
+  max,
 }) => {
 
   return (
@@ -67,6 +69,8 @@ const FormField = ({
       value={value}
       onChange={onChange}
       placeholder={placeholder}
+      min={min}
+      max={max} 
       className={`
         w-full
         rounded-lg
