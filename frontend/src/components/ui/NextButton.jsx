@@ -16,7 +16,7 @@ const NextButton = ({
             flex items-center gap-1
             text-indigo-600
             text-sm
-            hover:underline
+            hover:underl  ine 
         "
       >
 

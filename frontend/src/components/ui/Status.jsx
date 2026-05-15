@@ -50,12 +50,12 @@ const Status = ({ status }) => {
 
         <div
             className={`
-                px-4 py-1
+                px-2 py
                 border
                 rounded-full
                 text-sm
                 font-medium
-                flex items-center gap-2
+                flex items-center gap-1
                 w-fit
                 ${statusStyle}
             `}

@@ -22,7 +22,7 @@ const magangPrograms = [
         logo: logoShopee,
         title: "UI/UX Designer Internship",
         company: "Shopee Indonesia",
-        category: "Design",
+        category: "Design & Creative",
         location: "Jakarta",
         deadline: "28 Mei 2026",
     },
@@ -31,7 +31,7 @@ const magangPrograms = [
         logo: logoShopee,
         title: "Data Analyst Internship",
         company: "Tokopedia",
-        category: "Data",
+        category: "Data & Analytics",
         location: "Jakarta",
         deadline: "28 Mei 2026",
     },
@@ -40,7 +40,7 @@ const magangPrograms = [
         logo: logoShopee,
         title: "Digital Marketing Internship",
         company: "Blibli",
-        category: "Marketing",
+        category: "Marketing & Communication",
         location: "Jakarta",
         deadline: "28 Mei 2026",
     },
@@ -49,7 +49,7 @@ const magangPrograms = [
         logo: logoShopee,
         title: "Software Engineer Internship",
         company: "Traveloka",
-        category: "IT",
+        category: "Information Technology",
         location: "Bandung",
         deadline: "30 Mei 2026",
     },
@@ -67,19 +67,19 @@ const DashboardMhs = () => {
 
                 <BidangCard
                     icon = {
-                        <BriefcaseBusiness size={60} className="text-yellow-400"/>
+                        <BriefcaseBusiness size={50} className="text-yellow-400"/>
                     }
                     title = "Magang"
                 />
                 <BidangCard
                     icon = {
-                        <Trophy size={60} className="text-yellow-400" />
+                        <Trophy size={50} className="text-yellow-400" />
                     }
                     title = "Kompetisi"
                 />
                 <BidangCard
                     icon = {
-                        <BookOpen size={60} className="text-yellow-400" />
+                        <BookOpen size={50} className="text-yellow-400" />
                     }
                     title = "Studi Independen"
                 />
@@ -141,7 +141,7 @@ const DashboardMhs = () => {
                         {/* TITLE */}
                         <h2 className="
                             text-xl
-                            font-bold
+                            font-semibold
                             text-indigo-700
                         ">
                             Reminder
@@ -150,7 +150,7 @@ const DashboardMhs = () => {
                     </div>
 
                     {/* REMINDER LIST */}
-                    <div className="bg-white rounded-xl shadow-sm p-6 space-y-4">
+                    <div className="bg-white rounded-xl shadow-sm p-4 space-y-2">
 
                         <ReminderCard
                             title="Logbook Harian"
@@ -171,14 +171,14 @@ const DashboardMhs = () => {
             </div>
 
             {/* EXPLORE SECTION */}
-            <div className="mt-16">
+            <div className="mt-8">
                 <h2 className="
                     text-xl
                     font-bold
                     text-indigo-700
-                    mb-8
+                    mb-4
                 ">
-                    Eksplor program-program sesuai minat!
+                    Eksplor program-program sesuai minat mu!
                 </h2>
 
                 <ProgramSection

@@ -11,9 +11,9 @@ const LamaranCard = ({
 
         <div className="
             bg-white
-            rounded-2xl
+            rounded-xl
             shadow-sm
-            p-5
+            p-3
             flex items-center justify-between
             w-full
         ">
@@ -33,7 +33,7 @@ const LamaranCard = ({
 
                     {/* TITLE */}
                     <h2 className="
-                        text-lg
+                        text-md
                         font-semibold
                         text-gray-900
                     ">
@@ -42,7 +42,7 @@ const LamaranCard = ({
 
                     {/* COMPANY */}
                     <p className="
-                        text-md
+                        text-sm
                         text-gray-700
                     ">
                         {company}
