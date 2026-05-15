@@ -5,6 +5,9 @@ import NextButton from "../../components/ui/NextButton";
 import logoShopee from "../../assets/logo-shopee.png";
 import ProgramSection from "../../components/cards/ProgramSection";
 
+import { useState } from "react";
+import PopUpNotif from "../../components/ui/PopUpNotif";
+import Button from "../../components/ui/Button";
 import {
   House,
   BriefcaseBusiness,
@@ -54,17 +57,21 @@ const magangPrograms = [
         deadline: "30 Mei 2026",
     },
 ];
+  TriangleAlert
+} from "lucide-react";
+
 
 const DashboardMhs = () => {
+    const [openPopup, setOpenPopup] = useState(false);
+
     return (
-        <div>
+        <div className="px-6 ">
             <h1 className="text-3xl font-bold text-indigo-700">
                 Selamat Datang, <span className="text-indigo-900">Fatiyya</span>!
             </h1>
 
             {/* BIDANG CARD SECTION */}
             <div className="grid grid-cols-3 gap-6 mt-8">
-
                 <BidangCard
                     icon = {
                         <BriefcaseBusiness size={50} className="text-yellow-400"/>
@@ -168,6 +175,61 @@ const DashboardMhs = () => {
 
                 </div>
 
+            {/* BUTTON TEST */}
+            <div className="mt-10">
+                <button
+                    onClick={() => setOpenPopup(true)}
+                    className="
+                    bg-bold-blue
+                    text-white
+                    px-5
+                    py-3
+                    rounded-lg
+                    "
+                >
+                    Test Popup
+                </button>
+
+                {/* POPUP */}
+                <PopUpNotif
+                    isOpen={openPopup}
+                    onClose={() => setOpenPopup(false)}
+
+                    icon={
+                    <TriangleAlert
+                        size={90}
+                        className="text-red-600"
+                    />
+                    }
+
+                    title="Apakah Anda yakin?"
+
+                    description="Data akan terhapus permanen."
+                >
+
+                    <Button
+                    label="Kembali"
+                    onClick={() => setOpenPopup(false)}
+                    className="
+                        border
+                        border-bold-blue
+                        text-bold-blue
+                        bg-white
+                    "
+                    />
+
+                    <Button
+                    label="Hapus"
+                    onClick={() => {
+                        console.log("DELETE");
+                        setOpenPopup(false);
+                    }}
+                    className="
+                        bg-red-500
+                        text-white
+                    "
+                    />
+                </PopUpNotif>
             </div>
 
             {/* EXPLORE SECTION */}

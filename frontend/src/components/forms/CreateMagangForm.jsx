@@ -1,8 +1,7 @@
 import { useState } from "react";
-
 import FormField from "../../components/forms/FormField";
 import Button from "../../components/ui/Button";
-
+import { useNavigate } from "react-router-dom";
 import {
   Upload,
   House,
@@ -12,6 +11,8 @@ import {
 
 const CreateMagangForm = () => {
 
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     namaPerusahaan: "",
     judulLamaran: "",
@@ -28,14 +29,103 @@ const CreateMagangForm = () => {
     informasi: "",
   });
 
-  const handleChange = (e) => {
 
+
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-
   };
+
+
+  // HARI INI
+  const today = new Date();
+
+  // H+1
+  const tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
+
+  // FORMAT YYYY-MM-DD
+  const formatDate = (date) => {
+    return date.toISOString().split("T")[0];
+  };
+
+  // MIN TENGGAT
+  const minTenggat = formatDate(tomorrow);
+
+  // MIN PROGRAM DIMULAI
+  const minMulai =
+    formData.tenggat || minTenggat;
+
+  // MIN PROGRAM BERAKHIR
+  const minBerakhir = (() => {
+    // kalau belum pilih tanggal mulai
+    if (!formData.mulai) {
+      return minTenggat;
+    }
+
+    // H+1 dari tanggal mulai
+    const nextDay = new Date(formData.mulai);
+    nextDay.setDate(nextDay.getDate() + 1);
+    return formatDate(nextDay);
+  })();
+
+
+
+  // VALIDASI FORM
+  const validateForm = () => {
+    let newErrors = {};
+    // REQUIRED FIELD
+    Object.keys(formData).forEach((key) => {
+      if (!formData[key]) {
+        newErrors[key] = "Kolom ini wajib diisi.";
+      }
+    });
+
+    // KUOTA
+    if (formData.kuota && formData.kuota <= 0) {
+      newErrors.kuota =
+        "Kuota harus lebih dari 0.";
+    }
+
+    // TANGGAL TENGGAT
+    if (formData.tenggat < minTenggat) {
+      newErrors.tenggat =
+        "Tenggat minimal H+1 dari hari ini.";
+    }
+
+    // PROGRAM DIMULAI
+    if (formData.mulai < formData.tenggat) {
+      newErrors.mulai =
+        "Program dimulai tidak boleh sebelum tenggat.";
+    }
+
+    // PROGRAM BERAKHIR
+    if (formData.berakhir <= formData.mulai) {
+      newErrors.berakhir =
+        "Program berakhir harus setelah tanggal dimulai.";
+    }
+    if (!formData.deskripsi.trim()) {
+
+      newErrors.deskripsi =
+        "Deskripsi program wajib diisi.";
+
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+};
+
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if (validateForm()) {
+    console.log("FORM VALID");
+    navigate("../doc-requirement");
+  }
+};
+
 
   return (
 
@@ -68,7 +158,7 @@ const CreateMagangForm = () => {
       </div>
 
       {/* FORM */}
-      <form className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
 
         {/* NAMA PERUSAHAAN + LOGO */}
         <div className="flex gap-5 items-end">
@@ -80,37 +170,38 @@ const CreateMagangForm = () => {
               name="namaPerusahaan"
               value={formData.namaPerusahaan}
               onChange={handleChange}
-              placeholder="Contoh: UI/UX Designer Internship"
+              placeholder="Tuliskan nama perusahaan Anda"
+              error={errors.namaPerusahaan}
             />
 
           </div>
 
         {/* UPLOAD LOGO */}
         <label
-        className="
-            flex
-            items-center
-            gap-2
-            border
-            border-light-blue
-            rounded-lg
-            px-4
-            py-2
-            text-bold-blue
-            hover:bg-light-blue-2
-            transition
-            cursor-pointer
-        "
-        >
+          className="
+              flex
+              items-center
+              gap-2
+              border
+              border-light-blue
+              rounded-lg
+              px-4
+              py-2
+              text-bold-blue
+              hover:bg-light-blue-2
+              transition
+              cursor-pointer
+          "
+          >
 
-        <Upload size={18} />
-        Tambahkan Logo
+          <Upload size={18} />
+          Tambahkan Logo
 
-        <input
-            type="file"
-            accept="image/*"
-            className="hidden"
-        />
+          <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+          />
 
         </label>
 
@@ -118,11 +209,12 @@ const CreateMagangForm = () => {
 
         {/* JUDUL */}
         <FormField
-          label="Tuliskan Judul Lamaran yang Ingin Anda Buka"
+          label="Judul Lamaran"
           name="judulLamaran"
           value={formData.judulLamaran}
           onChange={handleChange}
           placeholder="Contoh: UI/UX Designer Internship"
+          error={errors.judulLamaran}
         />
 
         {/* POSISI */}
@@ -132,40 +224,50 @@ const CreateMagangForm = () => {
           value={formData.posisi}
           onChange={handleChange}
           placeholder="Contoh: UI/UX Designer"
+          error={errors.posisi}
         />
 
         {/* DESKRIPSI */}
-        <div>
+          <div>
 
-          <label className="text-left block text-bold-blue text-md font-bold mb-2">
-            Deskripsi Program
-          </label>
+            <label className="text-left block text-bold-blue text-md font-bold mb-2">
+              Deskripsi Program
+            </label>
 
-          <textarea
-            name="deskripsi"
-            value={formData.deskripsi}
-            onChange={handleChange}
-            placeholder="Tuliskan deskripsi program dengan lengkap dan jelas"
-            rows={5}
-            className="
-              w-full
-              rounded-lg
-              border
-              border-light-blue
-              bg-light-blue-2
-              px-4
-              py-3
-              text-md
-              text-bold-blue
-              placeholder:text-light-blue
-              placeholder:italic
-              focus:outline-none
-              focus:ring-1
-              focus:ring-light-blue
-            "
-          />
+            <textarea
+              name="deskripsi"
+              value={formData.deskripsi}
+              onChange={handleChange}
+              placeholder="Tuliskan deskripsi program dengan lengkap. Anda bisa manfaatkan kolom ini untuk mencantumkan informasi yang belum tertera pada kolom lainnya."
+              rows={5}
+              className={`
+                w-full rounded-lg border
+                bg-light-blue-2
+                px-4 py-3
+                text-md text-bold-blue
+                placeholder:font-light
+                placeholder:text-light-blue
+                placeholder:italic
+                focus:outline-none
+                focus:ring-1
 
-        </div>
+                ${
+                  errors.deskripsi
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-light-blue focus:ring-light-blue"
+                }
+              `}
+            />
+
+            {/* ERROR MESSAGE */}
+            {errors.deskripsi && (
+
+              <p className="text-left text-red-500 text-sm italic mt-1">
+                {errors.deskripsi}
+              </p>
+            )}
+
+          </div>
 
         {/* BIDANG */}
         <FormField
@@ -175,6 +277,7 @@ const CreateMagangForm = () => {
           value={formData.bidang}
           onChange={handleChange}
           placeholder="Pilih salah satu bidang"
+          error={errors.bidang}
           options={[
             "Information Technology",
             "Data & Analytics",
@@ -201,6 +304,7 @@ const CreateMagangForm = () => {
           value={formData.kuota}
           onChange={handleChange}
           placeholder="Tuliskan dalam bentuk angka saja"
+          error={errors.kuota}
         />
 
         {/* PENEMPATAN */}
@@ -277,6 +381,8 @@ const CreateMagangForm = () => {
             name="tenggat"
             value={formData.tenggat}
             onChange={handleChange}
+            min={minTenggat}
+            error={errors.tenggat}
           />
 
           <FormField
@@ -285,6 +391,8 @@ const CreateMagangForm = () => {
             name="mulai"
             value={formData.mulai}
             onChange={handleChange}
+            min={minMulai}
+            error={errors.mulai}
           />
 
           <FormField
@@ -293,6 +401,8 @@ const CreateMagangForm = () => {
             name="berakhir"
             value={formData.berakhir}
             onChange={handleChange}
+            min={minBerakhir}
+            error={errors.berakhir}
           />
 
         </div>
@@ -306,6 +416,7 @@ const CreateMagangForm = () => {
             value={formData.kota}
             onChange={handleChange}
             placeholder="Contoh: Jakarta Selatan"
+            error={errors.kota}
           />
 
           <FormField
@@ -314,6 +425,7 @@ const CreateMagangForm = () => {
             value={formData.alamat}
             onChange={handleChange}
             placeholder="Tuliskan alamat lengkap perusahaan"
+            error={errors.alamat}
           />
 
         </div>
@@ -325,6 +437,7 @@ const CreateMagangForm = () => {
           value={formData.narahubung}
           onChange={handleChange}
           placeholder="Contoh: +628123456789"
+          error={errors.narahubung}
         />
 
         {/* INFORMASI */}
@@ -333,7 +446,8 @@ const CreateMagangForm = () => {
           name="informasi"
           value={formData.informasi}
           onChange={handleChange}
-          placeholder="Contoh: @instagram"
+          placeholder="Contoh: instagram, youtube, atau link pendaftaran online"
+          error={errors.informasi}
         />
 
         {/* BUTTON */}

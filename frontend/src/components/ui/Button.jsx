@@ -29,7 +29,8 @@ const Button = ({
       onClick={handleClick}
       className={`
         bg-kuning-tua
-        hover:brightness-105
+        hover:bg-bold-blue
+        hover:text-white
         transition
         duration-300
         text-bold-blue

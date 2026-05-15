@@ -4,23 +4,40 @@ import { ArrowLeft } from "lucide-react";
 const BackButton = ({
   to = "/",
   label = "Kembali",
+  color = "text-white",
+  position = "absolute top-10 left-10",
+  className = "",
 }) => {
 
   const navigate = useNavigate();
 
   return (
-    <div className="absolute top-10 left-10">
+
+    <div className={position}>
 
       <button
         onClick={() => navigate(to)}
-        className="flex items-center gap-2 text-white text-md hover:underline"
+        className={`
+          flex
+          items-center
+          gap-2
+          text-md
+          font-medium
+          hover:underline
+          transition
+
+          ${color}
+          ${className}
+        `}
       >
+
         <ArrowLeft
           size={20}
-          className="text-white"
+          className={color}
         />
 
         {label}
+
       </button>
 
     </div>
