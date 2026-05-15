@@ -65,7 +65,7 @@ const SidebarMhs = () => {
 
   return (
 
-    <aside className="fixed top-0 left-0w-64 min-h-screen bg-indigo-900 text-white flex flex-col">
+    <aside className="fixed top-0 left-0 w-64 min-h-screen bg-indigo-900 text-white flex flex-col">
 
       {/* LOGO */}
       <div className="p-6 border-b border-indigo-500">
