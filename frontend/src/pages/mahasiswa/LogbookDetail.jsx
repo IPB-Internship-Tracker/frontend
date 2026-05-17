@@ -5,6 +5,7 @@ import Button from "../../components/ui/Button";
 import FormField from "../../components/forms/FormField";
 
 import { X } from "lucide-react";
+import BackButton from "../../components/ui/BackButton";
 
 const LogbookDetail = () => {
 
@@ -184,7 +185,13 @@ const LogbookDetail = () => {
 
   return (
 
-    <div className="space-y-8">
+    <div className="px-3 space-y-8">
+      <BackButton
+        label="Kembali"
+        color="text-bold-blue"
+        position="relative"
+        to="/magang-list"
+      />
 
       {/* HEADER */}
       <div className="flex items-start justify-between flex-wrap gap-2">

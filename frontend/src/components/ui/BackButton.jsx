@@ -25,6 +25,7 @@ const BackButton = ({
           font-medium
           hover:underline
           transition
+          cursor-pointer
 
           ${color}
           ${className}

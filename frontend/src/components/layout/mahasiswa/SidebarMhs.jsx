@@ -102,6 +102,7 @@ const SidebarMhs = () => {
                 py-3
                 rounded-xl
                 transition
+                cursor-pointer
 
                 ${
                   location.pathname === item.path
@@ -141,7 +142,8 @@ const SidebarMhs = () => {
               py-3
               rounded-lg
               hover:bg-indigo-700
-              transition ">
+              transition 
+              cursor-pointer">
 
             <div className="text-md flex items-center gap-3">
               <ChartNoAxesColumn size={18} />
@@ -173,6 +175,7 @@ const SidebarMhs = () => {
                 py-2
                 rounded-lg
                 transition
+                cursor-pointer
 
                 ${
                   location.pathname === item.path
@@ -202,7 +205,8 @@ const SidebarMhs = () => {
             py-3
             rounded-lg
             hover:bg-indigo-700
-            w-full ">
+            w-full 
+            cursor-pointer">
 
           <Settings size={20} />
           <span>Pengaturan</span>

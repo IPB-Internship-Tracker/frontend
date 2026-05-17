@@ -19,6 +19,7 @@ import {
 //nyoba dummy data program
 const magangPrograms = [
     {
+        id: 1,
         logo: logoShopee,
         title: "UI/UX Designer Internship",
         company: "Shopee Indonesia",
@@ -28,6 +29,7 @@ const magangPrograms = [
     },
 
     {
+        id: 2,
         logo: logoShopee,
         title: "Data Analyst Internship",
         company: "Tokopedia",
@@ -37,6 +39,7 @@ const magangPrograms = [
     },
 
     {
+        id: 3,
         logo: logoShopee,
         title: "Digital Marketing Internship",
         company: "Blibli",
@@ -46,6 +49,7 @@ const magangPrograms = [
     },
 
     {
+        id:4,
         logo: logoShopee,
         title: "Software Engineer Internship",
         company: "Traveloka",
@@ -91,17 +95,17 @@ const DashboardMhs = () => {
             </div>
 
             <div className=
-                "border-b border-indigo-200 mt-10">
+                "border-b border-indigo-200 mt-8">
             </div>
             
             {/* AKTIVITAS SECTION */}
-            <div className="grid grid-cols-3 gap-6 mt-10">
+            <div className="grid grid-cols-3 gap-4 mt-8">
 
                 {/* LEFT SIDE - AKTIVITASMU */}
                 <div className="col-span-2">
 
                     {/* HEADER */}
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between mb-3">
 
                         {/* TITLE */}
                         <h2 className="
@@ -145,7 +149,7 @@ const DashboardMhs = () => {
                  {/* RIGHT SIDE - REMINDER */}
                 <div>
                     {/* HEADER */}
-                    <div className="mb-4">
+                    <div className="mb-3">
 
                         {/* TITLE */}
                         <h2 className="
@@ -178,6 +182,9 @@ const DashboardMhs = () => {
                 </div>
 
             </div>
+            <div className=
+                "border-b border-indigo-200 mt-8">
+            </div>
 
             {/* EXPLORE SECTION */}
             <div className="mt-8">
@@ -208,10 +215,6 @@ const DashboardMhs = () => {
                     programs={magangPrograms}
                 />
 
-            </div>
-
-            <div className=
-                "border-b border-indigo-200 mt-10">
             </div>
 
         </div>

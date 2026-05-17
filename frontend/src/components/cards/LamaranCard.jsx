@@ -1,4 +1,4 @@
-import Status from "../ui/Status";
+import LamaranStatus from "../ui/LamaranStatus";
 
 const LamaranCard = ({
     logo,
@@ -53,7 +53,7 @@ const LamaranCard = ({
             </div>
 
             {/* STATUS */}
-            <Status status={status} />
+            <LamaranStatus status={status} />
 
         </div>
     );

@@ -1,3 +1,5 @@
+// ini status untuk melihat status lamaran mahasiswa apakah diterima, ditolak, telah mendaftar, atau wawancara
+
 import {
     CheckCheck,
     CircleX,
@@ -5,7 +7,7 @@ import {
     FileClock,
 } from "lucide-react";
 
-const Status = ({ status }) => {
+const LamaranStatus = ({ status }) => {
 
     let statusIcon;
     let statusStyle = "";
@@ -73,4 +75,4 @@ const Status = ({ status }) => {
     );
 };
 
-export default Status;
+export default LamaranStatus;

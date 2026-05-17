@@ -52,10 +52,10 @@ function App() {
           <Route path="/formpendaftaran" element={<FormPendaftaran />} />
           <Route path="/lamaran-list" element={<LamaranList />} />
           <Route path="/lamaran-detail" element={<LamaranDetail />} />
-          <Route path="/logbook-detail" element={<LogbookDetail />} />
+          <Route path="/logbook-detail/:id" element={<LogbookDetail />} />
           <Route path="/logbook-list" element={<LogbookList />} />
           <Route path="/magang-list" element={<MagangListMhs />} />
-          <Route path="/magang-detail" element={<MagangDetailMhs />} />
+          <Route path="/magang-detail/:id" element={<MagangDetailMhs />} />
           <Route path="/kompetisi-list" element={<KompetisiList />} />
           <Route path="/stupen-list" element={<StupenList />} />
         </Route>
@@ -64,9 +64,9 @@ function App() {
         <Route element={<DashboardLayoutMitra />}>
           <Route path="/dashboard-mitra" element={<DashboardMitra />} />
           <Route path="/pelamar-list" element={<PelamarList />} />
-          <Route path="/pelamar-detail" element={<PelamarDetail />} />
+          <Route path="/pelamar-detail/:id" element={<PelamarDetail />} />
           <Route path="/magang-list-mitra" element={<MagangListMitra />} />
-          <Route path="/magang-detail" element={<MagangDetailMitra />} />
+          <Route path="/magang-detail-mitra/:id" element={<MagangDetailMitra />} />
           <Route path="/create-magang" element={<CreateMagang />} />
           <Route path="/doc-requirement" element={<DocRequirement />} />
         </Route>
