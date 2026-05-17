@@ -57,56 +57,16 @@ const LogbookDetail = () => {
   };
 
 
-  const calculateDuration = (
-    start,
-    end
-  ) => {
-
-    const [startHour, startMinute] =
-      start.split(":").map(Number);
-
-    const [endHour, endMinute] =
-      end.split(":").map(Number);
-
-    const startTotal =
-      startHour * 60 + startMinute;
-
-    const endTotal =
-      endHour * 60 + endMinute;
-
-    const diff = endTotal - startTotal;
-
-    const hours = Math.floor(diff / 60);
-    const minutes = diff % 60;
-
-    if (minutes === 0) {
-      return `${hours} Jam`;
-    }
-
-    return `${hours} Jam ${minutes} Menit`;
-  };
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
       const newLog = {
         no: data.length + 1,
-
-        tanggal: `
-          ${formData.tanggal}
-          ${formData.waktuMulai} - ${formData.waktuSelesai}
-        `,
-
-        durasi: calculateDuration(
-          formData.waktuMulai,
-          formData.waktuSelesai
-        ),
-
+        tanggal: formData.tanggal,
+        waktuMulai: formData.waktuMulai,
+        waktuSelesai: formData.waktuSelesai,
         aktivitas: formData.aktivitas,
-
         media: formData.media,
-
         lokasi: formData.lokasi,
 
       };
@@ -132,7 +92,15 @@ const LogbookDetail = () => {
 
     {
       header: "Tanggal & Waktu",
-      accessor: "tanggal",
+
+      render: (row) => (
+        <div>
+          <p>{row.tanggal}</p>
+          <p className="text-sm text-gray-500">
+            {row.waktuMulai} - {row.waktuSelesai}
+          </p>
+        </div>
+      ),
     },
 
     {
@@ -169,7 +137,9 @@ const LogbookDetail = () => {
   const data = [
     {
       no: 1,
-      tanggal: "29 Agustus 2025\n08:00 - 17:30",
+      tanggal: "29 Agustus 2025",
+      waktuMulai: "08:00",
+      waktuSelesai: "17:30",
       durasi: "8 Jam",
       aktivitas: "Membuat wireframe",
       media: "Offline",
@@ -178,7 +148,9 @@ const LogbookDetail = () => {
 
     {
       no: 2,
-      tanggal: "29 Agustus 2025\n08:00 - 17:30",
+      tanggal: "29 Agustus 2025",
+      waktuMulai: "08:00",
+      waktuSelesai: "17:30",
       durasi: "8 Jam",
       aktivitas: "Membuat wireframe",
       media: "Offline",
@@ -187,7 +159,9 @@ const LogbookDetail = () => {
 
     {
       no: 3,
-      tanggal: "29 Agustus 2025\n08:00 - 17:30",
+      tanggal: "29 Agustus 2025",
+      waktuMulai: "08:00",
+      waktuSelesai: "17:30",
       durasi: "8 Jam",
       aktivitas: "Membuat wireframe",
       media: "Offline",
@@ -196,7 +170,9 @@ const LogbookDetail = () => {
 
     {
       no: 4,
-      tanggal: "29 Agustus 2025\n08:00 - 17:30",
+      tanggal: "29 Agustus 2025",
+      waktuMulai: "08:00",
+      waktuSelesai: "17:30",
       durasi: "8 Jam",
       aktivitas: "Membuat wireframe",
       media: "Offline",
@@ -213,28 +189,28 @@ const LogbookDetail = () => {
       {/* HEADER */}
       <div className="flex items-start justify-between flex-wrap gap-2">
       
-      <div>
+        <div>
 
-        <h1 className="text-xl font-bold text-black mb-2">
-          Logbook
-        </h1>
+          <h1 className="text-xl font-bold text-black mb-2">
+            Log Aktivitas
+          </h1>
 
-        <h2 className="text-2xl font-bold text-bold-blue">
-          {programDetail.title}
-        </h2>
+          <h2 className="text-2xl font-bold text-bold-blue">
+            {programDetail.title}
+          </h2>
 
-        <p className="text-md text-bold-blue">
-          {programDetail.company}
-        </p>
+          <p className="text-md text-bold-blue">
+            {programDetail.company}
+          </p>
 
-        <p className="mt-2 text-md">
-          Periode:
-          <span className="font-bold ml-1">
-            {programDetail.period}
-          </span>
-        </p>
+          <p className="mt-2 text-md">
+            Periode:
+            <span className="font-bold ml-1">
+              {programDetail.period}
+            </span>
+          </p>
 
-      </div>
+        </div>
 
         <Button
           label="+ Tambah Log"

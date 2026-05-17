@@ -67,21 +67,24 @@ const DashboardMhs = () => {
 
                 <BidangCard
                     icon = {
-                        <BriefcaseBusiness size={50} className="text-kuning-tua"/>
+                        <BriefcaseBusiness size={60} className="text-kuning-tua"/>
                     }
                     title = "Magang"
+                    to="/magang-list"
                 />
                 <BidangCard
                     icon = {
-                        <Trophy size={50} className="text-kuning-tua" />
+                        <Trophy size={60} className="text-kuning-tua" />
                     }
                     title = "Kompetisi"
+                    to = "/kompetisi-list"
                 />
                 <BidangCard
                     icon = {
-                        <BookOpen size={50} className="text-kuning-tua" />
+                        <BookOpen size={60} className="text-kuning-tua" />
                     }
                     title = "Studi Independen"
+                    to ="/stupen-list"
                 />
             </div>
             

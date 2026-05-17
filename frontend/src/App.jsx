@@ -19,6 +19,8 @@ import LogbookDetail from './pages/mahasiswa/LogbookDetail';
 import LogbookList from './pages/mahasiswa/LogbookList';
 import MagangListMhs from './pages/mahasiswa/MagangListMhs';
 import MagangDetailMhs from './pages/mahasiswa/MagangDetailMhs';
+import KompetisiList from './pages/mahasiswa/KompetisiList';
+import StupenList from './pages/mahasiswa/StupenList';
 
 // mitra
 import DashboardLayoutMitra from './components/layout/mitra/DashboardLayoutMitra';
@@ -54,6 +56,8 @@ function App() {
           <Route path="/logbook-list" element={<LogbookList />} />
           <Route path="/magang-list" element={<MagangListMhs />} />
           <Route path="/magang-detail" element={<MagangDetailMhs />} />
+          <Route path="/kompetisi-list" element={<KompetisiList />} />
+          <Route path="/stupen-list" element={<StupenList />} />
         </Route>
 
         {/* Mitra */}

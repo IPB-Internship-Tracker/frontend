@@ -14,7 +14,7 @@ const Table = ({
                 key={index}
                 className="
                   px-6
-                  py-4
+                  py-3
                   text-left
                   font-bold
                   border-y

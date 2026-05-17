@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   House,
   BriefcaseBusiness,
@@ -15,8 +14,7 @@ import {
 const SidebarMhs = () => {
 
   const navigate = useNavigate();
-
-  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
 // main menu
   const menuItems = [
@@ -35,13 +33,13 @@ const SidebarMhs = () => {
     {
       label: "Kompetisi",
       icon: Trophy,
-      path: "/kompetisi",
+      path: "/kompetisi-list",
     },
 
     {
       label: "Studi Independen",
       icon: BookOpen,
-      path: "/studi-independen",
+      path: "/stupen-list",
     },
   ];
 
@@ -56,12 +54,15 @@ const SidebarMhs = () => {
       label: "Logbook",
       path: "/logbook-list",
     },
-
-    {
-      label: "Wishlist",
-      path: "/wishlist",
-    },
   ];
+
+
+    const [isOpen, setIsOpen] = useState(
+      aktivitasMenu.some(
+        (item) => item.path === location.pathname
+      )
+    );
+
 
   return (
 
@@ -85,15 +86,13 @@ const SidebarMhs = () => {
 
         {/* MAIN MENU */}
         {menuItems.map((item, index) => {
-
           const Icon = item.icon;
-
           return (
 
             <button
               key={index}
               onClick={() => navigate(item.path)}
-              className="
+              className={`
                 text-md
                 flex
                 items-center
@@ -101,11 +100,25 @@ const SidebarMhs = () => {
                 w-full
                 px-4
                 py-3
-                rounded-lg
-                hover:bg-indigo-700
-                transition ">
+                rounded-xl
+                transition
 
-              <Icon size={18} />
+                ${
+                  location.pathname === item.path
+                    ? "bg-indigo-950 text-kuning-tua"
+                    : "text-white hover:bg-indigo-700"
+                }
+              `}
+            >
+
+             <Icon
+                size={18}
+                className={
+                  location.pathname === item.path
+                    ? "text-kuning-tua"
+                    : "text-white"
+                }
+              />
 
               <span>
                 {item.label}
@@ -149,15 +162,25 @@ const SidebarMhs = () => {
 
               {aktivitasMenu.map((item, index) => (
 
-                <button
-                  key={index}
-                  onClick={() => navigate(item.path)}
-                  className="
-                    block
-                    text-md
-                    hover:text-yellow-300
-                    transition ">
-                            
+            <button
+              key={index}
+              onClick={() => navigate(item.path)}
+              className={`
+                block
+                w-full
+                text-left
+                px-4
+                py-2
+                rounded-lg
+                transition
+
+                ${
+                  location.pathname === item.path
+                    ? "bg-indigo-950 text-kuning-tua"
+                    : "text-white hover:text-kuning-tua"
+                }
+              `}
+            >                          
                   {item.label}
                 </button>
               ))}
