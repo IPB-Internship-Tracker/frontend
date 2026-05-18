@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ProgramCard = ({
     logo,
@@ -7,12 +8,16 @@ const ProgramCard = ({
     category,
     location,
     deadline,
+    to,
     className = "",
 }) => {
+
+    const navigate = useNavigate();
 
     return (
 
         <div
+            onClick={() => navigate(to)}
             className={`
                 bg-white
                 rounded-xl
@@ -31,7 +36,7 @@ const ProgramCard = ({
 
                 ${className}
             `}
-        >
+            >
 
             {/* TOP */}
             <div className="flex items-start gap-4">

@@ -82,14 +82,14 @@ const LogbookList = () => {
     header: "Aksi",
     accessor: "aksi",
 
-    render: () => (
+    render: (row) => (
 
         <div className="flex gap-2 flex-wrap">
 
         {/* LIHAT LOGBOOK */}
         <Button
         label={<Eye size={18} />}
-        to="/logbook-detail"
+        to={`/logbook-detail/${row.id}`}
         iconOnly
         className="
             bg-blue-600
@@ -116,6 +116,7 @@ const LogbookList = () => {
 
   const data = [
   {
+    id: 1,
     no: 1,
     program: "UI/UX Designer Internship",
     company: "Shopee Indonesia",
@@ -123,6 +124,7 @@ const LogbookList = () => {
   },
 
   {
+    id: 2,
     no: 2,
     program: "Data Analyst Internship",
     company: "Tokopedia",
@@ -130,6 +132,7 @@ const LogbookList = () => {
   },
 
   {
+    id: 3,
     no: 3,
     program: "Frontend Developer Internship",
     company: "Traveloka",
@@ -139,12 +142,12 @@ const LogbookList = () => {
 
   return (
 
-    <div className="space-y-8">
+    <div className="space-y-8 px-3">
 
       {/* HEADER */}
     <div className="flex items-start justify-between flex-wrap gap-2">
         <div>
-            <h1 className="text-3xl font-bold text-bold-blue mb-2">
+            <h1 className="text-2xl font-bold text-bold-blue mb-2">
             Logbook Anda
             </h1>
 
@@ -216,7 +219,7 @@ const LogbookList = () => {
             </button>
 
             {/* TITLE */}
-            <h1 className="text-3xl text-center font-bold mb-2 text-black">
+            <h1 className="text-xl text-center font-bold mb-2 text-black">
                 Buat Logbook Baru
             </h1>
 

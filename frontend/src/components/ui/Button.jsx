@@ -32,6 +32,7 @@ const Button = ({
       transition
       duration-300
       font-bold
+      cursor-pointer
 
       ${
         iconOnly

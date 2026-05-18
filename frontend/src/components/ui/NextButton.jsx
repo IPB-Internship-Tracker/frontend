@@ -17,6 +17,7 @@ const NextButton = ({
             text-bold-blue
             text-sm
             hover:underline 
+            cursor-pointer
         "
       >
 

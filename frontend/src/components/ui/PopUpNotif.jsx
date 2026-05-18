@@ -54,6 +54,7 @@ const PopUpNotif = ({
             hover:text-black
             transition
             text-xl
+            cursor-pointer
           "
         >
           ✕

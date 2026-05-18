@@ -100,6 +100,7 @@ const categories = [
 const programs = [
 
     {
+        id: 1,
         logo: logoShopee,
         title: "UI/UX Designer Internship",
         company: "Shopee Indonesia",
@@ -109,6 +110,7 @@ const programs = [
     },
     
     {
+        id: 2,
         logo: logoShopee,
         title: "Data Analyst Internship",
         company: "Tokopedia",
@@ -118,6 +120,7 @@ const programs = [
     },
     
     {
+        id: 3,
         logo: logoShopee,
         title: "Digital Marketing Internship",
         company: "Blibli",
@@ -127,6 +130,7 @@ const programs = [
     },
     
     {
+        id: 4,
         logo: logoShopee,
         title: "Software Engineer Internship",
         company: "Traveloka",
@@ -136,6 +140,7 @@ const programs = [
     },
 
     {
+        id: 5,
         logo: logoShopee,
         title: "UI/UX Designer Internship",
         company: "Shopee Indonesia",
@@ -145,6 +150,7 @@ const programs = [
     },
     
     {
+        id: 6,
         logo: logoShopee,
         title: "Data Analyst Internship",
         company: "Tokopedia",
@@ -154,6 +160,7 @@ const programs = [
     },
     
     {
+        id: 7,
         logo: logoShopee,
         title: "Digital Marketing Internship",
         company: "Blibli",
@@ -163,6 +170,7 @@ const programs = [
     },
     
     {
+        id: 8,
         logo: logoShopee,
         title: "Software Engineer Internship",
         company: "Traveloka",
@@ -172,6 +180,7 @@ const programs = [
     },
 
     {
+        id: 9,
         logo: logoShopee,
         title: "UI/UX Designer Internship",
         company: "Shopee Indonesia",
@@ -181,6 +190,7 @@ const programs = [
     },
     
     {
+        id: 10,
         logo: logoShopee,
         title: "Data Analyst Internship",
         company: "Tokopedia",
@@ -190,6 +200,7 @@ const programs = [
     },
     
     {
+        id: 11,
         logo: logoShopee,
         title: "Digital Marketing Internship",
         company: "Blibli",
@@ -199,6 +210,7 @@ const programs = [
     },
     
     {
+        id: 12,
         logo: logoShopee,
         title: "Software Engineer Internship",
         company: "Traveloka",
@@ -208,6 +220,7 @@ const programs = [
     },
 
     {
+        id: 13,
         logo: logoShopee,
         title: "UI/UX Designer Internship",
         company: "Shopee Indonesia",
@@ -217,6 +230,7 @@ const programs = [
     },
     
     {
+        id: 14,
         logo: logoShopee,
         title: "Data Analyst Internship",
         company: "Tokopedia",
@@ -226,6 +240,7 @@ const programs = [
     },
     
     {
+        id: 15,
         logo: logoShopee,
         title: "Digital Marketing Internship",
         company: "Blibli",
@@ -235,6 +250,7 @@ const programs = [
     },
     
     {
+        id: 16,
         logo: logoShopee,
         title: "Software Engineer Internship",
         company: "Traveloka",
@@ -319,6 +335,7 @@ const MagangListMhs = () => {
                             category={program.category}
                             location={program.location}
                             deadline={program.deadline}
+                            to={`/magang-detail/${program.id}`}
                         />
                     
                     ))}

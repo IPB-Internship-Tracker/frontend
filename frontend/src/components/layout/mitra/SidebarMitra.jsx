@@ -66,6 +66,7 @@ const SidebarMitra = () => {
                 py-3
                 rounded-xl
                 transition
+                cursor-pointer
 
                 ${
                   location.pathname === item.path
@@ -109,6 +110,7 @@ const SidebarMitra = () => {
             hover:bg-indigo-700
             transition
             w-full
+            cursor-pointer
           "
         >
 

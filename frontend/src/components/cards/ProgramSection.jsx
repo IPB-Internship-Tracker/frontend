@@ -43,6 +43,7 @@ const ProgramSection = ({
                 {programs.map((program, index) => (
                      <ProgramCard
                         key={index}
+
                         logo={program.logo}
                         title={program.title}
                         company={program.company}
@@ -50,12 +51,14 @@ const ProgramSection = ({
                         location={program.location}
                         deadline={program.deadline}
 
+                        to={`/magang-detail/${program.id}`}
+
                         className="
                             min-w-[350px]
                             max-w-[350px]
                             flex-shrink-0
                         "
-                    />
+                        />
                 ))}
                 
                 
