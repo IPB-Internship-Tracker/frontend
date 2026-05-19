@@ -4,6 +4,7 @@ import ReminderCard from "../../components/cards/ReminderCard";
 import NextButton from "../../components/ui/NextButton";
 import logoShopee from "../../assets/logo-shopee.png";
 import ProgramSection from "../../components/cards/ProgramSection";
+import LamaranStatus from "../../components/ui/LamaranStatus";
 
 import {
   House,
@@ -62,6 +63,9 @@ const magangPrograms = [
 ];
 
 const DashboardMhs = () => {
+
+    const StatusComponent = LamaranStatus;
+
     return (
         <div>
             <h1 className="text-3xl font-bold text-bold-blue">
@@ -132,6 +136,7 @@ const DashboardMhs = () => {
                             title="UI/UX Designer Internship"
                             company="Shopee Indonesia"
                             status="Telah Mendaftar"
+                            statusComponent={StatusComponent}
                         />
 
                         <LamaranCard
@@ -139,6 +144,7 @@ const DashboardMhs = () => {
                             title="Data Analyst Internship"
                             company="Blibli.com"
                             status="Diterima"
+                            statusComponent={StatusComponent}
                         />
 
                     </div>

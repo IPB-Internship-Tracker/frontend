@@ -1,10 +1,11 @@
-import LamaranStatus from "../ui/LamaranStatus";
-
 const LamaranCard = ({
     logo,
     title,
     company,
+    bidang,
+    participantInfo,
     status,
+    statusComponent: StatusComponent,
 }) => {
 
     return (
@@ -18,7 +19,7 @@ const LamaranCard = ({
             w-full
         ">
 
-            {/* LEFT SECTION */}
+            {/* LEFT SECTION */} 
             <div className="flex items-center gap-4">
 
                 {/* LOGO */}
@@ -41,19 +42,41 @@ const LamaranCard = ({
                     </h2>
 
                     {/* COMPANY */}
-                    <p className="
-                        text-sm
-                        text-gray-700
-                    ">
-                        {company}
-                    </p>
+                    {company && (
+                        <p className="
+                            text-sm
+                            text-gray-700
+                        ">
+                            {company}
+                        </p>
+                    )}
+
+                    {/* BIDANG */}
+                    {bidang && (
+                        <p className="
+                            text-sm
+                            text-gray-700
+                        ">
+                            {bidang}
+                        </p>
+                    )}
+
+                    {/* PARTICIPANT */}
+                    {participantInfo && (
+                        <p className="
+                            text-sm
+                            text-gray-700
+                        ">
+                            {participantInfo}
+                        </p>
+                    )}
 
                 </div>
 
             </div>
 
             {/* STATUS */}
-            <LamaranStatus status={status} />
+            <StatusComponent status={status} />
 
         </div>
     );

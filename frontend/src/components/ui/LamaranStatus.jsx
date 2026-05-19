@@ -25,7 +25,7 @@ const LamaranStatus = ({ status }) => {
     else if (status === "Ditolak") {
 
         statusStyle =
-            "bg-merah-muda-status text-merah-tua-status merah-tua-status";
+            "bg-merah-muda-status text-merah-tua-status border-merah-tua-status";
 
         statusIcon = <CircleX size={14} />;
     }
@@ -52,7 +52,7 @@ const LamaranStatus = ({ status }) => {
 
         <div
             className={`
-                px-2 py
+                px-3 py-1.5
                 border
                 rounded-full
                 text-sm
