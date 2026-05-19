@@ -12,7 +12,8 @@ import { useParams } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import BackButton from "../../components/ui/BackButton";
 import ProgramStatus from "../../components/ui/ProgramStatus"
-import LogoShopee from "../../assets/logo-shopee.png"
+import LogoShopee from "../../assets/logo-shopee.png";
+import ProgramSection from "../../components/cards/ProgramSection";
 
 const InfoCard = ({
   title,
@@ -52,6 +53,49 @@ const InfoCard = ({
     </div>
   );
 };
+
+  // REKOMENDASI PROGRAM
+  const recommendedPrograms = [
+    {
+      id: 1,
+      logo: LogoShopee,
+      title: "UI/UX Designer Internship",
+      company: "Shopee Indonesia",
+      category: "Design",
+      location: "Jakarta",
+      deadline: "29 Mei 2026",
+    },
+
+    {
+      id: 2,
+      logo: LogoShopee,
+      title: "Data Analyst Intern",
+      company: "Tokopedia",
+      category: "Data",
+      location: "Jakarta",
+      deadline: "29 Mei 2026",
+    },
+
+    {
+      id: 3,
+      logo: LogoShopee,
+      title: "Digital Marketing Intern",
+      company: "Blibli",
+      category: "Marketing",
+      location: "Jakarta",
+      deadline: "29 Mei 2026",
+    },
+
+    {
+      id: 4,
+      logo: LogoShopee,
+      title: "UI/UX Researcher Intern",
+      company: "Shopee Indonesia",
+      category: "Design",
+      location: "Jakarta",
+      deadline: "29 Mei 2026",
+    },
+  ];
 
 const MagangDetailMhs = () => {
 
@@ -450,6 +494,15 @@ const { id } = useParams();
         </div>
 
       </div>
+
+      <div className="border-b border-light-blue/40 my-12"></div>
+
+      {/* REKOMENDASI */}
+      <ProgramSection
+        sectionTitle="Program lain yang mungkin Anda suka"
+        buttonTo="/magang-list"
+        programs={recommendedPrograms}
+      />
 
     </div>
   );

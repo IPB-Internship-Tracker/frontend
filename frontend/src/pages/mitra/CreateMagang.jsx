@@ -10,6 +10,7 @@ const CreateMagang = () => {
         <BackButton
           color="text-bold-blue"
           position="relative"
+          to="/dashboard-mitra"
         />
       </div>
       
