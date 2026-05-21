@@ -1,78 +1,98 @@
-// ini status untuk melihat status lamaran mahasiswa apakah diterima, ditolak, telah mendaftar, atau wawancara
-
 import {
-    CheckCheck,
-    CircleX,
-    Contact,
-    FileClock,
+  CheckCheck,
+  CircleX,
+  Contact,
+  FileClock,
+  ChevronDown,
 } from "lucide-react";
 
-const LamaranStatus = ({ status }) => {
+const LamaranStatus = ({
+  status,
+  onClick,
+  isDropdown = false,
+}) => {
 
-    let statusIcon;
-    let statusStyle = "";
+  let statusIcon;
+  let statusStyle = "";
 
-    // DITERIMA
-    if (status === "Diterima") {
+  // DITERIMA
+  if (status === "Diterima") {
 
-        statusStyle =
-            "bg-hijau-muda-status text-hijau-tua-status border-hijau-tua-status";
+    statusStyle =
+      "bg-hijau-muda-status text-hijau-tua-status border-hijau-tua-status";
 
-        statusIcon = <CheckCheck size={14} />;
-    }
+    statusIcon = <CheckCheck size={14} />;
+  }
 
-    // DITOLAK
-    else if (status === "Ditolak") {
+  // DITOLAK
+  else if (status === "Ditolak") {
 
-        statusStyle =
-            "bg-merah-muda-status text-merah-tua-status border-merah-tua-status";
+    statusStyle =
+      "bg-merah-muda-status text-merah-tua-status border-merah-tua-status";
 
-        statusIcon = <CircleX size={14} />;
-    }
+    statusIcon = <CircleX size={14} />;
+  }
 
-    // WAWANCARA
-    else if (status === "Wawancara") {
+  // WAWANCARA
+  else if (status === "Wawancara") {
 
-        statusStyle =
-            "bg-biru-muda-status text-biru-tua-status border-biru-tua-status";
+    statusStyle =
+      "bg-biru-muda-status text-biru-tua-status border-biru-tua-status";
 
-        statusIcon = <Contact size={14} />;
-    }
+    statusIcon = <Contact size={14} />;
+  }
 
-    // DEFAULT = TELAH MENDAFTAR
-    else {
+  // DEFAULT
+  else {
 
-        statusStyle =
-            "bg-kuning-muda-status text-kuning-tua-secondary border-kuning-tua-secondary";
+    statusStyle =
+      "bg-kuning-muda-status text-kuning-tua-secondary border-kuning-tua-secondary";
 
-        statusIcon = <FileClock size={14} />;
-    }
+    statusIcon = <FileClock size={14} />;
+  }
 
-    return (
+  return (
 
-        <div
-            className={`
-                px-3 py-1.5
-                border
-                rounded-full
-                text-sm
-                font-medium
-                flex items-center gap-1
-                w-fit
-                ${statusStyle}
-            `}
-        >
+    <button
+      onClick={onClick}
+      className={`
+        px-3
+        py-1.5
+        border
+        rounded-full
+        text-xs
+        font-medium
+        flex
+        items-center
+        gap-1
+        w-fit
+        transition
 
-            {/* ICON */}
-            {statusIcon}
+        ${
+          isDropdown
+            ? "hover:opacity-80 cursor-pointer"
+            : "cursor-default"
+        }
 
-            {/* TEXT */}
-            <span>
-                {status}
-            </span>
+        ${statusStyle}
+      `}
+    >
 
-        </div>
-    );
+      {/* ICON */}
+      {statusIcon}
+
+      {/* TEXT */}
+      <span>
+        {status}
+      </span>
+
+      {/* DROPDOWN ICON */}
+      {isDropdown && (
+        <ChevronDown size={14} />
+      )}
+
+    </button>
+  );
 };
 
 export default LamaranStatus;

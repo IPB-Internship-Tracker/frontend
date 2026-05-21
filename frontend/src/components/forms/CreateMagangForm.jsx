@@ -9,27 +9,43 @@ import {
   Globe,
 } from "lucide-react";
 
-const CreateMagangForm = () => {
+  const CreateMagangForm = ({
+    initialData = null,
+    isEdit = false,
+    hideSubmitButton = false
+  }) => {
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
-  const [formData, setFormData] = useState({
-    namaPerusahaan: "",
-    judulLamaran: "",
-    posisi: "",
-    deskripsi: "",
-    bidang: "",
-    kuota: "",
-    tenggat: "",
-    mulai: "",
-    berakhir: "",
-    kota: "",
-    alamat: "",
-    narahubung: "",
-    informasi: "",
-  });
 
+  const [formData, setFormData] = useState(
+    initialData || {
+      namaPerusahaan: "",
+      logo: null,
+      judulLamaran: "",
+      posisi: "",
+      deskripsi: "",
+      bidang: "",
+      kuota: "",
+      penempatan: "",
+      tenggat: "",
+      mulai: "",
+      berakhir: "",
+      kota: "",
+      alamat: "",
+      narahubung: "",
+      informasi: "",
+    }
+  );
 
+  const handleLogoChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setFormData({
+      ...formData,
+      logo: file,
+    });
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -72,7 +88,6 @@ const CreateMagangForm = () => {
   })();
 
 
-
   // VALIDASI FORM
   const validateForm = () => {
     let newErrors = {};
@@ -107,12 +122,9 @@ const CreateMagangForm = () => {
         "Program berakhir harus setelah tanggal dimulai.";
     }
     if (!formData.deskripsi.trim()) {
-
       newErrors.deskripsi =
         "Deskripsi program wajib diisi.";
-
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
 };
@@ -122,13 +134,46 @@ const handleSubmit = (e) => {
   e.preventDefault();
   if (validateForm()) {
     console.log("FORM VALID");
-    navigate("../doc-requirement");
-  }
+    if (isEdit) {
+      console.log("UPDATE PROGRAM");
+      navigate("/magang-list-mitra");
+
+    } else {
+      console.log("CREATE PROGRAM");
+      navigate("../doc-requirement");
+    }
+      }
+};
+
+const placementOptions = [
+  {
+    label: "WFH",
+    value: "WFH",
+    icon: <House size={18} />,
+  },
+  {
+    label: "Hybrid",
+    value: "Hybrid",
+    icon: <Globe size={18} />,
+  },
+  {
+    label: "WFO",
+    value: "WFO",
+    icon: <Building2 size={18} />,
+  },
+];
+
+const handlePlacementChange = (
+  value
+) => {
+  setFormData({
+    ...formData,
+    penempatan: value,
+  });
 };
 
 
   return (
-
     <div
       className="
         bg-white
@@ -147,13 +192,16 @@ const handleSubmit = (e) => {
           text-center
           mb-10 ">
 
-        <h1 className="text-3xl font-bold text-bold-blue mb-2">
-          Buat Program Magang
+        <h1 className="text-2xl font-bold text-bold-blue mb-1">
+          {isEdit
+            ? "Edit Program Magang"
+            : "Buat Program Magang"}
         </h1>
 
-        <p className="text-black">
-          Isi informasi yang dibutuhkan untuk membuat
-          program magang Anda.
+        <p className="text-black font-light">
+          {isEdit
+            ? "Perbarui informasi program magang Anda."
+            : "Isi informasi yang dibutuhkan untuk membuat program magang Anda."}
         </p>
       </div>
 
@@ -195,12 +243,17 @@ const handleSubmit = (e) => {
           >
 
           <Upload size={18} />
-          Tambahkan Logo
+          <span className="max-w-[180px] truncate">
+            {formData.logo
+              ? formData.logo.name
+              : "Tambahkan Logo"}
+          </span>
 
           <input
-              type="file"
-              accept="image/*"
-              className="hidden"
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleLogoChange}
           />
 
         </label>
@@ -309,67 +362,64 @@ const handleSubmit = (e) => {
 
         {/* PENEMPATAN */}
         <div>
-
           <label className="text-left block text-bold-blue text-md font-bold mb-3">
             Penempatan
           </label>
 
           <div className="flex gap-3 flex-wrap">
+            {placementOptions.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                onClick={() =>
+                  handlePlacementChange(
+                    option.value
+                  )
+                }
+                className={`
+                  flex
+                  items-center
+                  gap-2
+                  border
+                  rounded-lg
+                  px-5
+                  py-3
+                  transition
+                  cursor-pointer
 
-            <button
-              type="button"
-              className="
-                flex
-                items-center
-                gap-2
-                border
-                border-light-blue
-                rounded-lg
-                px-4
-                py-2
-                hover:bg-light-blue-2 ">
+                  ${
+                    formData.penempatan ===
+                    option.value
 
-              <House size={18} />
-              WFH
-
-            </button>
-
-            <button
-              type="button"
-              className="
-                flex
-                items-center
-                gap-2
-                border
-                border-light-blue
-                rounded-lg
-                px-4
-                py-2
-                hover:bg-light-blue-2 ">
-
-              <Globe size={18} />
-              Hybrid
-
-            </button>
-
-            <button
-              type="button"
-              className="
-                flex
-                items-center
-                gap-2
-                border
-                border-light-blue
-                rounded-lg
-                px-4
-                py-2
-                hover:bg-light-blue-2 ">
-
-
-              <Building2 size={18} />
-              WFO
-            </button>
+                      ? `
+                        bg-light-blue
+                        border-bold-blue
+                        text-white
+                        shadow-md
+                      `
+                      : `
+                        border-light-blue
+                        text-bold-blue
+                        hover:bg-light-blue-2
+                      `
+                  }
+                `}
+              >
+                {option.icon}
+                {option.label}
+              </button>
+            ))}
           </div>
+
+          {/* ERROR */}
+          {errors.penempatan && (
+
+            <p className="text-red-500 text-sm italic mt-2">
+              {errors.penempatan}
+            </p>
+
+          )}
+
         </div>
 
         {/* TANGGAL */}
@@ -452,12 +502,18 @@ const handleSubmit = (e) => {
 
         {/* BUTTON */}
         <div className="flex justify-end pt-5">
+          {!hideSubmitButton && (
+            <Button
+              label={
+                isEdit
+                  ? "Simpan"
+                  : "Selanjutnya"
+              }
+              type="submit"
+              className="w-[180px]"
+            />
+          )}
 
-          <Button
-            label="Selanjutnya"
-            type="submit"
-            className="w-[180px]"
-          />
 
         </div>
 

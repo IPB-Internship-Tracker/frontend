@@ -16,6 +16,7 @@ const Table = ({
                   px-6
                   py-3
                   text-left
+                  text-md
                   font-bold
                   border-y
                   border-kuning-tua">
@@ -44,8 +45,9 @@ const Table = ({
                     py-4
                     border-t
                     border-y
-                    border-light-blue
-                    text-black ">
+                    border-light-blue/40
+                    text-black
+                    text-sm ">
 
                   {/* CUSTOM RENDER */}
                   {column.render
