@@ -1,11 +1,20 @@
+import { useNavigate } from "react-router-dom";
+
 const ReminderCard = ({
     title,
     program,
     deadline,
+    draft,
+    status,
+    to,
 }) => {
+
+    const navigate = useNavigate();
     
     return (
-        <div className="flex items-start justify-between w-full border-b border-gray-200 pb-4">
+        <div onClick={()=> to && navigate(to)}
+        className=
+            "flex items-start justify-between w-full border-b border-gray-200 pb-4">
             
             {/* LEFT SECTION */}
             <div className="flex items-start gap-3">
@@ -34,6 +43,15 @@ const ReminderCard = ({
             <p className="text-sm text-gray-700 whitespace-nowrap">
                 {deadline}
             </p>
+
+            <button onClick={()=> to && navigate(to)} className="
+                text-sm
+                text-bold-blue
+                whitespace-nowrap
+                hover:underline
+            ">
+                {status}
+            </button>
 
         </div>
     );

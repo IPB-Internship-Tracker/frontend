@@ -1,8 +1,11 @@
 import Button from "../../components/ui/Button";
 import TrafikCard from "../../components/cards/TrafikCard";
-import LamaranCard from "../../components/cards/LamaranCard";
 import ProgramStatus from "../../components/ui/ProgramStatus";
+import ProgramListCard from "../../components/cards/ProgramListCard";
+import ReminderCard from "../../components/cards/ReminderCard";
 import logoShopee from "../../assets/logo-shopee.png";
+
+
 import{
     BriefcaseBusiness,
     Trophy,
@@ -80,9 +83,9 @@ const DashboardMitra = () => {
             </div>
 
             {/* IMPORT LAMARAN CARD untuk ProgramCard Mitra*/}
-            <div className="grid grid-cols-2 gap-4 mt-8">
+            <div className="grid grid-cols-3 gap-6 mt-8">
                 {/* PROGRAM ANDA */}
-                <div className="mt-10">
+                <div className="col-span-2">
 
                     <h2 className="
                         text-xl
@@ -94,19 +97,51 @@ const DashboardMitra = () => {
                     </h2>
 
                     <div className="space-y-4">
-
-                        <LamaranCard
+    
+                        <ProgramListCard
                             logo={logoShopee}
                             title="UI/UX Designer Internship"
-                            bidang="Program Magang"
+                            category="Program Magang"
                             participantInfo="Total: 100 Pendaftar"
                             status="Registrasi Dibuka"
                             statusComponent={StatusComponent}
+                            to="/magang-detail-mitra"
                         />
 
                     </div>
 
                  </div>
+
+                {/* DRAFT MITRA */}
+                <div className="mb-3">
+                    <h2 className="
+                        mb-3
+                        text-xl
+                        font-bold
+                        text-bold-blue
+                    ">
+                        Selesaikan Publikasi Anda
+                    </h2>
+                    {/* REMINDER LIST */}
+                    <div className="bg-white rounded-xl shadow-sm p-4 space-y-2">
+
+                        <ReminderCard
+                            title="Business Development Internship"
+                            program="Program Magang"
+                            status="Draft"
+                            to="/magang-list-mitra"
+                        />
+
+                        <ReminderCard
+                            title="Business Development Internship"
+                            program="Program Magang"
+                            status="Draft"
+                            to="/magang-list-mitra"
+                        />
+
+                    </div>
+
+                </div>
 
             </div>
             
