@@ -7,16 +7,30 @@ const BackButton = ({
   color = "text-white",
   position = "absolute top-10 left-10",
   className = "",
+  onClick,
 }) => {
 
   const navigate = useNavigate();
+
+  const handleClick = () => {
+
+    // kalau ada onClick
+    if (onClick) {
+      onClick();
+    }
+
+    // kalau tidak ada onClick
+    else if (to) {
+      navigate(to);
+    }
+  };
 
   return (
 
     <div className={position}>
 
       <button
-        onClick={() => navigate(to)}
+        onClick={handleClick}
         className={`
           flex
           items-center

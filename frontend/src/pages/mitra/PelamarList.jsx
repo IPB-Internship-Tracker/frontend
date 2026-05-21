@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import Table from "../../components/ui/Table";
 import BackButton from "../../components/ui/BackButton";
@@ -10,7 +11,6 @@ import PopUpNotif from "../../components/ui/PopUpNotif";
 
 import {
   UserRoundSearch,
-  Trash2,
 } from "lucide-react";
 
 const PelamarList = () => {
@@ -26,13 +26,12 @@ const PelamarList = () => {
     // POPUP STATUS
     const [openStatusPopup, setOpenStatusPopup] = useState(false);
 
-    // POPUP DELETE
-    const [openDeletePopup, setOpenDeletePopup] = useState(false);
-
     // TEMP DATA
     const [selectedApplicant, setSelectedApplicant] = useState(null);
 
     const [selectedStatus, setSelectedStatus] = useState("");
+
+    const { id } = useParams();
 
   // DUMMY DATA
   const [applicants, setApplicants] = useState([
@@ -99,26 +98,37 @@ const PelamarList = () => {
         setOpenDropdownId(null);
     };
 
-    // HANDLE DELETE
-    const handleDelete = (applicant) => {
-        setSelectedApplicant(applicant);
-        setOpenDeletePopup(true);
-    };
-
-    const statusOptions = [
-        "Telah Mendaftar",
-        "Wawancara",
-        "Diterima",
-        "Ditolak",
-    ];
-
   // PROGRAM DETAIL
   const programDetail = {
     title: "UI/UX Designer Internship",
     company: "Shopee Indonesia",
     logo: LogoShopee,
   };
+  const getAvailableStatusOptions = (
+  currentStatus
+) => {
 
+  // TELAH MENDAFTAR
+  if (currentStatus === "Telah Mendaftar") {
+    return [
+      "Wawancara",
+      "Diterima",
+      "Ditolak",
+    ];
+  }
+
+  // WAWANCARA
+  if (currentStatus === "Wawancara") {
+    return [
+      "Diterima",
+      "Ditolak",
+    ];
+  }
+
+  // FINAL STATE
+  return [];
+};
+  
   // TABLE COLUMNS
   const columns = [
 
@@ -151,14 +161,27 @@ const PelamarList = () => {
 
             {/* STATUS BUTTON */}
             <LamaranStatus
-            status={row.status}
-            onClick={() =>
+              status={row.status}
+              isDropdown={
+                row.status !== "Diterima" &&
+                row.status !== "Ditolak"
+              }
+              onClick={() => {
+
+                // jangan buka dropdown
+                if (
+                  row.status === "Diterima" ||
+                  row.status === "Ditolak"
+                ) {
+                  return;
+                }
+
                 setOpenDropdownId(
-                openDropdownId === row.id
+                  openDropdownId === row.id
                     ? null
                     : row.id
-                )
-            }
+                );
+              }}
             />
 
             {/* DROPDOWN */}
@@ -180,7 +203,8 @@ const PelamarList = () => {
                 "
             >
 
-                {statusOptions.map((status) => (
+            {getAvailableStatusOptions(row.status).map(
+                (status) => (
 
                 <button
                     key={status}
@@ -234,22 +258,6 @@ const PelamarList = () => {
             "
           />
 
-          {/* DELETE */}
-          <Button
-            label={
-              <Trash2 size={16} />
-            }
-            onClick={() =>
-              handleDelete(row)
-            }
-            iconOnly
-            className="
-              bg-red-600
-              text-white
-              hover:bg-red-700
-            "
-          />
-
         </div>
       ),
     },
@@ -258,12 +266,12 @@ const PelamarList = () => {
   return (
     <div className="px-3 space-y-4">
 
-        {/* BACK BUTTON */}
+    {/* BACK BUTTON */}
       <BackButton
         label="Kembali"
         color="text-bold-blue"
         position="relative"
-        to="/magang-list-mitra"
+        to="/magang-detail-mitra/:id"
       />
 
       <div className="gap-2">

@@ -45,7 +45,7 @@ const Table = ({
                     py-4
                     border-t
                     border-y
-                    border-light-blue
+                    border-light-blue/40
                     text-black
                     text-sm ">
 

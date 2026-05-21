@@ -32,6 +32,7 @@ import MagangListMitra from './pages/mitra/MagangListMitra';
 import MagangDetailMitra from './pages/mitra/MagangDetailMitra';
 import CreateMagang from './pages/mitra/CreateMagang';
 import DocRequirement from './pages/mitra/DocRequirement';
+import EditMagang from './pages/mitra/EditMagang';
 
 function App() {
   return (
@@ -65,12 +66,13 @@ function App() {
         {/* Mitra */}
         <Route element={<DashboardLayoutMitra />}>
           <Route path="/dashboard-mitra" element={<DashboardMitra />} />
-          <Route path="/pelamar-list" element={<PelamarList />} />
+          <Route path="/pelamar-list/:id" element={<PelamarList />} />
           <Route path="/pelamar-detail/:id" element={<PelamarDetail />} />
           <Route path="/magang-list-mitra" element={<MagangListMitra />} />
           <Route path="/magang-detail-mitra/:id" element={<MagangDetailMitra />} />
           <Route path="/create-magang" element={<CreateMagang />} />
           <Route path="/doc-requirement" element={<DocRequirement />} />
+          <Route path="/edit-magang/:id" element={<EditMagang />} />
         </Route>
 
       </Routes>

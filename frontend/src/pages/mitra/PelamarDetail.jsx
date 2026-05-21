@@ -43,7 +43,7 @@ const PelamarDetail = () => {
         label="Kembali"
         color="text-bold-blue"
         position="relative"
-        to="/pelamar-list"
+        to="/pelamar-list/:id"
       />
 
       {/* TITLE */}

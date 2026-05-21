@@ -1,5 +1,3 @@
-// ini status untuk melihat status lamaran mahasiswa apakah diterima, ditolak, telah mendaftar, atau wawancara
-
 import {
   CheckCheck,
   CircleX,
@@ -11,6 +9,7 @@ import {
 const LamaranStatus = ({
   status,
   onClick,
+  isDropdown = false,
 }) => {
 
   let statusIcon;
@@ -68,8 +67,13 @@ const LamaranStatus = ({
         gap-1
         w-fit
         transition
-        hover:opacity-80
-        cursor-pointer
+
+        ${
+          isDropdown
+            ? "hover:opacity-80 cursor-pointer"
+            : "cursor-default"
+        }
+
         ${statusStyle}
       `}
     >
@@ -83,7 +87,9 @@ const LamaranStatus = ({
       </span>
 
       {/* DROPDOWN ICON */}
-      <ChevronDown size={14} />
+      {isDropdown && (
+        <ChevronDown size={14} />
+      )}
 
     </button>
   );
