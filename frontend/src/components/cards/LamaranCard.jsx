@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const LamaranCard = ({
     logo,
     title,
@@ -6,17 +8,26 @@ const LamaranCard = ({
     participantInfo,
     status,
     statusComponent: StatusComponent,
+    to,
 }) => {
+
+    const navigate = useNavigate();
 
     return (
 
-        <div className="
+        <div onClick={()=> to && navigate(to)} className="
             bg-white
             rounded-xl
             shadow-sm
             p-3
             flex items-center justify-between
             w-full
+
+            hover:shadow-md
+            hover:-translate-y-1
+            transition-all
+
+            cursor-pointer
         ">
 
             {/* LEFT SECTION */} 
