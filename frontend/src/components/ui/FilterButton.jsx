@@ -10,10 +10,10 @@ const FilterButton = ({
             onClick={onClick}
             className={`
                 px-5
-                py-2
+                py-1
                 rounded-full
-                text-sm
-                font-medium
+                text-md
+                font-semibold
                 border
                 transition-all
                 duration-300

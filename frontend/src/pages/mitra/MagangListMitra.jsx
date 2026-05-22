@@ -3,9 +3,7 @@ import { useState } from "react";
 import SearchBar from "../../components/ui/SearchBar";
 import FilterButton from "../../components/ui/FilterButton";
 import Pagination from "../../components/ui/Pagination";
-
 import ProgramListCard from "../../components/cards/ProgramListCard";
-
 import logoShopee from "../../assets/logo-shopee.png";
 
 const MagangListMitra = () => {
@@ -27,38 +25,26 @@ const MagangListMitra = () => {
 
         {
             logo: logoShopee,
-
             title: "UI/UX Designer Internship",
-
             company: "Shopee Indonesia",
-
             category: "Magang",
-
             participantInfo:
                 "Total Pendaftar: 100 Orang",
-
             period:
                 "1 Februari - 31 Mei 2026",
-
             status:
                 "Registrasi Dibuka",
         },
 
         {
             logo: logoShopee,
-
             title: "Business Case Competition",
-
             company: "Shopee Indonesia",
-
             category: "Kompetisi",
-
             participantInfo:
                 "Total Pendaftar: 10 Tim",
-
             period:
                 "1 Februari - 31 Mei 2026",
-
             status:
                 "Registrasi Ditutup",
         },
@@ -71,11 +57,8 @@ const MagangListMitra = () => {
 
             // FILTER CATEGORY
             const matchCategory =
-
                 selectedCategory === "Semua"
-
                 ||
-
                 program.category === selectedCategory;
 
             // SEARCH
@@ -107,7 +90,6 @@ const MagangListMitra = () => {
     return (
 
         <div>
-
             {/* TITLE */}
             <h1 className="
                 text-3xl
@@ -125,7 +107,7 @@ const MagangListMitra = () => {
                 Lihat program yang telah Anda buat di sini
             </p>
 
-            {/* FILTER + SEARCH */}
+            {/* FILTER SEARCH */}
             <div className="
                 flex
                 items-center
@@ -183,10 +165,10 @@ const MagangListMitra = () => {
                 </div>
 
                 {/* SEARCH */}
-                <div className="w-[320px]">
+                <div className="w-[420px]">
 
                     <SearchBar
-                        placeholder="Cari program..."
+                        placeholder="Cari..."
                         value={search}
                         onChange={(e) =>
                             setSearch(e.target.value)
@@ -200,7 +182,7 @@ const MagangListMitra = () => {
             {/* PROGRAM LIST */}
             <div className="
                 mt-8
-                space-y-4
+                space-y-5
             ">
 
                 {currentPrograms.map(
@@ -208,23 +190,15 @@ const MagangListMitra = () => {
 
                         <ProgramListCard
                             key={index}
-
                             logo={program.logo}
-
                             title={program.title}
-
                             company={program.company}
-
                             category={program.category}
-
                             participantInfo={
                                 program.participantInfo
                             }
-
                             period={program.period}
-
                             status={program.status}
-
                             to="/magang-detail-mitra"
                         />
                     )

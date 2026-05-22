@@ -1,37 +1,41 @@
 import { useNavigate } from "react-router-dom";
-import ProgramStatus from "../ui/ProgramStatus";
+import LamaranStatus from "../ui/LamaranStatus";
 
-const ProgramListCard = ({
+const LamaranListCard = ({
     logo,
     title,
     company,
     category,
-    participantInfo,
-    period,
+    appliedDate,
+    updatedDate,
     status,
     to,
 }) => {
+
     const navigate = useNavigate();
-
     return (
-        <div onClick={() => to && navigate(to)} className="
-            bg-white
-            rounded-xl
-            shadow-sm
+        <div
+            onClick={() => to && navigate(to)}
+            className="
+                bg-white
+                rounded-xl
+                shadow-sm
 
-            px-5
-            py-4
-
-            flex
-            items-center
-            justify-between
-            hover:shadow-md
-            hover:translate-y-1
-            transition-all
-            duration-300
-            cursor-point
-        "
+                px-5
+                py-2
+                mt-5
+                
+                flex
+                items-center
+                justify-between
+                
+                hover:shadow-md
+                hover:-translate-y-1
+                transition-all
+                duration-300
+                cursor-pointer
         
+            "
         >
             {/* LEFT SECTION */}
             <div className="flex items-center gap-4">
@@ -46,10 +50,11 @@ const ProgramListCard = ({
                     "
                 />
 
-                {/* TEXT SECTION */}
+                {/* TEXT */}
                 <div>
+
                     {/* TITLE CATEGORY */}
-                    <div className ="
+                    <div className="
                         flex
                         items-center
                         gap-3
@@ -69,43 +74,41 @@ const ProgramListCard = ({
                             px-3
                             py-1
                             rounded-full
-
                             border
-                            border-kuning-tua
-                            bg-kuning-muda
+                            border-bold-primary
+                            bg-light-blue-2
                             text-xs
                             font-medium
                             text-bold-blue
                         ">
                             {category}
-
                         </div>
-
                     </div>
 
                     {/* COMPANY */}
-                    <p className="
+                    <h3 className="
                         text-lg
                         text-gray-700
                     ">
                         {company}
-                    </p>
-                    {/* PARTICIPANT */}
+                    </h3>
+
+                    {/* APPLIED DATE */}
                     <p className="
                         text-md
-                        text-indigo-700
+                        text-bold-blue
                         mt-1
                     ">
-                        {participantInfo}
-
+                        Mendaftar pada:
+                        {" "}
+                        <span className="text-md font-semibold">
+                        {appliedDate}
+                        </span>
                     </p>
 
-                    
                 </div>
 
             </div>
-            
-
             {/* RIGHT SECTION */}
             <div className="
                 flex
@@ -114,29 +117,28 @@ const ProgramListCard = ({
                 gap-3
             ">
                 {/* STATUS */}
-                <ProgramStatus status={status}/>
-                
-                {/* PERIODE */}
+                <LamaranStatus status={status}/>
+
+                {/* UPDATE DATE */}
                 <div className="text-right">
-
                     <p className="
-                        text-sm
-                        font-medium
-                        text-gray-700
+                        text-md
+                        text-bold-blue
                     ">
-                        <span className="mtext-sm font-medium text-gray-500">
-                            Periode:
-
-                        </span>{" "}
-                        {period}
+                        Status diperbarui pada:
+                        {" "}
+                        <span className="text-md font-semibold">
+                        {updatedDate}
+                        </span>
                     </p>
 
                 </div>
 
             </div>
-
+            
         </div>
     )
+
 }
 
-export default ProgramListCard;
+export default LamaranListCard
