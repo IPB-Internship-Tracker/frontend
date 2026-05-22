@@ -4,17 +4,74 @@ import ProgramStatus from "../../components/ui/ProgramStatus";
 import ProgramListCard from "../../components/cards/ProgramListCard";
 import ReminderCard from "../../components/cards/ReminderCard";
 import logoShopee from "../../assets/logo-shopee.png";
-
+import PopUpNotif from "../../components/ui/PopUpNotif";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import{
     BriefcaseBusiness,
     Trophy,
     BookOpen,
     UserRoundPlus,
+    X,
 } from "lucide-react";
+
+const userData = {
+    name: "Shopee Indonesia"
+};
+
+const trafficData = [
+  {
+    id: 1,
+    title: "Magang",
+    icon: (
+      <BriefcaseBusiness size={45} />
+    ),
+    programCount: 2,
+    participantCount: 200,
+  },
+
+  {
+    id: 2,
+    title: "Kompetisi",
+    icon: (
+      <Trophy size={45} />
+    ),
+    programCount: 1,
+    participantCount: 75,
+  },
+
+  {
+    id: 3,
+    title: "Studi Independen",
+    icon: (
+      <BookOpen size={45} />
+    ),
+    programCount: 1,
+    participantCount: 200,
+  },
+];
+
+{/* DUMMY PROGRAM */}
+const programs = [
+
+  {
+    id: 1,
+    logo: logoShopee,
+    title: "UI/UX Designer Internship",
+    category: "Program Magang",
+    participantInfo:
+      "Total: 100 Pendaftar",
+    status: "Registrasi Dibuka",
+  },
+];
 
 const DashboardMitra = () => {
     const StatusComponent = ProgramStatus; 
+    const navigate = useNavigate();
+    const [openCreatePopup, setOpenCreatePopup] =
+        useState(false);
+
     return (
         <div>
 
@@ -29,16 +86,18 @@ const DashboardMitra = () => {
                 <h1 className="text-3xl font-bold text-light-blue">
                     Selamat Datang,
                     <span className="text-bold-blue">
-                        {" "}Shopee Indonesia
+                        {" "}{userData.name}
                     </span>!
                 </h1>
 
                 {/* BUTTON */}
                 <Button
-                    label="+ Buat Kegiatan"
-                    to="/create-magang"
+                    label = "+ Buat Kegiatan"
+                    onClick={() =>
+                    setOpenCreatePopup(true)
+                }
 
-                    className="text-md px-2 py-2 gap 3"
+                className="text-md px-4 py-2"
                 />
             </div>
             
@@ -55,31 +114,20 @@ const DashboardMitra = () => {
 
                 {/* BIDANG PROGRAM MITRA */}
                 <div className="grid grid-cols-3 gap-6">
-
-                    <TrafikCard
-                        title="Magang"
-                        icon={<BriefcaseBusiness size={45} />}
-
-                        programCount={2}
-                        participantCount={200}
-                    />
-                    <TrafikCard
-                        title="Kompetisi"
-                        icon={<Trophy size={45} />}
-
-                        programCount={1}
-                        participantCount={75}
-                    />
-                    <TrafikCard
-                        title="Studi Independen"
-                        icon={<BookOpen size={45} />}
-                        programCount={1}
-                        participantCount={200}
-                    />
-                    
-
+                    {trafficData.map((item) => (
+                        <TrafikCard
+                            key={item.id}
+                            title={item.title}
+                            icon={item.icon}
+                            programCount={
+                                item.programCount
+                            }
+                            participantCount={
+                                item.participantCount
+                            }
+                        />
+                    ))}
                 </div>
-
             </div>
 
             {/* IMPORT LAMARAN CARD untuk ProgramCard Mitra*/}
@@ -97,19 +145,25 @@ const DashboardMitra = () => {
                     </h2>
 
                     <div className="space-y-4">
-    
+
+                    {programs.map((program) => (
+
                         <ProgramListCard
-                            logo={logoShopee}
-                            title="UI/UX Designer Internship"
-                            category="Program Magang"
-                            participantInfo="Total: 100 Pendaftar"
-                            status="Registrasi Dibuka"
-                            statusComponent={StatusComponent}
-                            to="/magang-detail-mitra"
+                            key={program.id}
+                            logo={program.logo}
+                            title={program.title}
+                            category={program.category}
+                            participantInfo={
+                                program.participantInfo
+                            }
+                            status={program.status}
+                            statusComponent={
+                                StatusComponent
+                            }
+                            to={`/magang-detail-mitra/${program.id}`}
                         />
-
+                    ))}
                     </div>
-
                  </div>
 
                 {/* DRAFT MITRA */}
@@ -144,8 +198,103 @@ const DashboardMitra = () => {
                 </div>
 
             </div>
-            
 
+            {/* POPUP CREATE PROGRAM */}
+            <PopUpNotif
+                isOpen={openCreatePopup}
+                onClose={() =>
+                    setOpenCreatePopup(false)
+                }
+                title="Buat Kegiatan"
+                description=""
+            >
+                <div className="w-full space-y-4">
+                    {/* MAGANG */}
+                    <button
+                        onClick={() =>
+                            navigate("/create-magang")
+                        }
+                        className="
+                            w-full
+                            border
+                            border-light-blue
+                            rounded-2xl
+                            p-5
+                            flex
+                            items-center
+                            gap-5
+                            hover:bg-light-blue-2
+                            transition
+                            cursor-pointer
+                        "
+                    >
+                        <BriefcaseBusiness
+                            size={25}
+                            className="text-bold-blue"
+                        />
+                        <span className="text-lg font-medium">
+                            Magang
+                        </span>
+                    </button>
+
+                    {/* KOMPETISI */}
+                    <button
+                    onClick={() =>
+                        navigate("/create-kompetisi")
+                        }
+                        className="
+                            w-full
+                            border
+                            border-light-blue
+                            rounded-2xl
+                            p-5
+                            flex
+                            items-center
+                            gap-5
+                            hover:bg-light-blue-2
+                            transition
+                            cursor-pointer
+                        "
+                    >
+                        <Trophy
+                            size={25}
+                            className="text-bold-blue"
+                        />
+                        <span className="text-lg font-medium">
+                            Kompetisi
+                        </span>
+                    </button>
+
+                    {/* STUPEN */}
+                    <button
+                    onClick={() =>
+                        navigate("/create-studi-independen")
+                        }
+                        className="
+                            w-full
+                            border
+                            border-light-blue
+                            rounded-2xl
+                            p-5
+                            flex
+                            items-center
+                            gap-5
+                            hover:bg-light-blue-2
+                            transition
+                            cursor-pointer
+                        "
+                    >
+                        <BookOpen
+                            size={25}
+                            className="text-bold-blue"
+                        />
+                        <span className="text-lg font-medium">
+                            Studi Independen
+                        </span>
+                    </button>
+                </div>
+            </PopUpNotif>
+        
         </div>
     );
 };

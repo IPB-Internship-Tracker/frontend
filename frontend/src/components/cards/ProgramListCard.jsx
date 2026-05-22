@@ -18,10 +18,8 @@ const ProgramListCard = ({
             bg-white
             rounded-xl
             shadow-sm
-
             px-5
             py-4
-
             flex
             items-center
             justify-between
@@ -29,7 +27,7 @@ const ProgramListCard = ({
             hover:translate-y-1
             transition-all
             duration-300
-            cursor-point
+            cursor-pointer
         "
         
         >
@@ -58,8 +56,7 @@ const ProgramListCard = ({
                         {/* TITLE */}
                         <h2 className="
                             text-lg
-                            font=semibold
-                            text-gray-900
+                            font-medium
                         ">
                             {title}
                         </h2>
@@ -69,7 +66,6 @@ const ProgramListCard = ({
                             px-3
                             py-1
                             rounded-full
-
                             border
                             border-kuning-tua
                             bg-kuning-muda
@@ -86,7 +82,7 @@ const ProgramListCard = ({
                     {/* COMPANY */}
                     <p className="
                         text-sm
-                        text-gray-700
+                        font-light
                     ">
                         {company}
                     </p>
@@ -116,8 +112,7 @@ const ProgramListCard = ({
 
                     <p className="
                         text-sm
-                        font-medium
-                        text-gray-700
+                        font-base
                     ">
                         {period}
                     </p>

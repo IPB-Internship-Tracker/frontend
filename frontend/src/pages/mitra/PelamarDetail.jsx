@@ -1,7 +1,11 @@
 import BackButton from "../../components/ui/BackButton";
 import FilePreviewCard from "../../components/cards/FilePreviewCard";
 import PersonalInfoItem from "../../components/ui/PersonalInfoItem";
+import { useParams } from "react-router-dom";
+
 const PelamarDetail = () => {
+
+  const { id } = useParams();
 
   // DUMMY DATA
   const applicantDetail = {
@@ -43,7 +47,7 @@ const PelamarDetail = () => {
         label="Kembali"
         color="text-bold-blue"
         position="relative"
-        to="/pelamar-list/:id"
+        to={`/pelamar-list/${id}`}
       />
 
       {/* TITLE */}

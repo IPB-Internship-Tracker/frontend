@@ -27,6 +27,7 @@ import {
       deskripsi: "",
       bidang: "",
       kuota: "",
+      salary: "",
       penempatan: "",
       tenggat: "",
       mulai: "",
@@ -104,6 +105,12 @@ import {
         "Kuota harus lebih dari 0.";
     }
 
+    // GAJI
+    if (formData.salary && formData.salary <= 0) {
+      newErrors.salary =
+        "Gaji harus lebih dari 0.";
+    }
+
     // TANGGAL TENGGAT
     if (formData.tenggat < minTenggat) {
       newErrors.tenggat =
@@ -136,7 +143,7 @@ const handleSubmit = (e) => {
     console.log("FORM VALID");
     if (isEdit) {
       console.log("UPDATE PROGRAM");
-      navigate("/magang-list-mitra");
+      navigate("/program-list-mitra");
 
     } else {
       console.log("CREATE PROGRAM");
@@ -359,6 +366,18 @@ const handlePlacementChange = (
           placeholder="Tuliskan dalam bentuk angka saja"
           error={errors.kuota}
         />
+
+        {/* GAJI */}
+        <FormField
+          label="Gaji"
+          type="number"
+          name="salary"
+          value={formData.salary}
+          onChange={handleChange}
+          placeholder="Tuliskan dalam bentuk angka tanpa titik dan koma"
+          error={errors.salary}
+        />
+
 
         {/* PENEMPATAN */}
         <div>

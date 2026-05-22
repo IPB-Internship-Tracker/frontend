@@ -22,7 +22,7 @@ const SidebarMitra = () => {
     {
       label: "Program Saya",
       icon: ChartLine,
-      path: "/magang-list-mitra",
+      path: "/program-list-mitra",
     },
   ];
 

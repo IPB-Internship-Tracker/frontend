@@ -2,15 +2,21 @@ import { useState } from "react";
 import Button from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 import PopUpNotif  from "../../components/ui/PopUpNotif";
-import { CircleCheck} from "lucide-react";
+import {
+  CircleCheck,
+  CircleAlert,
+} from "lucide-react";
 
 const DocRequirementForm = ({
   isEdit = false,
   initialSelectedDocs = [],
   hideSubmitButton = false,
 }) => {
-  const [openPopup, setOpenPopup] = useState(false);
-  const navigate = useNavigate();
+  const [openConfirmPopup, setOpenConfirmPopup] =
+    useState(false);
+
+  const [openSuccessPopup, setOpenSuccessPopup] =
+    useState(false);  const navigate = useNavigate();
 
   // LIST DOKUMEN
   const documents = [
@@ -55,7 +61,7 @@ const DocRequirementForm = ({
 
     setError("");
     console.log("DOKUMEN:", selectedDocs);
-    setOpenPopup(true);
+    setOpenConfirmPopup(true);
   };
 
   return (
@@ -179,55 +185,110 @@ const DocRequirementForm = ({
 
               {/* BUTTON SIMPAN */}
                   <Button
-                      label="Simpan"
+                      label="Publikasikan"
                       type="submit"
                       className="w-[180px]"
                   />
 
-                  {/* POPUP */}
+                  {/* POPUP KONFIRMASI */}
                   <PopUpNotif
-                      isOpen={openPopup}
-                      onClose={() => setOpenPopup(false)}
+                    isOpen={openConfirmPopup}
+                    onClose={() =>
+                      setOpenConfirmPopup(false)
+                    }
 
-                      icon={
-                      <CircleCheck
-                          size={90}
-                          className="text-green-600"
+                    icon={
+                      <CircleAlert
+                        size={90}
+                        className="text-yellow-500"
                       />
-                      }
-                      title={
-                        isEdit
-                          ? "Perubahan Berhasil Disimpan"
-                          : "Program Berhasil Disimpan"
-                      }
-                      description={
-                        isEdit
-                          ? "Perubahan program berhasil diperbarui."
-                          : "Lihat detail program yang telah dibuat."
-                      }>
+                    }
 
-                      <Button
-                      label="Kembali"
-                      onClick={() => setOpenPopup(false)}
-                      className="
-                          border
-                          border-bold-blue
-                          text-bold-blue
-                          bg-white
-                      "
-                      />
+                    title="Apakah kamu yakin?"
+                    description="
+                      Program akan langsung dipublikasikan
+                      dan dapat diakses secara publik.
+                    "
+                  >
 
-                      <Button
-                      label="Lihat"
+                    {/* DRAFT */}
+                    <Button
+                      label="Simpan sebagai Draft"
                       onClick={() => {
-                        setOpenPopup(false);
-                        navigate("/magang-list-mitra")
+                        console.log("SAVE DRAFT");
+                        setOpenConfirmPopup(false);
+                        navigate("/program-list-mitra");
                       }}
+
                       className="
-                          bg-kuning-tua
-                          text-bold-blue
+                        border
+                        border-bold-blue
+                        text-bold-blue
+                        bg-white
                       "
+                    />
+
+                    {/* PUBLISH */}
+                    <Button
+                      label="Publikasikan"
+                      onClick={() => {
+                        setOpenConfirmPopup(false);
+                        setOpenSuccessPopup(true);
+                      }}
+                    />
+                  </PopUpNotif>
+                  
+                  {/* POPUP SUKSES */}
+                  <PopUpNotif
+                    isOpen={openSuccessPopup}
+
+                    onClose={() =>
+                      setOpenSuccessPopup(false)
+                    }
+
+                    icon={
+                      <CircleCheck
+                        size={90}
+                        className="text-green-600"
                       />
+                    }
+
+                    title="Program Berhasil Dipublikasikan"
+
+                    description="
+                      Program telah berhasil dipublikasikan
+                      dan dapat dilihat oleh mahasiswa.
+                    "
+                  >
+
+                    {/* CLOSE */}
+                    <Button
+                      label="Kembali"
+
+                      onClick={() =>
+                        setOpenSuccessPopup(false)
+                      }
+
+                      className="
+                        border
+                        border-bold-blue
+                        text-bold-blue
+                        bg-white
+                      "
+                    />
+
+                    {/* SEE */}
+                    <Button
+                      label="Lihat Program"
+
+                      onClick={() => {
+
+                        setOpenSuccessPopup(false);
+
+                        navigate("/magang-list-mitra");
+                      }}
+                    />
+
                   </PopUpNotif>
             </div>
         )}

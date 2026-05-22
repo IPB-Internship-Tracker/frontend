@@ -2,6 +2,7 @@ import { MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const ProgramCard = ({
+    id,
     logo,
     title,
     company,
@@ -22,18 +23,14 @@ const ProgramCard = ({
                 bg-white
                 rounded-xl
                 shadow-sm
-
                 px-4
                 py-4
-
                 hover:shadow-lg
                 hover:-translate-y-1
                 hover:bg-indigo-50
-
                 transition-all
                 duration-300
                 cursor-pointer
-
                 ${className}
             `}
             >
@@ -48,17 +45,13 @@ const ProgramCard = ({
                 />
 
                 <div>
-
-                    <h2 className="text-lg font-semibold text-gray-900">
+                    <h2 className="text-lg font-semibold">
                         {title}
                     </h2>
-
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm font-light">
                         {company}
                     </p>
-
                 </div>
-
             </div>
 
             {/* LINE */}
@@ -69,16 +62,12 @@ const ProgramCard = ({
                 inline-block
                 px-3
                 py-1
-
                 bg-kuning-muda
                 border
                 border-kuning-tua
-
                 rounded-full
-
                 text-sm
                 text-bold-blue
-
                 mb-5
             ">
                 {category}
@@ -86,29 +75,20 @@ const ProgramCard = ({
 
             {/* BOTTOM */}
             <div className="flex items-end justify-between">
-
                 <div className="flex items-center gap-1 text-sm text-gray-700">
-
                     <MapPin size={14} />
-
                     <span>{location}</span>
-
                 </div>
 
                 <div className="text-right">
-
                     <p className="text-xs text-bold-blue">
                         Batas Pendaftaran
                     </p>
-
                     <p className="text-sm font-semibold text-bold-blue">
                         {deadline}
                     </p>
-
                 </div>
-
             </div>
-
         </div>
     );
 };

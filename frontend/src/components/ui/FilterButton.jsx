@@ -17,6 +17,7 @@ const FilterButton = ({
                 border
                 transition-all
                 duration-300
+                cursor-pointer
 
                 ${
                     active

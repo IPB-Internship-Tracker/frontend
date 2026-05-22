@@ -71,11 +71,10 @@ const MagangDetailMitra = () => {
     logo: LogoShopee,
     role: "UI/UX Designer",
     city: "Kota Jakarta Selatan",
-    registrationOpen: "10 Januari 2026",
-    registrationClose: "30 Januari 2026",
+    deadline: "30 Januari 2026",
     timeline: "1 Februari - 31 Mei 2026",
     quota: 10,
-    salary: "Rp3.000.000,00",
+    salary: 3000000,
     placement: "WFO",
     address:
       "Jl. H. R. Rasuna Said GAMA TOWER FL 8 No. 2, Karet Kuningan, Kecamatan Setiabudi, Kota Jakarta Selatan",
@@ -99,7 +98,7 @@ const MagangDetailMitra = () => {
         label="Kembali"
         color="text-bold-blue"
         position="relative"
-        to="/magang-list-mitra"
+        to="/program-list-mitra"
       />
 
       {/* HEADER */}
@@ -218,25 +217,11 @@ const MagangDetailMitra = () => {
             </div>
 
             <p className="text-gray-500 text-md">
-
-              Open Registration:
-
+              Deadline Pendaftaran:
               <span className="font-bold text-black ml-2">
-                {programDetail.registrationOpen}
+                {programDetail.deadline}
               </span>
-
             </p>
-
-            <p className="text-gray-500 text-md">
-
-              Close Registration:
-
-              <span className="font-bold text-black ml-2">
-                {programDetail.registrationClose}
-              </span>
-
-            </p>
-
           </div>
 
         </div>
@@ -331,7 +316,7 @@ const MagangDetailMitra = () => {
 
             <div className="text-2xl font-bold text-bold-blue">
 
-              {programDetail.salary}
+              {`Rp${programDetail.salary}`}
 
               <span className="text-base font-medium ml-1">
                 /bulan

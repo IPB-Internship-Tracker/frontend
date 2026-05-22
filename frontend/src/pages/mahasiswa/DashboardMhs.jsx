@@ -17,6 +17,10 @@ import {
   FileClock
 } from "lucide-react";
 
+const userData = {
+    name: "Fatiyya Ilmi"
+};
+
 //nyoba dummy data program
 const magangPrograms = [
     {
@@ -69,7 +73,7 @@ const DashboardMhs = () => {
     return (
         <div>
             <h1 className="text-3xl font-bold text-bold-blue">
-                Selamat Datang, <span className="text-bold-blue">Fatiyya</span>!
+                Selamat Datang, <span className="text-bold-blue">{userData.name}</span>!
             </h1>
 
             {/* BIDANG CARD SECTION */}

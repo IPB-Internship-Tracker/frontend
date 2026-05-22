@@ -3,14 +3,15 @@ import CreateMagangForm from "../../components/forms/CreateMagangForm";
 import DocRequirementForm from "../../components/forms/DocRequirementForm";
 import PopUpNotif from "../../components/ui/PopUpNotif";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   CircleAlert,
   CircleCheck,
 } from "lucide-react";
-import Button from "../../components/ui/Button";
+import Button from "../../components/ui/Button";  
 
 const EditMagang = () => {
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const [openBackPopup, setOpenBackPopup] =
@@ -30,6 +31,7 @@ const EditMagang = () => {
       "Program internship untuk mahasiswa.",
     bidang: "Design & Creative",
     kuota: "10",
+    salary: 3000000,
     tenggat: "2026-01-30",
     mulai: "2026-02-01",
     berakhir: "2026-05-31",
@@ -90,7 +92,7 @@ const EditMagang = () => {
             <Button
                 label="Batalkan Perubahan"
                 onClick={() => {
-                navigate("/magang-detail-mitra/:id");
+                navigate(`/magang-detail-mitra/${id}`);
                 }}
             />
 
@@ -171,7 +173,7 @@ const EditMagang = () => {
             label="Lihat Program"
             onClick={() => {
             setOpenSavePopup(false);
-            navigate("/magang-detail-mitra/:id");
+            navigate(`/magang-detail-mitra/${id}`);
             }}
         />
 

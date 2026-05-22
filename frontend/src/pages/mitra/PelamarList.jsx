@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 const PelamarList = () => {
-
+    const { id } = useParams();
     // PAGINATION
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -30,8 +30,6 @@ const PelamarList = () => {
     const [selectedApplicant, setSelectedApplicant] = useState(null);
 
     const [selectedStatus, setSelectedStatus] = useState("");
-
-    const { id } = useParams();
 
   // DUMMY DATA
   const [applicants, setApplicants] = useState([
@@ -271,7 +269,7 @@ const PelamarList = () => {
         label="Kembali"
         color="text-bold-blue"
         position="relative"
-        to="/magang-detail-mitra/:id"
+        to={`/magang-detail-mitra/${id}`}
       />
 
       <div className="gap-2">

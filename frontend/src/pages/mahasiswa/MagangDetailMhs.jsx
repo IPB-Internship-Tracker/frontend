@@ -110,26 +110,17 @@ const { id } = useParams();
     logo: LogoShopee,
     role: "UI/UX Designer",
     city: "Kota Jakarta Selatan",
-
-    registrationOpen: "10 Januari 2026",
-    registrationClose: "30 Januari 2026",
-
+    deadline: "30 Januari 2026",
     timeline: "1 Februari - 31 Mei 2026",
-
     quota: 10,
-    salary: "Rp3.000.000,00",
-
+    salary: 3000000,
     placement: "WFO",
-
     address:
       "Jl. H. R. Rasuna Said GAMA TOWER FL 8 No. 2, Karet Kuningan, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12940",
-
     phone: "+62 81234452920",
     instagram: "@shopeeindonesia",
-
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-
     documents: [
       "Curriculum Vitae (CV)",
       "Surat Izin Dosen",
@@ -241,16 +232,9 @@ const { id } = useParams();
             </div>
 
             <p className="text-gray-500 text-md">
-              Open Registration:
+              Deadline Pendaftaran:
               <span className="font-bold text-black ml-2">
-                {programDetail.registrationOpen}
-              </span>
-            </p>
-
-            <p className="text-gray-500 text-md">
-              Close Registration:
-              <span className="font-bold text-black ml-2">
-                {programDetail.registrationClose}
+                {programDetail.deadline}
               </span>
             </p>
 
@@ -337,7 +321,7 @@ const { id } = useParams();
           >
 
             <div className="text-2xl font-bold text-bold-blue">
-              {programDetail.salary}
+              {`Rp${programDetail.salary}`}
 
               <span className="text-base font-medium ml-1">
                 /bulan

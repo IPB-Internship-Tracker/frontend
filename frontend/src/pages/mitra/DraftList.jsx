@@ -3,12 +3,12 @@ import { useState } from "react";
 import SearchBar from "../../components/ui/SearchBar";
 import FilterButton from "../../components/ui/FilterButton";
 import Pagination from "../../components/ui/Pagination";
-
+import BackButton from "../../components/ui/BackButton";
 import ProgramListCard from "../../components/cards/ProgramListCard";
 
 import logoShopee from "../../assets/logo-shopee.png";
 
-const MagangListMitra = () => {
+const DraftList = () => {
 
     // FILTER CATEGORY
     const [selectedCategory, setSelectedCategory] =
@@ -26,39 +26,29 @@ const MagangListMitra = () => {
     const programs = [
 
         {
+            id: 1,
             logo: logoShopee,
-
             title: "UI/UX Designer Internship",
-
             company: "Shopee Indonesia",
-
             category: "Magang",
-
             participantInfo:
                 "Total Pendaftar: 100 Orang",
-
             period:
                 "1 Februari - 31 Mei 2026",
-
             status:
                 "Registrasi Dibuka",
         },
 
         {
+            id: 2,
             logo: logoShopee,
-
             title: "Business Case Competition",
-
             company: "Shopee Indonesia",
-
             category: "Kompetisi",
-
             participantInfo:
                 "Total Pendaftar: 10 Tim",
-
             period:
                 "1 Februari - 31 Mei 2026",
-
             status:
                 "Registrasi Ditutup",
         },
@@ -68,16 +58,11 @@ const MagangListMitra = () => {
     // FILTER LOGIC
     const filteredPrograms = programs.filter(
         (program) => {
-
             // FILTER CATEGORY
             const matchCategory =
-
                 selectedCategory === "Semua"
-
                 ||
-
                 program.category === selectedCategory;
-
             // SEARCH
             const matchSearch =
                 program.title
@@ -105,24 +90,30 @@ const MagangListMitra = () => {
         );
 
     return (
-
         <div>
+            <BackButton
+                label="Kembali"
+                color="text-bold-blue"
+                position="relative"
+                to="/program-list-mitra"
+            />
 
             {/* TITLE */}
             <h1 className="
                 text-3xl
                 font-bold
                 text-indigo-700
+                pt-6
             ">
-                Program yang Anda Buat
+                Draft Anda
             </h1>
 
             {/* SUBTITLE */}
             <p className="
-                text-gray-600
+                font-light
                 mt-2
             ">
-                Lihat program yang telah Anda buat di sini
+                Berikut adalah program yang telah Anda buat namun belum dipublikasikan.
             </p>
 
             {/* FILTER + SEARCH */}
@@ -135,7 +126,7 @@ const MagangListMitra = () => {
             ">
 
                 {/* FILTER */}
-                <div className="flex gap-3">
+                <div className="flex gap-2">
 
                     <FilterButton
                         label="Semua"
@@ -197,50 +188,9 @@ const MagangListMitra = () => {
 
             </div>
 
-            {/* PROGRAM LIST */}
-            <div className="
-                mt-8
-                space-y-4
-            ">
-
-                {currentPrograms.map(
-                    (program, index) => (
-
-                        <ProgramListCard
-                            key={index}
-
-                            logo={program.logo}
-
-                            title={program.title}
-
-                            company={program.company}
-
-                            category={program.category}
-
-                            participantInfo={
-                                program.participantInfo
-                            }
-
-                            period={program.period}
-
-                            status={program.status}
-
-                            to="/magang-detail-mitra"
-                        />
-                    )
-                )}
-
-            </div>
-
-            {/* PAGINATION */}
-            <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-            />
 
         </div>
     );
 };
 
-export default MagangListMitra;
+export default DraftList;

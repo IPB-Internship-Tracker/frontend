@@ -19,8 +19,8 @@ import LogbookDetail from './pages/mahasiswa/LogbookDetail';
 import LogbookList from './pages/mahasiswa/LogbookList';
 import MagangListMhs from './pages/mahasiswa/MagangListMhs';
 import MagangDetailMhs from './pages/mahasiswa/MagangDetailMhs';
-import KompetisiList from './pages/mahasiswa/KompetisiList';
-import StupenList from './pages/mahasiswa/StupenList';
+import KompetisiListMhs from './pages/mahasiswa/KompetisiListMhs';
+import StupenListMhs from './pages/mahasiswa/StupenListMhs';
 import PendaftaranBerhasil from './pages/mahasiswa/PendaftaranBerhasil';
 
 // mitra
@@ -28,11 +28,14 @@ import DashboardLayoutMitra from './components/layout/mitra/DashboardLayoutMitra
 import DashboardMitra from './pages/mitra/DashboardMitra';
 import PelamarList from './pages/mitra/PelamarList';
 import PelamarDetail from './pages/mitra/PelamarDetail';
-import MagangListMitra from './pages/mitra/MagangListMitra';
+import ProgramListMitra from './pages/mitra/ProgramListMitra';
 import MagangDetailMitra from './pages/mitra/MagangDetailMitra';
 import CreateMagang from './pages/mitra/CreateMagang';
+import CreateKompetisi from './pages/mitra/CreateKompetisi';
+import CreateStupen from './pages/mitra/CreateStupen';
 import DocRequirement from './pages/mitra/DocRequirement';
 import EditMagang from './pages/mitra/EditMagang';
+import DraftList from './pages/mitra/DraftList';
 
 function App() {
   return (
@@ -58,8 +61,8 @@ function App() {
           <Route path="/logbook-list" element={<LogbookList />} />
           <Route path="/magang-list" element={<MagangListMhs />} />
           <Route path="/magang-detail/:id" element={<MagangDetailMhs />} />
-          <Route path="/kompetisi-list" element={<KompetisiList />} />
-          <Route path="/stupen-list" element={<StupenList />} />
+          <Route path="/kompetisi-list" element={<KompetisiListMhs />} />
+          <Route path="/stupen-list" element={<StupenListMhs />} />
           <Route path="/pendaftaran-berhasil" element={<PendaftaranBerhasil />} />
         </Route>
 
@@ -68,11 +71,14 @@ function App() {
           <Route path="/dashboard-mitra" element={<DashboardMitra />} />
           <Route path="/pelamar-list/:id" element={<PelamarList />} />
           <Route path="/pelamar-detail/:id" element={<PelamarDetail />} />
-          <Route path="/magang-list-mitra" element={<MagangListMitra />} />
+          <Route path="/program-list-mitra" element={<ProgramListMitra />} />
           <Route path="/magang-detail-mitra/:id" element={<MagangDetailMitra />} />
           <Route path="/create-magang" element={<CreateMagang />} />
+          <Route path="/create-kompetisi" element={<CreateKompetisi />} />
+          <Route path="/create-studi-independen" element={<CreateStupen />} />
           <Route path="/doc-requirement" element={<DocRequirement />} />
           <Route path="/edit-magang/:id" element={<EditMagang />} />
+          <Route path="draft-list" element={<DraftList />} />
         </Route>
 
       </Routes>
