@@ -24,7 +24,7 @@ const SearchBar = ({
             {/* ICON */}
             <Search
                 size={18}
-                className="text-indigo-500"
+                className="text-bold-blue"
             />
 
             {/* INPUT */}
@@ -41,7 +41,7 @@ const SearchBar = ({
                     text-lg
 
                     text-gray-700
-                    placeholder:text-indigo-300
+                    placeholder:text-bold-blue
                 "
 
             />
