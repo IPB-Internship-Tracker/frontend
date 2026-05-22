@@ -11,11 +11,10 @@ import {
 } from "lucide-react";
 
 const CreateProgramForm = ({
-  initialData = null,
+  title = "Buat Program",
+  initialData = {},
   isEdit = false,
   hideSubmitButton = false,
-
-  title = "Program",
 }) => {
   const [openConfirmPopup, setOpenConfirmPopup] =
     useState(false);
@@ -28,21 +27,33 @@ const CreateProgramForm = ({
   const [errors, setErrors] =
     useState({});
 
-  const [formData, setFormData] =
-    useState(
+const [formData, setFormData] =
+  useState({
 
-      initialData || {
-        logo: null,
-        poster: null,
-        namaKegiatan: "",
-        deskripsi: "",
-        linkPendaftaran: "",
-        tenggat: "",
-        mulai: "",
-        berakhir: "",
-        statusKegiatan: "",
-      }
-    );
+    logo:
+      initialData.logo || null,
+
+    poster:
+      initialData.poster || null,
+
+    title:
+      initialData.title || "",
+
+    description:
+      initialData.description || "",
+
+    link:
+      initialData.link || "",
+
+    deadline:
+      initialData.deadline || "",
+
+    startDate:
+      initialData.startDate || "",
+
+    endDate:
+      initialData.endDate || "",
+  });
 
   // HANDLE IMAGE
   const handleImageChange = (e) => {
@@ -294,11 +305,11 @@ const CreateProgramForm = ({
         {/* NAMA KEGIATAN */}
         <FormField
           label="Nama Kegiatan"
-          name="namaKegiatan"
-          value={formData.namaKegiatan}
+          name="title"
+          value={formData.title}
           onChange={handleChange}
           placeholder="Masukkan nama kegiatan"
-          error={errors.namaKegiatan}
+          error={errors.title}
         />
 
         {/* DESKRIPSI */}
@@ -318,8 +329,8 @@ const CreateProgramForm = ({
           </label>
 
           <textarea
-            name="deskripsi"
-            value={formData.deskripsi}
+            name="description"
+            value={formData.description}
             onChange={handleChange}
             placeholder="Tuliskan deskripsi program"
             rows={5}
@@ -346,10 +357,10 @@ const CreateProgramForm = ({
             `}
           />
 
-          {errors.deskripsi && (
+          {errors.description && (
 
             <p className="text-red-500 text-sm italic mt-1">
-              {errors.deskripsi}
+              {errors.description}
             </p>
           )}
 
@@ -358,11 +369,11 @@ const CreateProgramForm = ({
         {/* LINK */}
         <FormField
           label="Link Pendaftaran"
-          name="linkPendaftaran"
-          value={formData.linkPendaftaran}
+          name="link"
+          value={formData.link}
           onChange={handleChange}
           placeholder="https://..."
-          error={errors.linkPendaftaran}
+          error={errors.link}
         />
 
         {/* TANGGAL */}
@@ -378,28 +389,28 @@ const CreateProgramForm = ({
           <FormField
             label="Deadline Pendaftaran"
             type="date"
-            name="tenggat"
-            value={formData.tenggat}
+            name="deadline"
+            value={formData.deadline}
             onChange={handleChange}
-            error={errors.tenggat}
+            error={errors.deadline}
           />
 
           <FormField
             label="Tanggal Mulai"
             type="date"
-            name="mulai"
-            value={formData.mulai}
+            name="startDate"
+            value={formData.startDate}
             onChange={handleChange}
-            error={errors.mulai}
+            error={errors.startDate}
           />
 
           <FormField
             label="Tanggal Selesai"
             type="date"
-            name="berakhir"
-            value={formData.berakhir}
+            name="endDate"
+            value={formData.endDate}
             onChange={handleChange}
-            error={errors.berakhir}
+            error={errors.endDate}
           />
 
         </div>
