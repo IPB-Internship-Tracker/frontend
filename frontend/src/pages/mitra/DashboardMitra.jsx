@@ -183,14 +183,14 @@ const DashboardMitra = () => {
                             title="Business Development Internship"
                             program="Program Magang"
                             status="Draft"
-                            to="/magang-list-mitra"
+                            to="/draft-list"
                         />
 
                         <ReminderCard
                             title="Business Development Internship"
                             program="Program Magang"
                             status="Draft"
-                            to="/magang-list-mitra"
+                            to="/draft-list"
                         />
 
                     </div>

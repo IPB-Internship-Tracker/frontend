@@ -217,7 +217,7 @@ const DocRequirementForm = ({
                       onClick={() => {
                         console.log("SAVE DRAFT");
                         setOpenConfirmPopup(false);
-                        navigate("/program-list-mitra");
+                        navigate("/draft-list");
                       }}
 
                       className="
@@ -285,7 +285,7 @@ const DocRequirementForm = ({
 
                         setOpenSuccessPopup(false);
 
-                        navigate("/magang-list-mitra");
+                        navigate("/program-list-mitra");
                       }}
                     />
 
