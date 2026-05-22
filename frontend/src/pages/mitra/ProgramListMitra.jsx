@@ -3,9 +3,7 @@ import { useState } from "react";
 import SearchBar from "../../components/ui/SearchBar";
 import FilterButton from "../../components/ui/FilterButton";
 import Pagination from "../../components/ui/Pagination";
-
 import ProgramListCard from "../../components/cards/ProgramListCard";
-
 import logoShopee from "../../assets/logo-shopee.png";
 
 const ProgramListMitra = () => {
@@ -108,7 +106,7 @@ const ProgramListMitra = () => {
                 Lihat program yang telah Anda buat di sini
             </p>
 
-            {/* FILTER + SEARCH */}
+            {/* FILTER SEARCH */}
             <div className="
                 flex
                 items-center
@@ -166,10 +164,10 @@ const ProgramListMitra = () => {
                 </div>
 
                 {/* SEARCH */}
-                <div className="w-[320px]">
+                <div className="w-[420px]">
 
                     <SearchBar
-                        placeholder="Cari program..."
+                        placeholder="Cari..."
                         value={search}
                         onChange={(e) =>
                             setSearch(e.target.value)
@@ -183,7 +181,7 @@ const ProgramListMitra = () => {
             {/* PROGRAM LIST */}
             <div className="
                 mt-8
-                space-y-4
+                space-y-5
             ">
 
                 {currentPrograms.map(
