@@ -1,10 +1,13 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import FormField from "../../components/forms/FormField";
 import Button from "../../components/ui/Button";
+import PopUpNotif from "../ui/PopUpNotif";
 
 import {
   Upload,
+  CircleCheck,
+  CircleAlert,
 } from "lucide-react";
 
 const CreateProgramForm = ({
@@ -14,6 +17,13 @@ const CreateProgramForm = ({
 
   title = "Program",
 }) => {
+  const [openConfirmPopup, setOpenConfirmPopup] =
+    useState(false);
+
+  const [openSuccessPopup, setOpenSuccessPopup] =
+    useState(false);  
+  
+  const navigate = useNavigate();
 
   const [errors, setErrors] =
     useState({});
@@ -22,7 +32,7 @@ const CreateProgramForm = ({
     useState(
 
       initialData || {
-
+        logo: null,
         poster: null,
         namaKegiatan: "",
         deskripsi: "",
@@ -34,8 +44,8 @@ const CreateProgramForm = ({
       }
     );
 
-  // HANDLE POSTER
-  const handlePosterChange = (e) => {
+  // HANDLE IMAGE
+  const handleImageChange = (e) => {
 
     const file = e.target.files[0];
 
@@ -158,6 +168,67 @@ const CreateProgramForm = ({
         className="space-y-6"
       >
 
+      {/* LOGO */}
+        <div>
+
+          <label
+            className="
+              text-left
+              block
+              text-bold-blue
+              text-md
+              font-bold
+              mb-2
+            "
+          >
+            Logo Program
+          </label>
+
+          <label
+            className="
+              flex
+              items-center
+              gap-2
+              border
+              border-light-blue
+              rounded-lg
+              px-4
+              py-3
+              text-bold-blue
+              hover:bg-light-blue-2
+              transition
+              cursor-pointer
+            "
+          >
+
+            <Upload size={18} />
+
+            <span className="max-w-[180px] truncate">
+
+              {formData.logo
+                ? formData.logo.name
+                : "Tambahkan Logo"
+              }
+
+            </span>
+
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleImageChange}
+            />
+
+          </label>
+          {errors.logo && (
+
+            <p className="text-red-500 text-sm italic mt-1">
+              {errors.logo}
+            </p>
+          )}
+
+        </div>
+
         {/* POSTER */}
         <div>
 
@@ -206,7 +277,7 @@ const CreateProgramForm = ({
               type="file"
               accept="image/*"
               className="hidden"
-              onChange={handlePosterChange}
+              onChange={handleImageChange}
             />
 
           </label>
@@ -333,16 +404,6 @@ const CreateProgramForm = ({
 
         </div>
 
-        {/* STATUS */}
-        <FormField
-          label="Status Kegiatan"
-          name="statusKegiatan"
-          value={formData.statusKegiatan}
-          onChange={handleChange}
-          placeholder="Contoh: Registrasi Dibuka"
-          error={errors.statusKegiatan}
-        />
-
         {/* BUTTON */}
         <div className="flex justify-end pt-5">
 
@@ -355,10 +416,129 @@ const CreateProgramForm = ({
                   : "Publikasikan"
               }
 
-              type="submit"
+              onClick={() => {
+
+                if (validateForm()) {
+
+                  if (isEdit) {
+                    console.log("UPDATE PROGRAM");
+                    setOpenSuccessPopup(true);
+
+                  } else {
+                    setOpenConfirmPopup(true);
+                  }
+                }
+              }}
+
               className="w-[180px]"
             />
           )}
+
+          {/* POPUP KONFIRMASI */}
+          <PopUpNotif
+            isOpen={openConfirmPopup}
+
+            onClose={() =>
+              setOpenConfirmPopup(false)
+            }
+
+            icon={
+              <CircleAlert
+                size={90}
+                className="text-yellow-500"
+              />
+            }
+
+            title="Apakah kamu yakin?"
+
+            description="
+              Program akan langsung dipublikasikan
+              dan dapat diakses secara publik.
+            "
+          >
+
+            {/* DRAFT */}
+            <Button
+              label="Simpan sebagai Draft"
+
+              onClick={() => {
+                console.log("SAVE DRAFT");
+                setOpenConfirmPopup(false);
+                navigate("/draft-list");
+              }}
+
+              className="
+                border
+                border-bold-blue
+                text-bold-blue
+                bg-white
+              "
+            />
+
+            {/* PUBLISH */}
+            <Button
+              label="Publikasikan"
+
+              onClick={() => {
+                setOpenConfirmPopup(false);
+                setOpenSuccessPopup(true);
+              }}
+            />
+
+          </PopUpNotif>
+
+          {/* POPUP SUKSES */}
+          <PopUpNotif
+            isOpen={openSuccessPopup}
+
+            onClose={() =>
+              setOpenSuccessPopup(false)
+            }
+
+            icon={
+              <CircleCheck
+                size={90}
+                className="text-green-600"
+              />
+            }
+
+            title="Program Berhasil Dipublikasikan"
+
+            description="
+              Program telah berhasil dipublikasikan
+              dan dapat dilihat oleh mahasiswa.
+            "
+          >
+
+            {/* CLOSE */}
+            <Button
+              label="Kembali"
+
+              onClick={() =>
+                setOpenSuccessPopup(false)
+              }
+
+              className="
+                border
+                border-bold-blue
+                text-bold-blue
+                bg-white
+              "
+            />
+
+            {/* SEE */}
+            <Button
+              label="Lihat Program"
+
+              onClick={() => {
+
+                setOpenSuccessPopup(false);
+
+                navigate("/program-list-mitra");
+              }}
+            />
+
+          </PopUpNotif>
 
         </div>
 

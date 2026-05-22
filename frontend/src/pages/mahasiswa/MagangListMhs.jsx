@@ -1,6 +1,6 @@
 import KategoriCard from "../../components/cards/KategoriCard";
 import SearchBar from "../../components/ui/SearchBar";
-import ProgramCard from "../../components/cards/ProgramCard";
+import MagangCard from "../../components/cards/MagangCard";
 import logoShopee from "../../assets/logo-shopee.png";
 import {useState} from "react";
 import Pagination from "../../components/ui/Pagination";
@@ -327,7 +327,7 @@ const MagangListMhs = () => {
             <div className="mt-10">
                 <div className="grid grid-cols-3 gap-6">
                     {currentPrograms.map((program, index) => (
-                        <ProgramCard
+                        <MagangCard
                             key={index}
                             logo={program.logo}
                             title={program.title}

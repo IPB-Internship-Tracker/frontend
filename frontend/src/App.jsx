@@ -22,6 +22,8 @@ import MagangDetailMhs from './pages/mahasiswa/MagangDetailMhs';
 import KompetisiListMhs from './pages/mahasiswa/KompetisiListMhs';
 import StupenListMhs from './pages/mahasiswa/StupenListMhs';
 import PendaftaranBerhasil from './pages/mahasiswa/PendaftaranBerhasil';
+import KompetisiDetail from './pages/mahasiswa/KompetisiDetail';
+import StupenDetail from './pages/mahasiswa/StupenDetail';
 
 // mitra
 import DashboardLayoutMitra from './components/layout/mitra/DashboardLayoutMitra';
@@ -56,7 +58,7 @@ function App() {
           <Route path="/dashboard-mahasiswa" element={<DashboardMhs />} />
           <Route path="/formpendaftaran" element={<FormPendaftaran />} />
           <Route path="/lamaran-list" element={<LamaranList />} />
-          <Route path="/lamaran-detail" element={<LamaranDetail />} />
+          <Route path="/lamaran-detail/:id" element={<LamaranDetail />} />
           <Route path="/logbook-detail/:id" element={<LogbookDetail />} />
           <Route path="/logbook-list" element={<LogbookList />} />
           <Route path="/magang-list" element={<MagangListMhs />} />
@@ -64,6 +66,9 @@ function App() {
           <Route path="/kompetisi-list" element={<KompetisiListMhs />} />
           <Route path="/stupen-list" element={<StupenListMhs />} />
           <Route path="/pendaftaran-berhasil" element={<PendaftaranBerhasil />} />
+          <Route path="/kompetisi-detail/:id" element={<KompetisiDetail />} />
+          <Route path="/studi-independen-detail/:id" element={<StupenDetail />} />
+
         </Route>
 
         {/* Mitra */}
