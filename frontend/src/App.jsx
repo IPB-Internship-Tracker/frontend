@@ -22,6 +22,7 @@ import MagangDetailMhs from './pages/mahasiswa/MagangDetailMhs';
 import KompetisiListMhs from './pages/mahasiswa/KompetisiListMhs';
 import StupenListMhs from './pages/mahasiswa/StupenListMhs';
 import PendaftaranBerhasil from './pages/mahasiswa/PendaftaranBerhasil';
+import ProfileMahasiswa from './pages/mahasiswa/ProfileMahasiswa';
 
 // mitra
 import DashboardLayoutMitra from './components/layout/mitra/DashboardLayoutMitra';
@@ -36,6 +37,7 @@ import CreateStupen from './pages/mitra/CreateStupen';
 import DocRequirement from './pages/mitra/DocRequirement';
 import EditMagang from './pages/mitra/EditMagang';
 import DraftList from './pages/mitra/DraftList';
+import ProfileMitra from './pages/mitra/ProfileMitra';
 
 function App() {
   return (
@@ -64,6 +66,7 @@ function App() {
           <Route path="/kompetisi-list" element={<KompetisiListMhs />} />
           <Route path="/stupen-list" element={<StupenListMhs />} />
           <Route path="/pendaftaran-berhasil" element={<PendaftaranBerhasil />} />
+          <Route path="/profile-mahasiswa" element={<ProfileMahasiswa />} />
         </Route>
 
         {/* Mitra */}
@@ -79,6 +82,7 @@ function App() {
           <Route path="/doc-requirement" element={<DocRequirement />} />
           <Route path="/edit-magang/:id" element={<EditMagang />} />
           <Route path="draft-list" element={<DraftList />} />
+          <Route path="/profile-mitra" element={<ProfileMitra/>} />
         </Route>
 
       </Routes>
