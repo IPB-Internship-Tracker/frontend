@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FormField from "../../components/forms/FormField";
 import Button from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,8 @@ import {
   const CreateMagangForm = ({
     initialData = null,
     isEdit = false,
-    hideSubmitButton = false
+    hideSubmitButton = false,
+    onDirtyChange,
   }) => {
 
   const navigate = useNavigate();
@@ -39,19 +40,100 @@ import {
     }
   );
 
-  const handleLogoChange = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    setFormData({
-      ...formData,
-      logo: file,
-    });
+useEffect(() => {
+
+  const normalize = (value) => {
+    if (
+      value === null ||
+      value === undefined
+    ) {
+      return "";
+    }
+    return String(value).trim();
   };
+
+  // kalau create page
+  if (!initialData) {
+    const hasChanges = Object.entries(formData)
+      .some(([key, value]) => {
+        // skip logo
+        if (key === "logo") {
+          return value !== null;
+        }
+        return normalize(value) !== "";
+      });
+    onDirtyChange?.(hasChanges);
+    return;
+  }
+
+  // kalau edit page
+  const hasChanges = (
+    normalize(formData.namaPerusahaan) !==
+      normalize(initialData.namaPerusahaan)
+    ||
+    normalize(formData.judulLamaran) !==
+      normalize(initialData.judulLamaran)
+    ||
+    normalize(formData.posisi) !==
+      normalize(initialData.posisi)
+    ||
+    normalize(formData.deskripsi) !==
+      normalize(initialData.deskripsi)
+    ||
+    normalize(formData.bidang) !==
+      normalize(initialData.bidang)
+    ||
+    normalize(formData.kuota) !==
+      normalize(initialData.kuota)
+    ||
+    normalize(formData.salary) !==
+      normalize(initialData.salary)
+    ||
+    normalize(formData.penempatan) !==
+      normalize(initialData.penempatan)
+    ||
+    normalize(formData.tenggat) !==
+      normalize(initialData.tenggat)
+    ||
+    normalize(formData.mulai) !==
+      normalize(initialData.mulai)
+    ||
+    normalize(formData.berakhir) !==
+      normalize(initialData.berakhir)
+    ||
+    normalize(formData.kota) !==
+      normalize(initialData.kota)
+    ||
+    normalize(formData.alamat) !==
+      normalize(initialData.alamat)
+    ||
+    normalize(formData.narahubung) !==
+      normalize(initialData.narahubung)
+    ||
+    normalize(formData.informasi) !==
+      normalize(initialData.informasi)
+  );
+  onDirtyChange?.(hasChanges);
+
+}, [formData, initialData]);
+
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleLogoChange = (e) => {
+
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    setFormData({
+      ...formData,
+      logo: file,
     });
   };
 

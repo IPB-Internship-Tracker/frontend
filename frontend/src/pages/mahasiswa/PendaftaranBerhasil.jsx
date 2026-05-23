@@ -3,7 +3,7 @@ import {
 } from "lucide-react";
 
 import Button from "../../components/ui/Button";
-import ProgramSection from "../../components/cards/ProgramSection";
+import MagangSection from "../../components/cards/MagangSection";
 
 import LogoShopee from "../../assets/logo-shopee.png";
 
@@ -171,7 +171,7 @@ const PendaftaranBerhasil = () => {
       <div className="border-b border-light-blue/40 mb-10"></div>
 
       {/* REKOMENDASI */}
-      <ProgramSection
+      <MagangSection
         sectionTitle="Program lain yang mungkin Anda suka"
         buttonTo="/magang-list"
         programs={recommendedPrograms}

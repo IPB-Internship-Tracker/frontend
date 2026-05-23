@@ -16,7 +16,9 @@ const DocRequirementForm = ({
     useState(false);
 
   const [openSuccessPopup, setOpenSuccessPopup] =
-    useState(false);  const navigate = useNavigate();
+    useState(false);  
+    
+  const navigate = useNavigate();
 
   // LIST DOKUMEN
   const documents = [

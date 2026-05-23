@@ -9,27 +9,7 @@ import BackButton from "../../components/ui/BackButton";
 import Button from "../../components/ui/Button";
 import LogoShopee from "../../assets/logo-shopee.png";
 import PopUpNotif from "../../components/ui/PopUpNotif";
-
-const PersonalInfoItem = ({
-  label,
-  value,
-}) => {
-
-  return (
-
-    <div>
-
-      <p className="text-bold-blue font-semibold text-md mb-1">
-        {label}
-      </p>
-
-      <p className="text-md">
-        {value}
-      </p>
-
-    </div>
-  );
-};
+import PersonalInfoItem from "../../components/ui/PersonalInfoItem";
 
 const FormPendaftaran = () => {
 

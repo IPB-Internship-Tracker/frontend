@@ -13,7 +13,7 @@ import Button from "../../components/ui/Button";
 import BackButton from "../../components/ui/BackButton";
 import ProgramStatus from "../../components/ui/ProgramStatus"
 import LogoShopee from "../../assets/logo-shopee.png";
-import ProgramSection from "../../components/cards/ProgramSection";
+import MagangSection from "../../components/cards/MagangSection";
 
 const InfoCard = ({
   title,
@@ -482,7 +482,7 @@ const { id } = useParams();
       <div className="border-b border-light-blue/40 my-12"></div>
 
       {/* REKOMENDASI */}
-      <ProgramSection
+      <MagangSection
         sectionTitle="Program lain yang mungkin Anda suka"
         buttonTo="/magang-list"
         programs={recommendedPrograms}

@@ -1,7 +1,7 @@
-import ProgramCard from "./ProgramCard";
 import NextButton from "../ui/NextButton";
+import KompeStupenCard from "./KompeStupenCard";
 
-const ProgramSection = ({
+const KompeStupenSection = ({
     sectionTitle,
     buttonTo,
     programs,
@@ -41,14 +41,11 @@ const ProgramSection = ({
             ">
 
                 {programs.map((program, index) => (
-                     <ProgramCard
+                     <KompeStupenCard
                         key={index}
 
-                        logo={program.logo}
                         title={program.title}
                         company={program.company}
-                        category={program.category}
-                        location={program.location}
                         deadline={program.deadline}
 
                         to={`/magang-detail/${program.id}`}
@@ -70,4 +67,4 @@ const ProgramSection = ({
     );
 };
 
-export default ProgramSection;
+export default KompeStupenSection;

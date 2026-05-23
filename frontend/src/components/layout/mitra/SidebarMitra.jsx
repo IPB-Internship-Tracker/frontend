@@ -1,4 +1,7 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import {
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 
 import {
   House,
@@ -9,29 +12,83 @@ import {
 const SidebarMitra = () => {
 
   const navigate = useNavigate();
+
   const location = useLocation();
 
   // MENU
   const menuItems = [
+
     {
       label: "Dashboard",
       icon: House,
       path: "/dashboard-mitra",
+
+      matchPaths: [
+        "/dashboard-mitra",
+      ],
     },
 
     {
       label: "Program Saya",
       icon: ChartLine,
       path: "/program-list-mitra",
+
+      matchPaths: [
+        "/program-list-mitra",
+
+        // MAGANG
+        "/magang-detail-mitra",
+        "/create-magang",
+        "/edit-magang",
+
+        // KOMPETISI
+        "/kompetisi-detail-mitra",
+        "/create-kompetisi",
+        "/edit-kompetisi",
+
+        // STUDI INDEPENDEN
+        "/stupen-detail-mitra",
+        "/create-studi-independen",
+        "/edit-studi-independen",
+
+        // DRAFT
+        "/draft-list",
+
+        // DOC
+        "/doc-requirement",
+
+        // PELAMAR
+        "/pelamar-list",
+        "/pelamar-detail",
+      ],
     },
+
   ];
 
   return (
 
-    <aside className="fixed top-0 left-0 w-64 min-h-screen bg-indigo-900 text-white flex flex-col">
+    <aside
+      className="
+        fixed
+        top-0
+        left-0
+        w-64
+        min-h-screen
+        bg-indigo-900
+        text-white
+        flex
+        flex-col
+      "
+    >
 
       {/* LOGO */}
-      <div className="p-6 border-b border-indigo-500">
+      <div
+        className="
+          p-6
+          border-b
+          border-indigo-500
+        "
+      >
 
         <h1 className="text-2xl font-bold">
           ICON
@@ -51,11 +108,22 @@ const SidebarMitra = () => {
 
           const Icon = item.icon;
 
+          // ACTIVE CHECK
+          const isActive =
+
+            item.matchPaths.some((path) =>
+              location.pathname.startsWith(path)
+            );
+
           return (
 
             <button
               key={index}
-              onClick={() => navigate(item.path)}
+
+              onClick={() =>
+                navigate(item.path)
+              }
+
               className={`
                 text-md
                 flex
@@ -69,17 +137,26 @@ const SidebarMitra = () => {
                 cursor-pointer
 
                 ${
-                  location.pathname === item.path
-                    ? "bg-indigo-950 text-kuning-tua"
-                    : "text-white hover:bg-indigo-700"
+                  isActive
+
+                    ? `
+                      bg-indigo-950
+                      text-kuning-tua
+                    `
+
+                    : `
+                      text-white
+                      hover:bg-indigo-700
+                    `
                 }
               `}
             >
 
               <Icon
                 size={18}
+
                 className={
-                  location.pathname === item.path
+                  isActive
                     ? "text-kuning-tua"
                     : "text-white"
                 }
@@ -96,7 +173,13 @@ const SidebarMitra = () => {
       </nav>
 
       {/* SETTINGS */}
-      <div className="p-4 border-t border-indigo-500">
+      <div
+        className="
+          p-4
+          border-t
+          border-indigo-500
+        "
+      >
 
         <button
           className="
@@ -115,7 +198,10 @@ const SidebarMitra = () => {
         >
 
           <Settings size={18} />
-          <span>Pengaturan</span>
+
+          <span>
+            Pengaturan
+          </span>
 
         </button>
 
