@@ -121,7 +121,7 @@ const ProfileCard = ({
                     text-2xl
                     font-bold
                     text-center
-                    text-black
+                    text-gray-700
                     mb-8
                 ">
                     {title}
