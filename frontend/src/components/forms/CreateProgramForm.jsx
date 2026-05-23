@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FormField from "../../components/forms/FormField";
 import Button from "../../components/ui/Button";
@@ -15,6 +15,7 @@ const CreateProgramForm = ({
   initialData = {},
   isEdit = false,
   hideSubmitButton = false,
+  onDirtyChange,
 }) => {
   const [openConfirmPopup, setOpenConfirmPopup] =
     useState(false);
@@ -27,33 +28,57 @@ const CreateProgramForm = ({
   const [errors, setErrors] =
     useState({});
 
-const [formData, setFormData] =
-  useState({
+  const [formData, setFormData] =
+    useState({
+      logo:
+        initialData.logo || null,
+      poster:
+        initialData.poster || null,
+      title:
+        initialData.title || "",
+      description:
+        initialData.description || "",
+      link:
+        initialData.link || "",
+      deadline:
+        initialData.deadline || "",
+      startDate:
+        initialData.startDate || "",
+      endDate:
+        initialData.endDate || "",
+    });
 
-    logo:
-      initialData.logo || null,
+   // ngecek apakah ada perubahan 
+  useEffect(() => {
+    const normalize = (value) => {
+      if (value === null || value === undefined) {
+        return "";
+      }
+      return String(value).trim();
+    };
 
-    poster:
-      initialData.poster || null,
+    const hasChanges = (
+      normalize(formData.title) !==
+        normalize(initialData.title)
+      ||
+      normalize(formData.description) !==
+        normalize(initialData.description)
+      ||
+      normalize(formData.link) !==
+        normalize(initialData.link)
+      ||
+      normalize(formData.deadline) !==
+        normalize(initialData.deadline)
+      ||
+      normalize(formData.startDate) !==
+        normalize(initialData.startDate)
+      ||
+      normalize(formData.endDate) !==
+        normalize(initialData.endDate)
+    );
+    onDirtyChange?.(hasChanges);
+  }, [formData, initialData]);
 
-    title:
-      initialData.title || "",
-
-    description:
-      initialData.description || "",
-
-    link:
-      initialData.link || "",
-
-    deadline:
-      initialData.deadline || "",
-
-    startDate:
-      initialData.startDate || "",
-
-    endDate:
-      initialData.endDate || "",
-  });
 
   // HANDLE IMAGE
   const handleImageChange = (e) => {
@@ -93,8 +118,8 @@ const [formData, setFormData] =
       }
     );
 
-    if (!formData.deskripsi.trim()) {
-      newErrors.deskripsi =
+    if (!formData.description.trim()) {
+      newErrors.description =
         "Deskripsi wajib diisi.";
     }
 
@@ -350,7 +375,7 @@ const [formData, setFormData] =
               focus:ring-1
 
               ${
-                errors.deskripsi
+                errors.description
                   ? "border-red-500 focus:ring-red-500"
                   : "border-light-blue focus:ring-light-blue"
               }
@@ -426,6 +451,7 @@ const [formData, setFormData] =
                   ? "Simpan"
                   : "Publikasikan"
               }
+              type="button"
 
               onClick={() => {
 

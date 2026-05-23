@@ -24,6 +24,7 @@ import StupenListMhs from './pages/mahasiswa/StupenListMhs';
 import PendaftaranBerhasil from './pages/mahasiswa/PendaftaranBerhasil';
 import KompetisiDetail from './pages/mahasiswa/KompetisiDetail';
 import StupenDetail from './pages/mahasiswa/StupenDetail';
+import MagangFiltered from './pages/mahasiswa/MagangFiltered';
 
 // mitra
 import DashboardLayoutMitra from './components/layout/mitra/DashboardLayoutMitra';
@@ -38,6 +39,7 @@ import CreateStupen from './pages/mitra/CreateStupen';
 import DocRequirement from './pages/mitra/DocRequirement';
 import EditMagang from './pages/mitra/EditMagang';
 import EditKompetisi from './pages/mitra/EditKompetisi';
+import EditStupen from './pages/mitra/EditStupen';
 import DraftList from './pages/mitra/DraftList';
 import KompetisiDetailMitra from './pages/mitra/KompetisiDetailMitra';
 import StupenDetailMitra from './pages/mitra/StupenDetailMitra';
@@ -71,7 +73,7 @@ function App() {
           <Route path="/pendaftaran-berhasil" element={<PendaftaranBerhasil />} />
           <Route path="/kompetisi-detail/:id" element={<KompetisiDetail />} />
           <Route path="/studi-independen-detail/:id" element={<StupenDetail />} />
-
+          <Route path="/magang-filtered/:category" element={<MagangFiltered />} />
         </Route>
 
         {/* Mitra */}
@@ -87,9 +89,10 @@ function App() {
           <Route path="/doc-requirement" element={<DocRequirement />} />
           <Route path="/edit-magang/:id" element={<EditMagang />} />
           <Route path="/edit-kompetisi/:id" element={<EditKompetisi />} />
+          <Route path="/edit-studi-independen/:id" element={<EditStupen />} />
           <Route path="/draft-list" element={<DraftList />} />
-          <Route path="kompetisi-detail-mitra/:id" element={<KompetisiDetailMitra  />} />
-          <Route path="stupen-detail-mitra/:id" element={<StupenDetailMitra  />} />
+          <Route path="/kompetisi-detail-mitra/:id" element={<KompetisiDetailMitra  />} />
+          <Route path="/stupen-detail-mitra/:id" element={<StupenDetailMitra  />} />
         </Route>
 
       </Routes>

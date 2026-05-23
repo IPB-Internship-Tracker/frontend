@@ -5,6 +5,7 @@ import logoShopee from "../../assets/logo-shopee.png";
 import {useState} from "react";
 import Pagination from "../../components/ui/Pagination";
 import { useParams, useNavigate } from "react-router-dom";
+import Button from "../../components/ui/Button";
 
 import {
     MonitorCog,
@@ -276,11 +277,24 @@ const programs = [
 ];
 
 
-const MagangListMhs = () => {
-    const navigate = useNavigate();
+const MagangFiltered = () => {
+    const { category: activeCategory } =
+    useParams();    const navigate = useNavigate();
 
-    const [activeCategory, setActiveCategory] =
-    useState(null);
+    // FILTER PROGRAM
+    const filteredPrograms = programs.filter(
+    (program) => {
+
+        const programSlug =
+        program.category
+            .toLowerCase()
+            .replaceAll(" & ", "-")
+            .replaceAll(" ", "-")
+            .replaceAll("/", "-");
+
+        return programSlug === activeCategory;
+    }
+    );
 
     // STATE
     const [currentPage, setCurrentPage] = useState(1);
@@ -290,10 +304,11 @@ const MagangListMhs = () => {
     const lastIndex = currentPage * programsPerPage;
     const firstIndex = lastIndex - programsPerPage;
     const currentPrograms =
-    programs.slice(firstIndex, lastIndex);
+    filteredPrograms.slice(firstIndex, lastIndex);
     const totalPages =
-    Math.ceil(programs.length / programsPerPage);
-
+    Math.ceil(
+        filteredPrograms.length / programsPerPage
+    );
     return (
 
         <div>
@@ -307,14 +322,35 @@ const MagangListMhs = () => {
 
             {/* CATEGORY SECTION */}
             <div className="mt-8 space-y-4">
-                <h1 className="text-2xl font-semibold text-bold-blue mb-2">
-                    Magang
-                    
-                </h1>
-                <h2 className="text-lg text-bold-blue mb-3">
-                    Jelajahi program magang sesuai bidang yang kamu minati!
-                    
-                </h2>
+                <div
+                className="flex justify-between items-end">
+                    <div>
+                        <h1 className="text-2xl font-semibold text-bold-blue mb-2">
+                            Magang
+                        </h1>
+                        <h2 className="text-lg text-bold-blue mb-3">
+                            Jelajahi program magang sesuai bidang yang kamu minati!
+                        </h2>
+
+                    </div>
+
+                    {/* RESET FILTER */}
+                    <Button
+                        label="Reset Filter"
+                        onClick={() => navigate("/magang-list")}
+                        
+                        className="
+                        bg-white
+                        border
+                        border-bold-blue
+                        text-bold-blue
+                        px-6
+                        "
+                    />
+
+                </div>
+
+
                 {/* CATEGORY LIST */}
                 <div
                     className="
@@ -325,21 +361,24 @@ const MagangListMhs = () => {
                     "
                 >
 
-
                     {categories.map((category, index) => (
 
-                        <KategoriCard
+                    <KategoriCard
                         key={index}
                         icon={category.icon}
                         title={category.title}
+
                         isActive={
-                            activeCategory === category.slug
+                        activeCategory === category.slug
                         }
-                        onClick={() => {
-                            setActiveCategory(category.slug);
-                            navigate(`/magang-filtered/${category.slug}`);
-                        }}
-                        />
+
+                        onClick={() =>
+                        navigate(
+                            `/magang-filtered/${category.slug}`
+                        )
+                        }
+                    />
+
                     ))}
 
                 </div>
@@ -403,4 +442,4 @@ const MagangListMhs = () => {
         </div>
     );
 };
-export default MagangListMhs;
+export default MagangFiltered;

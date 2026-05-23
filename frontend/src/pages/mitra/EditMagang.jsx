@@ -20,6 +20,9 @@ const EditMagang = () => {
     const [openSavePopup, setOpenSavePopup] =
     useState(false);
 
+    const [isDirty, setIsDirty] =
+    useState(false);
+
   // nanti fetch by id dari backend
   const initialData = {
 
@@ -58,7 +61,14 @@ const EditMagang = () => {
         <BackButton
             color="text-bold-blue"
             position="relative"
-            onClick={() => setOpenBackPopup(true)}
+            onClick={() => {
+              if (isDirty) {
+                setOpenBackPopup(true);
+
+              } else {
+                navigate(`/magang-detail-mitra/${id}`);
+              }
+            }}
         />
       </div>
 
@@ -76,10 +86,12 @@ const EditMagang = () => {
             description="Perubahan yang belum disimpan dapat hilang."
             >
 
-            {/* CANCEL */}
+            {/* DISCARD */}
             <Button
-                label="Lanjut Edit"
-                onClick={() => setOpenBackPopup(false)}
+                label="Batalkan Perubahan"
+                onClick={() => {
+                  navigate(`/magang-detail-mitra/${id}`);
+                }}
                 className="
                 border
                 border-bold-blue
@@ -88,13 +100,11 @@ const EditMagang = () => {
                 "
             />
 
-            {/* DISCARD */}
+            {/* CANCEL */}
             <Button
-                label="Batalkan Perubahan"
-                onClick={() => {
-                navigate(`/magang-detail-mitra/${id}`);
-                }}
-            />
+                label="Lanjut Edit"
+                onClick={() => setOpenBackPopup(false)}
+           />
 
         </PopUpNotif>   
 
@@ -103,6 +113,7 @@ const EditMagang = () => {
         initialData={initialData}
         isEdit={true}
         hideSubmitButton={true}
+        onDirtyChange={setIsDirty}
       />
 
       {/* DOC REQUIREMENT */}

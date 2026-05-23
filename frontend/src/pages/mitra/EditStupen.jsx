@@ -13,7 +13,7 @@ import {
 
 import Button from "../../components/ui/Button";
 
-const EditKompetisi = () => {
+const EditStupen = () => {
 
   const { id } = useParams();
 
@@ -114,7 +114,7 @@ const EditKompetisi = () => {
 
       {/* FORM EDIT */}
       <CreateProgramForm
-        title="Kompetisi"
+        title="Studi Independen"
         initialData={initialData}
         isEdit={true}
         hideSubmitButton={true}
@@ -194,4 +194,4 @@ const EditKompetisi = () => {
   );
 };
 
-export default EditKompetisi;
+export default EditStupen;
