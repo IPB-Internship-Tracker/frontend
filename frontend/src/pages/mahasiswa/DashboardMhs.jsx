@@ -3,7 +3,7 @@ import LamaranCard from "../../components/cards/LamaranCard";
 import ReminderCard from "../../components/cards/ReminderCard";
 import NextButton from "../../components/ui/NextButton";
 import logoShopee from "../../assets/logo-shopee.png";
-import ProgramSection from "../../components/cards/ProgramSection";
+import MagangSection from "../../components/cards/MagangSection";
 import LamaranStatus from "../../components/ui/LamaranStatus";
 
 import {
@@ -126,7 +126,7 @@ const DashboardMhs = () => {
 
                         {/* NEXT BUTTON */}
                         <NextButton
-                            to="/lamaran-saya"
+                            to="/lamaran-list"
                             label="Selengkapnya"
                         />
 
@@ -207,19 +207,19 @@ const DashboardMhs = () => {
                     Eksplor program-program sesuai minat mu!
                 </h2>
 
-                <ProgramSection
+                <MagangSection
                     sectionTitle="Program Magang"
                     buttonTo="/magang-list"
                     programs={magangPrograms}
                 />
 
-                <ProgramSection
+                <MagangSection
                     sectionTitle="Kompetisi"
                     buttonTo="/kompetisi-list"
                     programs={magangPrograms}
                 />
 
-                <ProgramSection
+                <MagangSection
                     sectionTitle="Studi Independen"
                     buttonTo="/stupen-list"
                     programs={magangPrograms}

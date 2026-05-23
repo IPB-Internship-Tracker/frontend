@@ -1,171 +1,139 @@
 import KategoriCard from "../../components/cards/KategoriCard";
 import SearchBar from "../../components/ui/SearchBar";
-import ProgramCard from "../../components/cards/ProgramCard";
+import KompeStupenCard from "../../components/cards/KompeStupenCard";
 import logoShopee from "../../assets/logo-shopee.png";
 import {useState} from "react";
 import Pagination from "../../components/ui/Pagination";
 
 const programs = [
 
-    {
-        id: 1,
-        logo: logoShopee,
-        title: "UI/UX Designer Internship",
-        company: "Shopee Indonesia",
-        category: "Design & Creative",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 2,
-        logo: logoShopee,
-        title: "Data Analyst Internship",
-        company: "Tokopedia",
-        category: "Data & Analytics",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 3,
-        logo: logoShopee,
-        title: "Digital Marketing Internship",
-        company: "Blibli",
-        category: "Marketing & Communication",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 4,
-        logo: logoShopee,
-        title: "Software Engineer Internship",
-        company: "Traveloka",
-        category: "Information Technology",
-        location: "Bandung",
-        deadline: "30 Mei 2026",
-    },
+  {
+    id: 1,
+    logo: logoShopee,
+    title: "Machine Learning Engineer Path",
+    company: "Dicoding Indonesia",
+    deadline: "28 Mei 2026",
+  },
 
-    {
-        id: 5,
-        logo: logoShopee,
-        title: "UI/UX Designer Internship",
-        company: "Shopee Indonesia",
-        category: "Design & Creative",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 6,
-        logo: logoShopee,
-        title: "Data Analyst Internship",
-        company: "Tokopedia",
-        category: "Data & Analytics",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 7,
-        logo: logoShopee,
-        title: "Digital Marketing Internship",
-        company: "Blibli",
-        category: "Marketing & Communication",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 8,
-        logo: logoShopee,
-        title: "Software Engineer Internship",
-        company: "Traveloka",
-        category: "Information Technology",
-        location: "Bandung",
-        deadline: "30 Mei 2026",
-    },
+  {
+    id: 2,
+    logo: logoShopee,
+    title: "Frontend Web Development",
+    company: "Tokopedia",
+    deadline: "30 Mei 2026",
+  },
 
-    {
-        id: 9,
-        logo: logoShopee,
-        title: "UI/UX Designer Internship",
-        company: "Shopee Indonesia",
-        category: "Design & Creative",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 10,
-        logo: logoShopee,
-        title: "Data Analyst Internship",
-        company: "Tokopedia",
-        category: "Data & Analytics",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 11,
-        logo: logoShopee,
-        title: "Digital Marketing Internship",
-        company: "Blibli",
-        category: "Marketing & Communication",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 12,
-        logo: logoShopee,
-        title: "Software Engineer Internship",
-        company: "Traveloka",
-        category: "Information Technology",
-        location: "Bandung",
-        deadline: "30 Mei 2026",
-    },
+  {
+    id: 3,
+    logo: logoShopee,
+    title: "UI/UX Design Intensive Program",
+    company: "Shopee Indonesia",
+    deadline: "1 Juni 2026",
+  },
 
-    {
-        id: 13,
-        logo: logoShopee,
-        title: "UI/UX Designer Internship",
-        company: "Shopee Indonesia",
-        category: "Design & Creative",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 14,
-        logo: logoShopee,
-        title: "Data Analyst Internship",
-        company: "Tokopedia",
-        category: "Data & Analytics",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 15,
-        logo: logoShopee,
-        title: "Digital Marketing Internship",
-        company: "Blibli",
-        category: "Marketing & Communication",
-        location: "Jakarta",
-        deadline: "28 Mei 2026",
-    },
-    
-    {
-        id: 16,
-        logo: logoShopee,
-        title: "Software Engineer Internship",
-        company: "Traveloka",
-        category: "Information Technology",
-        location: "Bandung",
-        deadline: "30 Mei 2026",
-    },
+  {
+    id: 4,
+    logo: logoShopee,
+    title: "Cloud Computing Learning Path",
+    company: "Google Indonesia",
+    deadline: "5 Juni 2026",
+  },
+
+  {
+    id: 5,
+    logo: logoShopee,
+    title: "Cyber Security Fundamentals",
+    company: "Traveloka",
+    deadline: "28 Mei 2026",
+  },
+
+  {
+    id: 6,
+    logo: logoShopee,
+    title: "Digital Product Management",
+    company: "Blibli",
+    deadline: "30 Mei 2026",
+  },
+
+  {
+    id: 7,
+    logo: logoShopee,
+    title: "Data Science Bootcamp",
+    company: "Ruangguru",
+    deadline: "2 Juni 2026",
+  },
+
+  {
+    id: 8,
+    logo: logoShopee,
+    title: "Backend Developer Program",
+    company: "Gojek",
+    deadline: "7 Juni 2026",
+  },
+
+  {
+    id: 9,
+    logo: logoShopee,
+    title: "Artificial Intelligence Program",
+    company: "Microsoft Indonesia",
+    deadline: "10 Juni 2026",
+  },
+
+  {
+    id: 10,
+    logo: logoShopee,
+    title: "Mobile App Development",
+    company: "Shopee Indonesia",
+    deadline: "28 Mei 2026",
+  },
+
+  {
+    id: 11,
+    logo: logoShopee,
+    title: "Game Development Academy",
+    company: "Agate",
+    deadline: "3 Juni 2026",
+  },
+
+  {
+    id: 12,
+    logo: logoShopee,
+    title: "DevOps Engineering Program",
+    company: "AWS Indonesia",
+    deadline: "6 Juni 2026",
+  },
+
+  {
+    id: 13,
+    logo: logoShopee,
+    title: "Business Intelligence Analytics",
+    company: "Bukalapak",
+    deadline: "8 Juni 2026",
+  },
+
+  {
+    id: 14,
+    logo: logoShopee,
+    title: "Fullstack JavaScript Program",
+    company: "Hacktiv8",
+    deadline: "30 Mei 2026",
+  },
+
+  {
+    id: 15,
+    logo: logoShopee,
+    title: "Software Quality Assurance",
+    company: "Traveloka",
+    deadline: "1 Juni 2026",
+  },
+
+  {
+    id: 16,
+    logo: logoShopee,
+    title: "Blockchain Developer Path",
+    company: "Binance Academy",
+    deadline: "12 Juni 2026",
+  },
 
 ];
 
@@ -199,7 +167,7 @@ const StupenListMhs = () => {
                     
                 </h1>
                 <h2 className="text-lg text-bold-blue mb-3">
-                    Jelajahi Studi Independen yang cocok untukmu!
+                    Jelajahi program Studi Independen yang cocok untukmu!
                     
                 </h2>
             </div>
@@ -212,15 +180,13 @@ const StupenListMhs = () => {
             <div className="mt-10">
                 <div className="grid grid-cols-3 gap-6">
                     {currentPrograms.map((program, index) => (
-                        <ProgramCard
+                        <KompeStupenCard
                             key={index}
                             logo={program.logo}
                             title={program.title}
                             company={program.company}
-                            category={program.category}
-                            location={program.location}
                             deadline={program.deadline}
-                            to={`/magang-detail/${program.id}`}
+                            to={`/studi-independen-detail/${program.id}`}
                         />
                     
                     ))}

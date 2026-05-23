@@ -22,6 +22,9 @@ import MagangDetailMhs from './pages/mahasiswa/MagangDetailMhs';
 import KompetisiListMhs from './pages/mahasiswa/KompetisiListMhs';
 import StupenListMhs from './pages/mahasiswa/StupenListMhs';
 import PendaftaranBerhasil from './pages/mahasiswa/PendaftaranBerhasil';
+import KompetisiDetail from './pages/mahasiswa/KompetisiDetail';
+import StupenDetail from './pages/mahasiswa/StupenDetail';
+import MagangFiltered from './pages/mahasiswa/MagangFiltered';
 import ProfileMahasiswa from './pages/mahasiswa/ProfileMahasiswa';
 
 // mitra
@@ -39,6 +42,8 @@ import EditMagang from './pages/mitra/EditMagang';
 import EditKompetisi from './pages/mitra/EditKompetisi';
 import EditStupen from './pages/mitra/EditStupen';
 import DraftList from './pages/mitra/DraftList';
+import KompetisiDetailMitra from './pages/mitra/KompetisiDetailMitra';
+import StupenDetailMitra from './pages/mitra/StupenDetailMitra';
 import ProfileMitra from './pages/mitra/ProfileMitra';
 
 function App() {
@@ -60,7 +65,7 @@ function App() {
           <Route path="/dashboard-mahasiswa" element={<DashboardMhs />} />
           <Route path="/formpendaftaran" element={<FormPendaftaran />} />
           <Route path="/lamaran-list" element={<LamaranList />} />
-          <Route path="/lamaran-detail" element={<LamaranDetail />} />
+          <Route path="/lamaran-detail/:id" element={<LamaranDetail />} />
           <Route path="/logbook-detail/:id" element={<LogbookDetail />} />
           <Route path="/logbook-list" element={<LogbookList />} />
           <Route path="/magang-list" element={<MagangListMhs />} />
@@ -68,6 +73,9 @@ function App() {
           <Route path="/kompetisi-list" element={<KompetisiListMhs />} />
           <Route path="/stupen-list" element={<StupenListMhs />} />
           <Route path="/pendaftaran-berhasil" element={<PendaftaranBerhasil />} />
+          <Route path="/kompetisi-detail/:id" element={<KompetisiDetail />} />
+          <Route path="/studi-independen-detail/:id" element={<StupenDetail />} />
+          <Route path="/magang-filtered/:category" element={<MagangFiltered />} />
           <Route path="/profile-mahasiswa" element={<ProfileMahasiswa />} />
         </Route>
 
@@ -83,10 +91,11 @@ function App() {
           <Route path="/create-studi-independen" element={<CreateStupen />} />
           <Route path="/doc-requirement" element={<DocRequirement />} />
           <Route path="/edit-magang/:id" element={<EditMagang />} />
-          <Route path="/edit-magang/:id" element={<EditMagang />} />
           <Route path="/edit-kompetisi/:id" element={<EditKompetisi />} /> 
-          <Route path="/edit-stupen/:id" element={<EditStupen />} />
-          <Route path="draft-list" element={<DraftList />} />
+          <Route path="/edit-studi-independen/:id" element={<EditStupen />} />
+          <Route path="/draft-list" element={<DraftList />} />
+          <Route path="/kompetisi-detail-mitra/:id" element={<KompetisiDetailMitra  />} />
+          <Route path="/stupen-detail-mitra/:id" element={<StupenDetailMitra  />} />
           <Route path="/profile-mitra" element={<ProfileMitra/>} />
         </Route>
 

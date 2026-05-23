@@ -1,7 +1,7 @@
 import { MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const ProgramCard = ({
+const MagangCard = ({
     id,
     logo,
     title,
@@ -93,4 +93,4 @@ const ProgramCard = ({
     );
 };
 
-export default ProgramCard;
+export default MagangCard;

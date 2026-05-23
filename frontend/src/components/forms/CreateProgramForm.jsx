@@ -1,51 +1,100 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import FormField from "../../components/forms/FormField";
 import Button from "../../components/ui/Button";
+import PopUpNotif from "../ui/PopUpNotif";
 
 import {
   Upload,
+  CircleCheck,
+  CircleAlert,
 } from "lucide-react";
 
 const CreateProgramForm = ({
-  initialData = null,
+  title = "Buat Program",
+  initialData = {},
   isEdit = false,
   hideSubmitButton = false,
-
-  title = "Program",
+  onDirtyChange,
 }) => {
+  const [openConfirmPopup, setOpenConfirmPopup] =
+    useState(false);
+
+  const [openSuccessPopup, setOpenSuccessPopup] =
+    useState(false);  
+  
+  const navigate = useNavigate();
 
   const [errors, setErrors] =
     useState({});
 
   const [formData, setFormData] =
-    useState(
-
-      initialData || {
-
-        poster: null,
-        namaKegiatan: "",
-        deskripsi: "",
-        linkPendaftaran: "",
-        tenggat: "",
-        mulai: "",
-        berakhir: "",
-        statusKegiatan: "",
-      }
-    );
-
-  // HANDLE POSTER
-  const handlePosterChange = (e) => {
-
-    const file = e.target.files[0];
-
-    if (!file) return;
-
-    setFormData({
-      ...formData,
-      poster: file,
+    useState({
+      logo:
+        initialData.logo || null,
+      poster:
+        initialData.poster || null,
+      title:
+        initialData.title || "",
+      description:
+        initialData.description || "",
+      link:
+        initialData.link || "",
+      deadline:
+        initialData.deadline || "",
+      startDate:
+        initialData.startDate || "",
+      endDate:
+        initialData.endDate || "",
     });
-  };
+
+   // ngecek apakah ada perubahan 
+  useEffect(() => {
+    const normalize = (value) => {
+      if (value === null || value === undefined) {
+        return "";
+      }
+      return String(value).trim();
+    };
+
+    const hasChanges = (
+      normalize(formData.title) !==
+        normalize(initialData.title)
+      ||
+      normalize(formData.description) !==
+        normalize(initialData.description)
+      ||
+      normalize(formData.link) !==
+        normalize(initialData.link)
+      ||
+      normalize(formData.deadline) !==
+        normalize(initialData.deadline)
+      ||
+      normalize(formData.startDate) !==
+        normalize(initialData.startDate)
+      ||
+      normalize(formData.endDate) !==
+        normalize(initialData.endDate)
+    );
+    onDirtyChange?.(hasChanges);
+  }, [formData, initialData]);
+
+
+  // HANDLE IMAGE
+const handleImageChange = (
+  e,
+  field
+) => {
+
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  setFormData({
+    ...formData,
+    [field]: file,
+  });
+};
 
   // HANDLE INPUT
   const handleChange = (e) => {
@@ -72,8 +121,8 @@ const CreateProgramForm = ({
       }
     );
 
-    if (!formData.deskripsi.trim()) {
-      newErrors.deskripsi =
+    if (!formData.description.trim()) {
+      newErrors.description =
         "Deskripsi wajib diisi.";
     }
 
@@ -158,6 +207,69 @@ const CreateProgramForm = ({
         className="space-y-6"
       >
 
+      {/* LOGO */}
+        <div>
+
+          <label
+            className="
+              text-left
+              block
+              text-bold-blue
+              text-md
+              font-bold
+              mb-2
+            "
+          >
+            Logo Program
+          </label>
+
+          <label
+            className="
+              flex
+              items-center
+              gap-2
+              border
+              border-light-blue
+              rounded-lg
+              px-4
+              py-3
+              text-bold-blue
+              hover:bg-light-blue-2
+              transition
+              cursor-pointer
+            "
+          >
+
+            <Upload size={18} />
+
+            <span className="max-w-[180px] truncate">
+
+              {formData.logo
+                ? formData.logo.name
+                : "Tambahkan Logo"
+              }
+
+            </span>
+
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) =>
+                handleImageChange(e, "logo")
+              }
+            />
+
+          </label>
+          {errors.logo && (
+
+            <p className="text-red-500 text-sm italic mt-1">
+              {errors.logo}
+            </p>
+          )}
+
+        </div>
+
         {/* POSTER */}
         <div>
 
@@ -206,7 +318,9 @@ const CreateProgramForm = ({
               type="file"
               accept="image/*"
               className="hidden"
-              onChange={handlePosterChange}
+              onChange={(e) =>
+                handleImageChange(e, "poster")
+              }
             />
 
           </label>
@@ -223,11 +337,11 @@ const CreateProgramForm = ({
         {/* NAMA KEGIATAN */}
         <FormField
           label="Nama Kegiatan"
-          name="namaKegiatan"
-          value={formData.namaKegiatan}
+          name="title"
+          value={formData.title}
           onChange={handleChange}
           placeholder="Masukkan nama kegiatan"
-          error={errors.namaKegiatan}
+          error={errors.title}
         />
 
         {/* DESKRIPSI */}
@@ -247,8 +361,8 @@ const CreateProgramForm = ({
           </label>
 
           <textarea
-            name="deskripsi"
-            value={formData.deskripsi}
+            name="description"
+            value={formData.description}
             onChange={handleChange}
             placeholder="Tuliskan deskripsi program"
             rows={5}
@@ -268,17 +382,17 @@ const CreateProgramForm = ({
               focus:ring-1
 
               ${
-                errors.deskripsi
+                errors.description
                   ? "border-red-500 focus:ring-red-500"
                   : "border-light-blue focus:ring-light-blue"
               }
             `}
           />
 
-          {errors.deskripsi && (
+          {errors.description && (
 
             <p className="text-red-500 text-sm italic mt-1">
-              {errors.deskripsi}
+              {errors.description}
             </p>
           )}
 
@@ -287,11 +401,11 @@ const CreateProgramForm = ({
         {/* LINK */}
         <FormField
           label="Link Pendaftaran"
-          name="linkPendaftaran"
-          value={formData.linkPendaftaran}
+          name="link"
+          value={formData.link}
           onChange={handleChange}
           placeholder="https://..."
-          error={errors.linkPendaftaran}
+          error={errors.link}
         />
 
         {/* TANGGAL */}
@@ -307,41 +421,31 @@ const CreateProgramForm = ({
           <FormField
             label="Deadline Pendaftaran"
             type="date"
-            name="tenggat"
-            value={formData.tenggat}
+            name="deadline"
+            value={formData.deadline}
             onChange={handleChange}
-            error={errors.tenggat}
+            error={errors.deadline}
           />
 
           <FormField
             label="Tanggal Mulai"
             type="date"
-            name="mulai"
-            value={formData.mulai}
+            name="startDate"
+            value={formData.startDate}
             onChange={handleChange}
-            error={errors.mulai}
+            error={errors.startDate}
           />
 
           <FormField
             label="Tanggal Selesai"
             type="date"
-            name="berakhir"
-            value={formData.berakhir}
+            name="endDate"
+            value={formData.endDate}
             onChange={handleChange}
-            error={errors.berakhir}
+            error={errors.endDate}
           />
 
         </div>
-
-        {/* STATUS */}
-        <FormField
-          label="Status Kegiatan"
-          name="statusKegiatan"
-          value={formData.statusKegiatan}
-          onChange={handleChange}
-          placeholder="Contoh: Registrasi Dibuka"
-          error={errors.statusKegiatan}
-        />
 
         {/* BUTTON */}
         <div className="flex justify-end pt-5">
@@ -354,11 +458,131 @@ const CreateProgramForm = ({
                   ? "Simpan"
                   : "Publikasikan"
               }
+              type="button"
 
-              type="submit"
+              onClick={() => {
+
+                if (validateForm()) {
+
+                  if (isEdit) {
+                    console.log("UPDATE PROGRAM");
+                    setOpenSuccessPopup(true);
+
+                  } else {
+                    setOpenConfirmPopup(true);
+                  }
+                }
+              }}
+
               className="w-[180px]"
             />
           )}
+
+          {/* POPUP KONFIRMASI */}
+          <PopUpNotif
+            isOpen={openConfirmPopup}
+
+            onClose={() =>
+              setOpenConfirmPopup(false)
+            }
+
+            icon={
+              <CircleAlert
+                size={90}
+                className="text-yellow-500"
+              />
+            }
+
+            title="Apakah kamu yakin?"
+
+            description="
+              Program akan langsung dipublikasikan
+              dan dapat diakses secara publik.
+            "
+          >
+
+            {/* DRAFT */}
+            <Button
+              label="Simpan sebagai Draft"
+
+              onClick={() => {
+                console.log("SAVE DRAFT");
+                setOpenConfirmPopup(false);
+                navigate("/draft-list");
+              }}
+
+              className="
+                border
+                border-bold-blue
+                text-bold-blue
+                bg-white
+              "
+            />
+
+            {/* PUBLISH */}
+            <Button
+              label="Publikasikan"
+
+              onClick={() => {
+                setOpenConfirmPopup(false);
+                setOpenSuccessPopup(true);
+              }}
+            />
+
+          </PopUpNotif>
+
+          {/* POPUP SUKSES */}
+          <PopUpNotif
+            isOpen={openSuccessPopup}
+
+            onClose={() =>
+              setOpenSuccessPopup(false)
+            }
+
+            icon={
+              <CircleCheck
+                size={90}
+                className="text-green-600"
+              />
+            }
+
+            title="Program Berhasil Dipublikasikan"
+
+            description="
+              Program telah berhasil dipublikasikan
+              dan dapat dilihat oleh mahasiswa.
+            "
+          >
+
+            {/* CLOSE */}
+            <Button
+              label="Kembali"
+
+              onClick={() =>
+                setOpenSuccessPopup(false)
+              }
+
+              className="
+                border
+                border-bold-blue
+                text-bold-blue
+                bg-white
+              "
+            />
+
+            {/* SEE */}
+            <Button
+              label="Lihat Program"
+
+              onClick={() => {
+
+                setOpenSuccessPopup(false);
+
+                navigate("/program-list-mitra");
+              }}
+            />
+
+          </PopUpNotif>
 
         </div>
 

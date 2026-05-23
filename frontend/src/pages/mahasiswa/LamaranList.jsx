@@ -29,66 +29,46 @@ const LamaranList = () => {
     const applications = [
 
         {
+            id: 1,
             logo: logoShopee,
-
             title: "UI/UX Designer Internship",
-
             company: "Shopee Indonesia",
-
             category: "Magang",
-
             appliedDate: "27 Januari 2026",
-
             updatedDate: "1 Februari 2026",
-
             status: "Telah Mendaftar",
         },
 
         {
+            id: 2,
             logo: logoShopee,
-
             title: "Data Analyst Internship",
-
             company: "Shopee",
-
             category: "Magang",
-
             appliedDate: "15 Januari 2026",
-
             updatedDate: "19 Januari 2026",
-
             status: "Diterima",
         },
 
         {
+            id: 3,
             logo: logoShopee,
-
             title: "Digital Marketing Internship",
-
             company: "Shopee Indonesia",
-
             category: "Magang",
-
             appliedDate: "15 Januari 2026",
-
             updatedDate: "19 Januari 2026",
-
             status: "Ditolak",
         },
 
         {
+            id: 4,
             logo: logoShopee,
-
             title: "Capture The Flag Challenge",
-
             company: "BINUS University",
-
             category: "Kompetisi",
-
             appliedDate: "29 Desember 2025",
-
             updatedDate: "1 Januari 2026",
-
             status: "Wawancara",
         },
 
@@ -376,7 +356,7 @@ const LamaranList = () => {
 
                             status={application.status}
 
-                            to="/magang-detail"
+                            to={`/lamaran-detail/${application.id}`}
                         />
                     )
                 )}

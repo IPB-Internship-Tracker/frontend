@@ -1,53 +1,52 @@
 import BackButton from "../../components/ui/BackButton";
-import CreateMagangForm from "../../components/forms/CreateMagangForm";
-import DocRequirementForm from "../../components/forms/DocRequirementForm";
+import CreateProgramForm from "../../components/forms/CreateProgramForm";
 import PopUpNotif from "../../components/ui/PopUpNotif";
+import logoShopee from "../../assets/logo-shopee.png";
+import Poster from "../../assets/poster.png";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import {
   CircleAlert,
   CircleCheck,
 } from "lucide-react";
-import Button from "../../components/ui/Button";  
+
+import Button from "../../components/ui/Button";
 
 const EditKompetisi = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
 
-    const [openBackPopup, setOpenBackPopup] =
+  const { id } = useParams();
+
+  const navigate = useNavigate();
+
+  const [openBackPopup, setOpenBackPopup] =
     useState(false);
 
-    const [openSavePopup, setOpenSavePopup] =
+  const [openSavePopup, setOpenSavePopup] =
     useState(false);
 
-  // nanti fetch by id dari backend
-  const initialData = {
+  const [isDirty, setIsDirty] =
+    useState(false);
 
-    namaPerusahaan: "Shopee Indonesia",
-    judulLamaran:
-      "UI/UX Designer Internship",
-    posisi: "UI/UX Designer",
-    deskripsi:
-      "Program internship untuk mahasiswa.",
-    bidang: "Design & Creative",
-    kuota: "10",
-    salary: 3000000,
-    tenggat: "2026-01-30",
-    mulai: "2026-02-01",
-    berakhir: "2026-05-31",
-    kota: "Jakarta Selatan",
-    alamat:
-      "Jl. Rasuna Said Jakarta Selatan",
-    narahubung: "+628123456789",
-    informasi: "@shopeeindonesia",
-  };
+    const initialData = {
 
-  // initial dokumen
-  const initialDocs = [
-    "Curriculum Vitae (CV)",
-    "Portofolio",
-    "Motivation Letter",
-  ];
+    title:
+        "National UI/UX Competition 2026",
+    company:
+        "Shopee Indonesia",
+    logo: logoShopee,
+    poster: Poster,
+    deadline:
+        "2026-01-30",
+    startDate:
+        "2026-02-01",
+    endDate:
+        "2026-05-31",
+    link:
+        "https://competition.shopee.co.id",
+    description:
+        "National UI/UX Competition 2026 merupakan kompetisi desain tingkat nasional yang ditujukan bagi mahasiswa aktif di seluruh Indonesia. Peserta akan ditantang untuk menciptakan solusi desain aplikasi digital yang inovatif, fungsional, dan berorientasi pada pengalaman pengguna.",
+    };
 
   return (
 
@@ -55,31 +54,48 @@ const EditKompetisi = () => {
 
       {/* BACK */}
       <div className="w-full max-w-4xl mb-5">
-        <BackButton
-            color="text-bold-blue"
-            position="relative"
-            onClick={() => setOpenBackPopup(true)}
-        />
+
+      <BackButton
+        color="text-bold-blue"
+        position="relative"
+
+        onClick={() => {
+
+          if (isDirty) {
+            setOpenBackPopup(true);
+
+          } else {
+            navigate(`/kompetisi-detail-mitra/${id}`);
+          }
+        }}
+      />
       </div>
 
-     {/* POPUP BACK */}
-        <PopUpNotif
-            isOpen={openBackPopup}
-            onClose={() => setOpenBackPopup(false)}
-            icon={
-                <CircleAlert
-                size={90}
-                className="text-yellow-500"
-                />
-            }
-            title="Yakin ingin kembali?"
-            description="Perubahan yang belum disimpan dapat hilang."
-            >
+      {/* POPUP BACK */}
+      <PopUpNotif
+        isOpen={openBackPopup}
+        onClose={() => setOpenBackPopup(false)}
 
-            {/* CANCEL */}
+        icon={
+          <CircleAlert
+            size={90}
+            className="text-yellow-500"
+          />
+        }
+
+        title="Yakin ingin kembali?"
+
+        description="
+          Perubahan yang belum disimpan dapat hilang.
+        "
+      >
+
+            {/* DISCARD */}
             <Button
-                label="Lanjut Edit"
-                onClick={() => setOpenBackPopup(false)}
+                label="Batalkan Perubahan"
+                onClick={() => {
+                  navigate(`/magang-detail-mitra/${id}`);
+                }}
                 className="
                 border
                 border-bold-blue
@@ -88,33 +104,22 @@ const EditKompetisi = () => {
                 "
             />
 
-            {/* DISCARD */}
+            {/* CANCEL */}
             <Button
-                label="Batalkan Perubahan"
-                onClick={() => {
-                navigate(`/magang-detail-mitra/${id}`);
-                }}
-            />
+                label="Lanjut Edit"
+                onClick={() => setOpenBackPopup(false)}
+           />
 
-        </PopUpNotif>   
+      </PopUpNotif>
 
       {/* FORM EDIT */}
-      <CreateMagangForm
+      <CreateProgramForm
+        title="Kompetisi"
         initialData={initialData}
         isEdit={true}
         hideSubmitButton={true}
+        onDirtyChange={setIsDirty}
       />
-
-      {/* DOC REQUIREMENT */}
-      <div className="mt-8 w-full max-w-4xl">
-
-        <DocRequirementForm
-          isEdit={true}
-          initialSelectedDocs={initialDocs}
-          hideSubmitButton={true}
-        />
-
-      </div>
 
       {/* FINAL SAVE BUTTON */}
       <div
@@ -130,54 +135,60 @@ const EditKompetisi = () => {
         <Button
           label="Simpan"
           className="w-[220px]"
-            onClick={() => {
+
+          onClick={() => {
             console.log("SAVE EDIT");
             setOpenSavePopup(true);
-            }}
+          }}
         />
+
       </div>
 
- 
-
-        {/* POPUP SAVE */}
-        <PopUpNotif
+      {/* POPUP SAVE */}
+      <PopUpNotif
         isOpen={openSavePopup}
         onClose={() => setOpenSavePopup(false)}
 
         icon={
-            <CircleCheck
+          <CircleCheck
             size={90}
             className="text-green-600"
-            />
+          />
         }
 
         title="Perubahan Berhasil Disimpan"
 
-        description="Program magang berhasil diperbarui."
-        >
+        description="
+          Program kompetisi berhasil diperbarui.
+        "
+      >
 
         {/* CLOSE */}
         <Button
-            label="Kembali"
-            onClick={() => setOpenSavePopup(false)}
-            className="
+          label="Kembali"
+          onClick={() => setOpenSavePopup(false)}
+
+          className="
             border
             border-bold-blue
             text-bold-blue
             bg-white
-            "
+          "
         />
 
         {/* SEE */}
         <Button
-            label="Lihat Program"
-            onClick={() => {
+          label="Lihat Program"
+
+          onClick={() => {
+
             setOpenSavePopup(false);
-            navigate(`/magang-detail-mitra/${id}`);
-            }}
+
+            navigate(`/kompetisi-detail-mitra/${id}`);
+          }}
         />
 
-        </PopUpNotif>
+      </PopUpNotif>
 
     </div>
   );

@@ -113,7 +113,7 @@ const MagangDetailMitra = () => {
       >
 
         <h1 className="text-xl font-bold text-black">
-          Detail Lamaran
+          Detail Program
         </h1>
 
         {/* ACTION BUTTON */}
