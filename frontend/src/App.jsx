@@ -91,7 +91,7 @@ function App() {
           <Route path="/create-studi-independen" element={<CreateStupen />} />
           <Route path="/doc-requirement" element={<DocRequirement />} />
           <Route path="/edit-magang/:id" element={<EditMagang />} />
-          <Route path="/edit-kompetisi/:id" element={<EditKompetisi />} />
+          <Route path="/edit-kompetisi/:id" element={<EditKompetisi />} /> 
           <Route path="/edit-studi-independen/:id" element={<EditStupen />} />
           <Route path="/draft-list" element={<DraftList />} />
           <Route path="/kompetisi-detail-mitra/:id" element={<KompetisiDetailMitra  />} />
