@@ -36,6 +36,8 @@ import CreateKompetisi from './pages/mitra/CreateKompetisi';
 import CreateStupen from './pages/mitra/CreateStupen';
 import DocRequirement from './pages/mitra/DocRequirement';
 import EditMagang from './pages/mitra/EditMagang';
+import EditKompetisi from './pages/mitra/EditKompetisi';
+import EditStupen from './pages/mitra/EditStupen';
 import DraftList from './pages/mitra/DraftList';
 import ProfileMitra from './pages/mitra/ProfileMitra';
 
@@ -81,6 +83,9 @@ function App() {
           <Route path="/create-studi-independen" element={<CreateStupen />} />
           <Route path="/doc-requirement" element={<DocRequirement />} />
           <Route path="/edit-magang/:id" element={<EditMagang />} />
+          <Route path="/edit-magang/:id" element={<EditMagang />} />
+          <Route path="/edit-kompetisi/:id" element={<EditKompetisi />} /> 
+          <Route path="/edit-stupen/:id" element={<EditStupen />} />
           <Route path="draft-list" element={<DraftList />} />
           <Route path="/profile-mitra" element={<ProfileMitra/>} />
         </Route>

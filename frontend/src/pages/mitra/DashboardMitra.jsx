@@ -14,6 +14,7 @@ import{
     BookOpen,
     UserRoundPlus,
     X,
+    ArrowRight,
 } from "lucide-react";
 
 const userData = {
@@ -60,15 +61,87 @@ const programs = [
     logo: logoShopee,
     title: "UI/UX Designer Internship",
     category: "Program Magang",
+    company: "Shopee Indonesia",
     participantInfo:
       "Total: 100 Pendaftar",
     status: "Registrasi Dibuka",
+    period: "1 Januari - 31 Januari"
   },
+
+  {
+    id: 2,
+    logo: logoShopee,
+    title: "Ayo Belajar Figma",
+    category: "Program Studi Independen",
+    participantInfo:
+      "Total: 100 Pendaftar",
+    status: "Registrasi Dibuka",
+    company: "Shopee Indonesia",
+    period: "1 Januari - 31 Januari"
+
+  },
+
+  {
+    id: 3,
+    logo: logoShopee,
+    title: "MedStud Competition",
+    category: "Program Kompetisi",
+    participantInfo:
+      "Total: 100 Pendaftar",
+    status: "Registrasi Dibuka",
+    company: "Shopee Indonesia",
+    period: "1 Januari - 31 Januari"
+  },
+    {
+        id: 4,
+        logo: logoShopee,
+        title: "MedStud Competition",
+        category: "Program Kompetisi",
+        participantInfo:
+        "Total: 100 Pendaftar",
+        status: "Registrasi Dibuka",
+        company: "Shopee Indonesia",
+        period: "1 Januari - 31 Januari"
+    },
+
+    {
+        id: 5,
+        logo: logoShopee,
+        title: "MedStud Competition",
+        category: "Program Kompetisi",
+        participantInfo:
+        "Total: 100 Pendaftar",
+        status: "Registrasi Dibuka",
+        company: "Shopee Indonesia",
+        period: "1 Januari - 31 Januari"
+    }
 ];
 
 const DashboardMitra = () => {
     const StatusComponent = ProgramStatus; 
     const navigate = useNavigate();
+    const getDetailRoute = (program) => {
+    // MAGANG
+    if (
+        program.category ===
+        "Program Magang"
+    ) {
+        return `/magang-detail-mitra/${program.id}`;
+    }
+
+    // KOMPETISI
+    else if (
+        program.category ===
+        "Program Kompetisi"
+    ) {
+        return `/kompetisi-detail-mitra/${program.id}`;
+    }
+
+    // STUDI INDEPENDEN
+    else {
+        return `/studi-independen-detail-mitra/${program.id}`;
+    }
+};
     const [openCreatePopup, setOpenCreatePopup] =
         useState(false);
 
@@ -135,14 +208,46 @@ const DashboardMitra = () => {
                 {/* PROGRAM ANDA */}
                 <div className="col-span-2">
 
-                    <h2 className="
-                        text-xl
-                        font-bold
-                        text-bold-blue
+                    <div className="
+                        flex
+                        items-center
+                        justify-between
                         mb-4
                     ">
-                        Program Anda
-                    </h2>
+
+                        {/* TITLE */}
+                        <h2 className="
+                            text-xl
+                            font-bold
+                            text-bold-blue
+                        ">
+                            Program Anda
+                        </h2>
+
+                        {/* SELENGKAPNYA */}
+                        <button
+                            onClick={() =>
+                                navigate("/program-list-mitra")
+                            }
+                            className="
+                                flex
+                                items-center
+                                gap-1
+
+                                text-sm
+                                text-bold-blue
+
+                                hover:underline
+                                cursor-pointer
+                            "
+                        >
+                            Selengkapnya
+
+                            <ArrowRight size={16}/>
+                        </button>
+
+                    </div>
+
 
                     <div className="space-y-4">
 
@@ -152,10 +257,12 @@ const DashboardMitra = () => {
                             key={program.id}
                             logo={program.logo}
                             title={program.title}
+                            company={(program.company)}
                             category={program.category}
                             participantInfo={
                                 program.participantInfo
                             }
+                            period={program.period}
                             status={program.status}
                             statusComponent={
                                 StatusComponent
@@ -168,14 +275,48 @@ const DashboardMitra = () => {
 
                 {/* DRAFT MITRA */}
                 <div className="mb-3">
-                    <h2 className="
+                    <div className="
+                        flex
+                        items-center
+                        justify-between
                         mb-3
-                        text-xl
-                        font-bold
-                        text-bold-blue
                     ">
-                        Selesaikan Publikasi Anda
-                    </h2>
+
+                        {/* TITLE */}
+                        <h2 className="
+                            text-xl
+                            font-bold
+                            text-bold-blue
+                        ">
+                            Selesaikan Publikasi Anda
+                        </h2>
+
+                        {/* SELENGKAPNYA */}
+                        <button
+                            onClick={() =>
+                                navigate("/draft-list")
+                            }
+                            className="
+                                flex
+                                items-center
+                                gap-1
+
+                                text-sm
+                                text-bold-blue
+
+                                hover:underline
+                                cursor-pointer
+                            "
+                        >
+                            Selengkapnya
+
+                            <ArrowRight size={16}/>
+                        </button>
+
+                    </div>
+                    
+
+
                     {/* REMINDER LIST */}
                     <div className="bg-white rounded-xl shadow-sm p-4 space-y-2">
 
@@ -183,16 +324,15 @@ const DashboardMitra = () => {
                             title="Business Development Internship"
                             program="Program Magang"
                             status="Draft"
-                            to="/draft-list"
+                            to="/edit-magang/1"
                         />
 
                         <ReminderCard
                             title="Business Development Internship"
                             program="Program Magang"
                             status="Draft"
-                            to="/draft-list"
+                            to="/draft-kompetisi/2"
                         />
-
                     </div>
 
                 </div>

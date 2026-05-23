@@ -10,6 +10,8 @@ const ProgramListCard = ({
     period,
     status,
     to,
+    showParticipant = true,
+    showPeriod = true,
 }) => {
     const navigate = useNavigate();
 
@@ -56,7 +58,7 @@ const ProgramListCard = ({
                         {/* TITLE */}
                         <h2 className="
                             text-lg
-                            font-medium
+                            font-semibold
                         ">
                             {title}
                         </h2>
@@ -67,8 +69,8 @@ const ProgramListCard = ({
                             py-1
                             rounded-full
                             border
-                            border-kuning-tua
-                            bg-kuning-muda
+                            border-bold-blue
+                            bg-light-blue-2
                             text-xs
                             font-medium
                             text-bold-blue
@@ -81,20 +83,25 @@ const ProgramListCard = ({
 
                     {/* COMPANY */}
                     <p className="
-                        text-sm
+                        text-md
                         font-light
                     ">
                         {company}
                     </p>
+                    
                     {/* PARTICIPANT */}
-                    <p className="
-                        text-md
-                        text-indigo-700
-                        mt-1
-                    ">
-                        {participantInfo}
+                    {showParticipant && (
 
-                    </p>
+                        <p className="
+                            text-md
+                            text-indigo-700
+                            mt-1
+                        ">
+                            {participantInfo}
+                        </p>
+
+                    )}
+                    
 
                     
                 </div>
@@ -113,20 +120,29 @@ const ProgramListCard = ({
                 <ProgramStatus status={status}/>
                 
                 {/* PERIODE */}
-                <div className="text-right">
+                {showPeriod && (
 
-                    <p className="
-                        text-sm
-                        font-base
-                    ">
-                        <span className="mtext-sm font-medium text-gray-500">
-                            Periode:
+                    <div className="text-right">
 
-                        </span>{" "}
-                        {period}
-                    </p>
+                        <p className="
+                            text-sm
+                            font-base
+                        ">
+                            <span className="
+                                text-sm
+                                font-medium
+                                text-gray-500
+                            ">
+                                Periode:
+                            </span>{" "}
 
-                </div>
+                            {period}
+
+                        </p>
+
+                    </div>
+
+                )}
 
             </div>
 

@@ -24,19 +24,13 @@ const DraftList = () => {
 
     // DUMMY DATA
     const programs = [
-
         {
             id: 1,
             logo: logoShopee,
-            title: "UI/UX Designer Internship",
+            title: "UI/UX Designer Internship BATCH",
             company: "Shopee Indonesia",
             category: "Magang",
-            participantInfo:
-                "Total Pendaftar: 100 Orang",
-            period:
-                "1 Februari - 31 Mei 2026",
-            status:
-                "Registrasi Dibuka",
+            status: "Draft",
         },
 
         {
@@ -45,13 +39,44 @@ const DraftList = () => {
             title: "Business Case Competition",
             company: "Shopee Indonesia",
             category: "Kompetisi",
-            participantInfo:
-                "Total Pendaftar: 10 Tim",
-            period:
-                "1 Februari - 31 Mei 2026",
-            status:
-                "Registrasi Ditutup",
+            status: "Draft",
         },
+
+        {
+            id: 3,
+            logo: logoShopee,
+            title: "Data Analyst Learning Path",
+            company: "Shopee Indonesia",
+            category: "Studi Independen",
+            status: "Draft",
+        },
+
+        {
+            id: 4,
+            logo: logoShopee,
+            title: "Ayo Belajar Figma",
+            company: "Shopee Indonesia",
+            category: "Studi Independen",
+            status: "Draft"
+        },
+
+        {
+            id: 5,
+            logo: logoShopee,
+            title: "MedStud Competition",
+            company: "Shopee Indonesia",
+            category: "Kompetisi",
+            status: "Draft"
+        },
+
+        {
+            id: 6,
+            logo: logoShopee,
+            title: "Digital Marketing Internship",
+            company: "Shopee Indonesia",
+            category: "Magang",
+            status: "Draft"
+        }
 
     ];
 
@@ -88,6 +113,22 @@ const DraftList = () => {
             startIndex,
             startIndex + itemsPerPage
         );
+
+    const getEditProgram = (program) => {
+
+    if (program.category === "Magang") {
+        return `/edit-magang/${program.id}`;
+    }
+
+    if (program.category === "Kompetisi") {
+        return `/edit-kompetisi/${program.id}`;
+    }
+
+    if (program.category === "Studi Independen") {
+        return `/edit-stupen/${program.id}`;
+    }
+
+};
 
     return (
         <div>
@@ -174,7 +215,7 @@ const DraftList = () => {
                 </div>
 
                 {/* SEARCH */}
-                <div className="w-[320px]">
+                <div className="w-[420px]">
 
                     <SearchBar
                         placeholder="Cari program..."
@@ -188,8 +229,44 @@ const DraftList = () => {
 
             </div>
 
+            {/* CARD LIST */}
+            <div className="
+                flex
+                flex-col
+                gap-5
+                mt-8
+            ">
+
+                {currentPrograms.map(
+                    (program) => (
+
+                        <ProgramListCard
+                            key={program.id}
+                            logo={program.logo}
+                            title={program.title}
+                            company={program.company}
+                            category={program.category}
+                            status={program.status}
+                            showParticipant={false}
+                            showPeriod={false}
+                            to={getEditProgram(program)}
+                        />
+
+                    )
+                )}
+
+            </div>
+
+            {/* PAGINATION */}
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+            />
+
 
         </div>
+    
     );
 };
 

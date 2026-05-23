@@ -28,6 +28,15 @@ const ProgramStatus = ({ status }) => {
     statusIcon = <CircleX size={14} />;
   }
 
+  // DRAFT STATUS
+  else if (status === "Draft") {
+
+    statusStyle =
+      "bg-kuning-muda-status text-kuning-tua-status border-kuning-tua-status";
+
+    statusIcon = <CircleX size={14} />;
+  }
+
   return (
 
     <div
