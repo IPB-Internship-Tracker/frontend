@@ -81,17 +81,20 @@ const CreateProgramForm = ({
 
 
   // HANDLE IMAGE
-  const handleImageChange = (e) => {
+const handleImageChange = (
+  e,
+  field
+) => {
 
-    const file = e.target.files[0];
+  const file = e.target.files[0];
 
-    if (!file) return;
+  if (!file) return;
 
-    setFormData({
-      ...formData,
-      poster: file,
-    });
-  };
+  setFormData({
+    ...formData,
+    [field]: file,
+  });
+};
 
   // HANDLE INPUT
   const handleChange = (e) => {
@@ -252,7 +255,9 @@ const CreateProgramForm = ({
               type="file"
               accept="image/*"
               className="hidden"
-              onChange={handleImageChange}
+              onChange={(e) =>
+                handleImageChange(e, "logo")
+              }
             />
 
           </label>
@@ -313,7 +318,9 @@ const CreateProgramForm = ({
               type="file"
               accept="image/*"
               className="hidden"
-              onChange={handleImageChange}
+              onChange={(e) =>
+                handleImageChange(e, "poster")
+              }
             />
 
           </label>
