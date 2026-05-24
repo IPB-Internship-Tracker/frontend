@@ -125,7 +125,7 @@ const DraftList = () => {
     }
 
     if (program.category === "Studi Independen") {
-        return `/edit-stupen/${program.id}`;
+        return `/edit-studi-independen/${program.id}`;
     }
 
 };
