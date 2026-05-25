@@ -5,6 +5,8 @@ import NextButton from "../../components/ui/NextButton";
 import logoShopee from "../../assets/logo-shopee.png";
 import MagangSection from "../../components/cards/MagangSection";
 import LamaranStatus from "../../components/ui/LamaranStatus";
+import { useNavigate } from "react-router-dom";
+import KompeStupenSection from "../../components/cards/KompeStupenSection";
 
 import {
   House,
@@ -20,6 +22,42 @@ import {
 const userData = {
     name: "Fatiyya Ilmi"
 };
+
+const aktivitasData = [
+
+    {
+        id: 1,
+        logo: logoShopee,
+        title: "UI/UX Designer Internship",
+        company: "Shopee Indonesia",
+        status: "Telah Mendaftar",
+    },
+
+    {
+        id: 2,
+        logo: logoShopee,
+        title: "Data Analyst Internship",
+        company: "Blibli.com",
+        status: "Diterima",
+    },
+
+    {
+        id: 3,
+        logo: logoShopee,
+        title: "Frontend Developer Internship",
+        company: "Tokopedia",
+        status: "Interview",
+    },
+
+    {
+        id: 4,
+        logo: logoShopee,
+        title: "Backend Internship",
+        company: "Traveloka",
+        status: "Ditolak",
+    },
+
+];
 
 //nyoba dummy data program
 const magangPrograms = [
@@ -66,10 +104,43 @@ const magangPrograms = [
     
 ];
 
+const reminderData = [
+
+    {
+        id: 1,
+        title: "Logbook Harian",
+        program: "UI/UX Designer Internship",
+        deadline: "Hari ini, 23.59",
+    },
+
+    {
+        id: 2,
+        title: "Logbook Harian",
+        program: "Data Analyst Internship",
+        deadline: "Hari ini, 23.59",
+    },
+
+    {
+        id: 3,
+        title: "Logbook Harian",
+        program: "Frontend Developer Internship",
+        deadline: "Hari ini, 23.59",
+    },
+
+    {
+        id: 4,
+        title: "Logbook Harian",
+        program: "Backend Internship",
+        deadline: "Hari ini, 23.59",
+    },
+
+];
+
 const DashboardMhs = () => {
 
     const StatusComponent = LamaranStatus;
-
+    const navigate = useNavigate();
+    
     return (
         <div>
             <h1 className="text-3xl font-bold text-bold-blue">
@@ -135,21 +206,37 @@ const DashboardMhs = () => {
                     {/* LAMARAN LIST */}
                     <div className="space-y-4">
 
-                        <LamaranCard
-                            logo={logoShopee}
-                            title="UI/UX Designer Internship"
-                            company="Shopee Indonesia"
-                            status="Telah Mendaftar"
-                            statusComponent={StatusComponent}
-                        />
+                        {
+                            aktivitasData
+                            .slice(0, 3)
+                            .map((item) => (
 
-                        <LamaranCard
-                            logo={logoShopee}
-                            title="Data Analyst Internship"
-                            company="Blibli.com"
-                            status="Diterima"
-                            statusComponent={StatusComponent}
-                        />
+                                <div
+                                    key={item.id}
+
+                                    onClick={() =>
+                                        navigate(
+                                            `/lamaran-detail/${item.id}`
+                                        )
+                                    }
+
+                                    className="
+                                        cursor-pointer
+                                    "
+                                >
+
+                                    <LamaranCard
+                                        logo={item.logo}
+                                        title={item.title}
+                                        company={item.company}
+                                        status={item.status}
+                                        statusComponent={StatusComponent}
+                                    />
+
+                                </div>
+
+                            ))
+                        }
 
                     </div>
 
@@ -159,7 +246,12 @@ const DashboardMhs = () => {
                  {/* RIGHT SIDE - REMINDER */}
                 <div>
                     {/* HEADER */}
-                    <div className="mb-3">
+                    <div className="
+                        flex
+                         items-center
+                        justify-between
+                        mb-3
+                    ">
 
                         {/* TITLE */}
                         <h2 className="
@@ -169,23 +261,45 @@ const DashboardMhs = () => {
                         ">
                             Reminder
                         </h2>
+                        <NextButton
+                            to="/logbook-list"
+                            label="Selengkapnya"
+                        />
 
                     </div>
 
                     {/* REMINDER LIST */}
                     <div className="bg-white rounded-xl shadow-sm p-4 space-y-2">
 
-                        <ReminderCard
-                            title="Logbook Harian"
-                            program="UI/UX Designer Internship"
-                            deadline="Hari ini, 23.59"
-                        />
+                        {
+                            reminderData
+                            .slice(0, 3)
+                            .map((item) => (
 
-                        <ReminderCard
-                            title="Logbook Harian"
-                            program="Data Analyst Internship"
-                            deadline="Hari ini, 23.59"
-                        />
+                                <div
+                                    key={item.id}
+
+                                    onClick={() =>
+                                        navigate(
+                                            `/logbook-detail/${item.id}`
+                                        )
+                                    }
+
+                                    className="
+                                        cursor-pointer
+                                    "
+                                >
+
+                                    <ReminderCard
+                                        title={item.title}
+                                        program={item.program}
+                                        deadline={item.deadline}
+                                    />
+
+                                </div>
+
+                            ))
+                        }
 
                     </div>
 
@@ -210,19 +324,43 @@ const DashboardMhs = () => {
                 <MagangSection
                     sectionTitle="Program Magang"
                     buttonTo="/magang-list"
-                    programs={magangPrograms}
+                    programs={magangPrograms.map(
+                        (item) => ({
+
+                            ...item,
+
+                            to: `/magang-detail/${item.id}`,
+
+                        })
+                    )}
                 />
 
-                <MagangSection
+                <KompeStupenSection
                     sectionTitle="Kompetisi"
                     buttonTo="/kompetisi-list"
-                    programs={magangPrograms}
+                    programs={magangPrograms.map(
+                        (item) => ({
+
+                            ...item,
+
+                            to: `/kompetisi-detail/${item.id}`,
+
+                        })
+                    )}
                 />
 
-                <MagangSection
+                <KompeStupenSection
                     sectionTitle="Studi Independen"
                     buttonTo="/stupen-list"
-                    programs={magangPrograms}
+                    programs={magangPrograms.map(
+                        (item) => ({
+
+                            ...item,
+
+                            to: `/studi-independen-detail/${item.id}`,
+
+                        })
+                    )}
                 />
 
             </div>

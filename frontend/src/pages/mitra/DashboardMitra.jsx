@@ -72,7 +72,7 @@ const programs = [
     id: 2,
     logo: logoShopee,
     title: "Ayo Belajar Figma",
-    category: "Program Studi Independen",
+    category: "Studi Independen",
     participantInfo:
       "Total: 100 Pendaftar",
     status: "Registrasi Dibuka",
@@ -95,7 +95,7 @@ const programs = [
     {
         id: 4,
         logo: logoShopee,
-        title: "MedStud Competition",
+        title: "Business Analyst Competition",
         category: "Program Kompetisi",
         participantInfo:
         "Total: 100 Pendaftar",
@@ -107,8 +107,8 @@ const programs = [
     {
         id: 5,
         logo: logoShopee,
-        title: "MedStud Competition",
-        category: "Program Kompetisi",
+        title: "Accounting Class",
+        category: "Program Studi Independen",
         participantInfo:
         "Total: 100 Pendaftar",
         status: "Registrasi Dibuka",
@@ -117,10 +117,36 @@ const programs = [
     }
 ];
 
+const drafts = [
+
+    {
+        id: 1,
+        title: "Business Development Internship",
+        program: "Program Magang",
+        status: "Draft",
+    },
+
+    {
+        id: 2,
+        title: "National UI/UX Competition",
+        program: "Program Kompetisi",
+        status: "Draft",
+    },
+
+    {
+        id: 3,
+        title: "Machine Learning Path",
+        program: "Program Studi Independen",
+        status: "Draft",
+    },
+
+];
+
 const DashboardMitra = () => {
     const StatusComponent = ProgramStatus; 
     const navigate = useNavigate();
     const getDetailRoute = (program) => {
+
     // MAGANG
     if (
         program.category ===
@@ -137,11 +163,36 @@ const DashboardMitra = () => {
         return `/kompetisi-detail-mitra/${program.id}`;
     }
 
-    // STUDI INDEPENDEN
+    // STUPEN
     else {
-        return `/studi-independen-detail-mitra/${program.id}`;
+        return `/stupen-detail-mitra/${program.id}`;
     }
 };
+
+const getDraftRoute = (draft) => {
+
+    // MAGANG
+    if (
+        draft.program ===
+        "Program Magang"
+    ) {
+        return `/edit-magang/${draft.id}`;
+    }
+
+    // KOMPETISI
+    else if (
+        draft.program ===
+        "Program Kompetisi"
+    ) {
+        return `/edit-kompetisi/${draft.id}`;
+    }
+
+    // STUPEN
+    else {
+        return `/edit-studi-independen/${draft.id}`;
+    }
+};
+
     const [openCreatePopup, setOpenCreatePopup] =
         useState(false);
 
@@ -267,7 +318,7 @@ const DashboardMitra = () => {
                             statusComponent={
                                 StatusComponent
                             }
-                            to={`/magang-detail-mitra/${program.id}`}
+                            to={getDetailRoute(program)}
                         />
                     ))}
                     </div>
@@ -319,21 +370,20 @@ const DashboardMitra = () => {
 
                     {/* REMINDER LIST */}
                     <div className="bg-white rounded-xl shadow-sm p-4 space-y-2">
+                        {drafts.map((draft) => (
 
-                        <ReminderCard
-                            title="Business Development Internship"
-                            program="Program Magang"
-                            status="Draft"
-                            to="/edit-magang/1"
-                        />
+                            <ReminderCard
+                                key={draft.id}
+                                title={draft.title}
+                                program={draft.program}
+                                status={draft.status}
+                                to={getDraftRoute(draft)}
+                            />
 
-                        <ReminderCard
-                            title="Business Development Internship"
-                            program="Program Magang"
-                            status="Draft"
-                            to="/draft-kompetisi/2"
-                        />
+                        ))}
+
                     </div>
+                   
 
                 </div>
 

@@ -5,8 +5,11 @@ import FilterButton from "../../components/ui/FilterButton";
 import Pagination from "../../components/ui/Pagination";
 import ProgramListCard from "../../components/cards/ProgramListCard";
 import logoShopee from "../../assets/logo-shopee.png";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/ui/Button";
 
 const ProgramListMitra = () => {
+    const navigate = useNavigate();
 
     // FILTER CATEGORY
     const [selectedCategory, setSelectedCategory] =
@@ -20,6 +23,24 @@ const ProgramListMitra = () => {
     const [currentPage, setCurrentPage] =
         useState(1);
 
+    const getDetailRoute = (program) => {
+
+    // MAGANG
+    if (program.category === "Magang") {
+        return `/magang-detail-mitra/${program.id}`;
+    }
+
+    // KOMPETISI
+    else if (program.category === "Kompetisi") {
+        return `/kompetisi-detail-mitra/${program.id}`;
+    }
+
+    // STUPEN
+    else {
+        return `/stupen-detail-mitra/${program.id}`;
+    }
+
+};
     // DUMMY DATA
     const programs = [
 
@@ -71,6 +92,8 @@ const ProgramListMitra = () => {
         }
     );
 
+    // ROUTE DETAIL
+
     // PAGINATION
     const itemsPerPage = 4;
 
@@ -89,14 +112,34 @@ const ProgramListMitra = () => {
 
     return (
         <div>
-            {/* TITLE */}
-            <h1 className="
-                text-3xl
-                font-bold
-                text-indigo-700
+            {/* HEADER */}
+            <div className="
+                flex
+                items-center
+                justify-between
             ">
-                Program yang Anda Buat
-            </h1>
+
+                {/* TITLE */}
+                <h1 className="
+                    text-3xl
+                    font-bold
+                    text-indigo-700
+                ">
+                    Program yang Anda Buat
+                </h1>
+
+                {/* DRAFT BUTTON */}
+                <Button
+                    label="Draft"
+                    to="/draft-list"
+                    className="
+                        text-md
+                        px-5
+                        py-2
+                    "
+                />
+
+            </div>
 
             {/* SUBTITLE */}
             <p className="
@@ -198,7 +241,7 @@ const ProgramListMitra = () => {
                             }
                             period={program.period}
                             status={program.status}
-                            to={`/magang-detail-mitra/${program.id}`}
+                            to={getDetailRoute(program)}
                         />
                     )
                 )}
