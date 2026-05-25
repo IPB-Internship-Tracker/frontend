@@ -60,7 +60,7 @@ const programs = [
     id: 1,
     logo: logoShopee,
     title: "UI/UX Designer Internship",
-    category: "Program Magang",
+    category: "Magang",
     company: "Shopee Indonesia",
     participantInfo:
       "Total: 100 Pendaftar",
@@ -85,7 +85,7 @@ const programs = [
     id: 3,
     logo: logoShopee,
     title: "MedStud Competition",
-    category: "Program Kompetisi",
+    category: "Kompetisi",
     participantInfo:
       "Total: 100 Pendaftar",
     status: "Registrasi Dibuka",
@@ -96,7 +96,7 @@ const programs = [
         id: 4,
         logo: logoShopee,
         title: "Business Analyst Competition",
-        category: "Program Kompetisi",
+        category: "Kompetisi",
         participantInfo:
         "Total: 100 Pendaftar",
         status: "Registrasi Dibuka",
@@ -108,7 +108,7 @@ const programs = [
         id: 5,
         logo: logoShopee,
         title: "Accounting Class",
-        category: "Program Studi Independen",
+        category: "Studi Independen",
         participantInfo:
         "Total: 100 Pendaftar",
         status: "Registrasi Dibuka",
@@ -150,7 +150,7 @@ const DashboardMitra = () => {
     // MAGANG
     if (
         program.category ===
-        "Program Magang"
+        "Magang"
     ) {
         return `/magang-detail-mitra/${program.id}`;
     }
@@ -158,13 +158,16 @@ const DashboardMitra = () => {
     // KOMPETISI
     else if (
         program.category ===
-        "Program Kompetisi"
+        "Kompetisi"
     ) {
         return `/kompetisi-detail-mitra/${program.id}`;
     }
 
     // STUPEN
-    else {
+    else if (
+        program.category ===
+        "Studi Independen"
+    ) {
         return `/stupen-detail-mitra/${program.id}`;
     }
 };
