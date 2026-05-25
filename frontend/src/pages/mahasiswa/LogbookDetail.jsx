@@ -190,7 +190,7 @@ const LogbookDetail = () => {
         label="Kembali"
         color="text-bold-blue"
         position="relative"
-        to="/magang-list"
+        to="/logbook-list"
       />
 
       {/* HEADER */}
