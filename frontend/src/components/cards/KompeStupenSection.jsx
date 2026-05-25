@@ -2,6 +2,7 @@ import NextButton from "../ui/NextButton";
 import KompeStupenCard from "./KompeStupenCard";
 
 const KompeStupenSection = ({
+    logo,
     sectionTitle,
     buttonTo,
     programs,
@@ -43,12 +44,12 @@ const KompeStupenSection = ({
                 {programs.map((program, index) => (
                      <KompeStupenCard
                         key={index}
-
+                        logo={program.logo}
                         title={program.title}
                         company={program.company}
                         deadline={program.deadline}
 
-                        to={`/magang-detail/${program.id}`}
+                        to={program.to}
 
                         className="
                             min-w-[350px]

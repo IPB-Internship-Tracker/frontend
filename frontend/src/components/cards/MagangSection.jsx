@@ -15,13 +15,14 @@ const ProgramSection = ({
                 flex items-center justify-between
                 mb-4
             ">
+                
                 {/* TITLE */}
                 <h3 className="
                     text-lg
                     font-semibold
                     text-gray-900
                 ">
-                    {sectionTitle} {/*kayaknya ini harus disesuaikan lagi sama nanti untuk ambil apakah dia magang, kompe, stupen*/}
+                    {sectionTitle}
                 </h3>
 
                 {/* BUTTON */}
@@ -41,7 +42,8 @@ const ProgramSection = ({
             ">
 
                 {programs.map((program, index) => (
-                     <MagangCard
+
+                    <MagangCard
                         key={index}
 
                         logo={program.logo}
@@ -51,20 +53,18 @@ const ProgramSection = ({
                         location={program.location}
                         deadline={program.deadline}
 
-                        to={`/magang-detail/${program.id}`}
+                        to={program.to}
 
                         className="
                             min-w-[350px]
                             max-w-[350px]
                             flex-shrink-0
                         "
-                        />
+                    />
+
                 ))}
-                
-                
 
             </div>
-
 
         </div>
     );
