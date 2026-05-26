@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { Trash2 } from "lucide-react";
 import ProgramStatus from "../ui/ProgramStatus";
+import Button from "../ui/Button";
 
 const ProgramListCard = ({
     logo,
@@ -12,6 +14,7 @@ const ProgramListCard = ({
     to,
     showParticipant = true,
     showPeriod = true,
+    onDelete,
 }) => {
     const navigate = useNavigate();
 
@@ -108,31 +111,58 @@ const ProgramListCard = ({
 
             </div>
             
+           {/* RIGHT SECTION */}
+            <div
+                className="
+                    flex
+                    flex-col
+                    items-end
+                    gap-3
+                "
+            >
 
-            {/* RIGHT SECTION */}
-            <div className="
-                flex
-                flex-col
-                items-end
-                gap-3
-            ">
+                {/* DELETE */}
+                {onDelete && (
+
+                    <Button
+                        icon={<Trash2 size={18} />}
+                        iconOnly={true}
+
+                        className="
+                            text-white
+                            bg-red-500
+                            hover:bg-red-700
+                        "
+
+                        onClick={(e) => {
+                            e?.stopPropagation?.();
+                            onDelete();
+                        }}
+                    />
+
+                )}
+
                 {/* STATUS */}
-                <ProgramStatus status={status}/>
-                
+                <ProgramStatus status={status} />
+
                 {/* PERIODE */}
                 {showPeriod && (
 
                     <div className="text-right">
 
-                        <p className="
-                            text-sm
-                            font-base
-                        ">
-                            <span className="
+                        <p
+                            className="
                                 text-sm
-                                font-medium
-                                text-gray-500
-                            ">
+                                font-base
+                            "
+                        >
+                            <span
+                                className="
+                                    text-sm
+                                    font-medium
+                                    text-gray-500
+                                "
+                            >
                                 Periode:
                             </span>{" "}
 

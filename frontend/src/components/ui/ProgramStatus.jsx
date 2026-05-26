@@ -2,6 +2,7 @@
 
 import {
   CircleCheck,
+  File,
   CircleX,
 } from "lucide-react";
 
@@ -32,9 +33,9 @@ const ProgramStatus = ({ status }) => {
   else if (status === "Draft") {
 
     statusStyle =
-      "bg-kuning-muda-status text-kuning-tua-status border-kuning-tua-status";
+      "bg-kuning-muda-status text-kuning-tua border-kuning-tua";
 
-    statusIcon = <CircleX size={14} />;
+    statusIcon = <File size={14} />;
   }
 
   return (

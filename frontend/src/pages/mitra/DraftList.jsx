@@ -1,12 +1,13 @@
 import { useState } from "react";
-
+import { CircleAlert } from "lucide-react";
 import SearchBar from "../../components/ui/SearchBar";
 import FilterButton from "../../components/ui/FilterButton";
 import Pagination from "../../components/ui/Pagination";
 import BackButton from "../../components/ui/BackButton";
 import ProgramListCard from "../../components/cards/ProgramListCard";
-
+import PopUpNotif from "../../components/ui/PopUpNotif";
 import logoShopee from "../../assets/logo-shopee.png";
+import Button from "../../components/ui/Button";
 
 const DraftList = () => {
 
@@ -23,7 +24,8 @@ const DraftList = () => {
         useState(1);
 
     // DUMMY DATA
-    const programs = [
+    const [programs, setPrograms] =
+    useState([
         {
             id: 1,
             logo: logoShopee,
@@ -77,8 +79,18 @@ const DraftList = () => {
             category: "Magang",
             status: "Draft"
         }
+   ]);
 
-    ];
+    const [openDeletePopup, setOpenDeletePopup] =
+    useState(false);
+
+    const [selectedProgram, setSelectedProgram] =
+    useState(null);
+
+    const handleDeleteClick = (program) => {
+        setSelectedProgram(program);
+        setOpenDeletePopup(true);
+    };
 
     // FILTER LOGIC
     const filteredPrograms = programs.filter(
@@ -250,12 +262,66 @@ const DraftList = () => {
                             showParticipant={false}
                             showPeriod={false}
                             to={getEditProgram(program)}
+                            onDelete={() => handleDeleteClick(program)}
                         />
 
                     )
                 )}
 
             </div>
+
+            <PopUpNotif
+                isOpen={openDeletePopup}
+                onClose={() => setOpenDeletePopup(false)}
+
+                icon={
+                    <CircleAlert
+                    size={90}
+                    className="text-red-500"
+                    />
+                }
+
+                title="Hapus Draft?"
+                description={`
+                    Draft "${selectedProgram?.title}"
+                    akan dihapus permanen.
+                `}
+                >
+
+                <Button
+                    label="Batal"
+                    onClick={() => setOpenDeletePopup(false)}
+                    className="
+                    border
+                    border-bold-blue
+                    text-bold-blue
+                    bg-white
+                    "
+                />
+
+                <Button
+                label="Hapus"
+                onClick={() => {
+
+                    console.log(
+                    "DELETE DRAFT",
+                    selectedProgram?.id
+                    );
+
+                    setPrograms((prev) =>
+                    prev.filter(
+                        (program) =>
+                        program.id !== selectedProgram.id
+                    )
+                    );
+
+                    setOpenDeletePopup(false);
+
+                    setSelectedProgram(null);
+                }}
+                />
+
+                </PopUpNotif>
 
             {/* PAGINATION */}
             <Pagination

@@ -15,10 +15,10 @@ const Button = ({
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
 
     if (onClick) {
-      onClick();
+      onClick(e);
     }
 
     if (to) {
@@ -80,7 +80,7 @@ const Button = ({
       {icon && iconPosition === "left" && icon}
 
       {/* LABEL */}
-      {label}
+      {!iconOnly && label}
 
       {/* RIGHT ICON */}
       {icon && iconPosition === "right" && icon}

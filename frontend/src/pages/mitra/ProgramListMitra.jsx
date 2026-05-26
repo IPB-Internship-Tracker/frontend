@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { CircleAlert } from "lucide-react";
 import SearchBar from "../../components/ui/SearchBar";
 import FilterButton from "../../components/ui/FilterButton";
 import Pagination from "../../components/ui/Pagination";
@@ -7,6 +7,7 @@ import ProgramListCard from "../../components/cards/ProgramListCard";
 import logoShopee from "../../assets/logo-shopee.png";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/ui/Button";
+import PopUpNotif from "../../components/ui/PopUpNotif";
 
 const ProgramListMitra = () => {
     const navigate = useNavigate();
@@ -42,7 +43,8 @@ const ProgramListMitra = () => {
 
 };
     // DUMMY DATA
-    const programs = [
+    const [programs, setPrograms] =
+    useState([
 
         {
             id: 1,
@@ -71,8 +73,7 @@ const ProgramListMitra = () => {
             status:
                 "Registrasi Ditutup",
         },
-
-    ];
+   ]);
 
     // FILTER LOGIC
     const filteredPrograms = programs.filter(
@@ -92,7 +93,16 @@ const ProgramListMitra = () => {
         }
     );
 
-    // ROUTE DETAIL
+    const [openDeletePopup, setOpenDeletePopup] =
+    useState(false);
+
+    const [selectedProgram, setSelectedProgram] =
+    useState(null);
+
+    const handleDeleteClick = (program) => {
+        setSelectedProgram(program);
+        setOpenDeletePopup(true);
+    };
 
     // PAGINATION
     const itemsPerPage = 4;
@@ -242,11 +252,57 @@ const ProgramListMitra = () => {
                             period={program.period}
                             status={program.status}
                             to={getDetailRoute(program)}
+                            onDelete={() => handleDeleteClick(program)}
                         />
                     )
                 )}
 
             </div>
+
+            <PopUpNotif
+                isOpen={openDeletePopup}
+                onClose={() => setOpenDeletePopup(false)}
+
+                icon={
+                    <CircleAlert
+                    size={90}
+                    className="text-red-500"
+                    />
+                }
+
+                title="Hapus Program?"
+                description={`
+                    Program "${selectedProgram?.title}"
+                    akan dihapus permanen.
+                `}
+                >
+
+                <Button
+                    label="Batal"
+                    onClick={() => setOpenDeletePopup(false)}
+                    className="
+                    border
+                    border-bold-blue
+                    text-bold-blue
+                    bg-white
+                    "
+                />
+
+                <Button
+                    label="Hapus"
+                    onClick={() => {
+                    setPrograms((prev) =>
+                    prev.filter(
+                        (item) =>
+                        item.id !== selectedProgram.id
+                    )
+                    );
+
+                    setOpenDeletePopup(false);
+                    }}
+                />
+
+                </PopUpNotif>
 
             {/* PAGINATION */}
             <Pagination
