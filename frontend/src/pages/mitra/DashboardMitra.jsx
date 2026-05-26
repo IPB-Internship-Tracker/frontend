@@ -320,6 +320,9 @@ const getDraftRoute = (draft) => {
                                 StatusComponent
                             }
                             to={getDetailRoute(program)}
+                            showParticipant={
+                                program.category === "Magang"
+                            }
                         />
                     ))}
                     </div>

@@ -253,6 +253,9 @@ const ProgramListMitra = () => {
                             status={program.status}
                             to={getDetailRoute(program)}
                             onDelete={() => handleDeleteClick(program)}
+                            showParticipant={
+                                program.category === "Magang"
+                            }
                         />
                     )
                 )}
