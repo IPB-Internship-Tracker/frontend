@@ -5,7 +5,6 @@ import { useState } from "react";
 import FormField from "../../components/forms/FormField";
 
 const LogbookList = () => {
-    const [openPopup, setOpenPopup] = useState(false);
 
     const [formData, setFormData] = useState({
     program: "",
@@ -156,11 +155,6 @@ const LogbookList = () => {
             </p>
         </div>
 
-        <Button
-          label="+ Buat Logbook"
-          onClick={() => setOpenPopup(true)}
-          className="w-[220px]"
-        /> 
     </div>
 
 
@@ -170,117 +164,6 @@ const LogbookList = () => {
         data={data}
       />
 
-      {/* POPUP */}
-        {openPopup && (
-
-        <div
-            className="
-            fixed
-            inset-0
-            z-50
-            flex
-            items-center
-            justify-center
-            bg-black/30
-            backdrop-blur-sm
-            px-4
-            "
-        >
-
-            {/* MODAL */}
-            <div
-            className="
-                relative
-                bg-white
-                rounded-2xl
-                shadow-2xl
-                w-full
-                max-w-2xl
-                px-8
-                py-10
-                animate-fadeInUp
-            "
-            >
-
-            {/* CLOSE */}
-            <button
-                onClick={() => setOpenPopup(false)}
-                className="
-                absolute
-                top-5
-                right-5
-                text-gray-500
-                hover:text-black
-                "
-            >
-
-                <X size={24} />
-
-            </button>
-
-            {/* TITLE */}
-            <h1 className="text-xl text-center font-bold mb-2 text-black">
-                Buat Logbook Baru
-            </h1>
-
-            <p className="text-md text-center text-gray-500 mb-10">
-                Isi informasi program untuk membuat logbook aktivitas.
-            </p>
-
-            {/* FORM */}
-            <form
-                onSubmit={handleSubmit}
-                className="space-y-6"
-            >
-
-                {/* PROGRAM */}
-                <FormField
-                label="Nama Program"
-                type="text"
-                name="program"
-                value={formData.program}
-                onChange={handleChange}
-                error={errors.program}
-                placeholder="Contoh: UI/UX Designer Internship"
-                />
-
-                {/* COMPANY */}
-                <FormField
-                label="Nama Perusahaan"
-                type="text"
-                name="company"
-                value={formData.company}
-                onChange={handleChange}
-                error={errors.company}
-                placeholder="Contoh: Shopee Indonesia"
-                />
-
-                {/* PERIODE */}
-                <FormField
-                label="Periode"
-                type="text"
-                name="periode"
-                value={formData.periode}
-                onChange={handleChange}
-                error={errors.periode}
-                placeholder="Contoh: Februari - April 2026"
-                />
-
-                {/* BUTTON */}
-                <div className="flex justify-center pt-4">
-
-                <Button
-                    label="Simpan"
-                    type="submit"
-                    className="w-[180px]"
-                />
-
-                </div>
-
-            </form>
-            </div>
-        </div>
-        )}
 
 
     </div>

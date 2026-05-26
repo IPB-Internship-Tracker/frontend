@@ -213,23 +213,6 @@ const DocRequirementForm = ({
                     "
                   >
 
-                    {/* DRAFT */}
-                    <Button
-                      label="Simpan sebagai Draft"
-                      onClick={() => {
-                        console.log("SAVE DRAFT");
-                        setOpenConfirmPopup(false);
-                        navigate("/draft-list");
-                      }}
-
-                      className="
-                        border
-                        border-bold-blue
-                        text-bold-blue
-                        bg-white
-                      "
-                    />
-
                     {/* PUBLISH */}
                     <Button
                       label="Publikasikan"
