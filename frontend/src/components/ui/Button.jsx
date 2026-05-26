@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 const Button = ({
-  label = "Button",
+  label = "",
   to,
   onClick,
   type = "button",
@@ -76,14 +76,14 @@ const Button = ({
       `}
     >
 
-      {/* LEFT ICON */}
-      {icon && iconPosition === "left" && icon}
+    {/* LEFT ICON */}
+    {icon && iconPosition === "left" && icon}
 
-      {/* LABEL */}
-      {!iconOnly && label}
+    {/* LABEL */}
+    {!iconOnly && label}
 
-      {/* RIGHT ICON */}
-      {icon && iconPosition === "right" && icon}
+    {/* RIGHT ICON */}
+    {icon && iconPosition === "right" && icon}
 
     </button>
   );

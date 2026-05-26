@@ -3,11 +3,9 @@ import {
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
-
+import BackButton from "../../components/ui/BackButton";
 import Button from "../../components/ui/Button";
-
 import ProfileCard from "../../components/profile/ProfileCard";
-
 import fotoMhs from "../../assets/profile-mahasiswa.jpg";
 
 const ProfileMhs = () => {
@@ -71,26 +69,14 @@ const ProfileMhs = () => {
     return (
 
         <div>
-
-            {/* BACK */}
-            <button
-                onClick={() => navigate(-1)}
-                className="
-                    flex
-                    items-center
-                    gap-2
-
-                    text-bold-blue
-                    mb-6
-                "
-            >
-
-                <ArrowLeft size={18}/>
-
-                Kembali
-
-            </button>
-
+            <div className="px-3 space-y-8 mb-8">
+                <BackButton
+                    label="Kembali"
+                    color="text-bold-blue"
+                    position="relative"
+                    to="/dashboard-mahasiswa"
+                />
+            </div>
             {/* PROFILE CARD */}
             <ProfileCard
                 title="Data Pribadi"

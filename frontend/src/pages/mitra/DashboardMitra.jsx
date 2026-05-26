@@ -30,6 +30,7 @@ const trafficData = [
     ),
     programCount: 2,
     participantCount: 200,
+    showParticipant: true,
   },
 
   {
@@ -38,8 +39,8 @@ const trafficData = [
     icon: (
       <Trophy size={45} />
     ),
-    programCount: 1,
-    participantCount: 75,
+    programCount: 2,
+    showParticipant: false,
   },
 
   {
@@ -48,8 +49,8 @@ const trafficData = [
     icon: (
       <BookOpen size={45} />
     ),
-    programCount: 1,
-    participantCount: 200,
+    programCount: 2,
+    showParticipant: false,
   },
 ];
 
@@ -246,12 +247,9 @@ const getDraftRoute = (draft) => {
                             key={item.id}
                             title={item.title}
                             icon={item.icon}
-                            programCount={
-                                item.programCount
-                            }
-                            participantCount={
-                                item.participantCount
-                            }
+                            programCount={item.programCount}
+                            participantCount={item.participantCount}
+                            showParticipant={item.showParticipant}
                         />
                     ))}
                 </div>

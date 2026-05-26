@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-    Bell,
-    ChevronDown,
-} from "lucide-react";
+import {ChevronDown} from "lucide-react";
 import logoShopee from "../../../assets/logo-shopee.png";
 
 const TopbarMitra = () => {
@@ -32,15 +29,6 @@ const TopbarMitra = () => {
                 items-center
                 gap-4
             ">
-
-                {/* NOTIFICATION */}
-                <button className="
-                    text-indigo-800
-                    hover:text-indigo-600
-                    transition
-                ">
-                    <Bell size={20}/>
-                </button>
 
                 {/* PROFILE WRAPPER */}
                 <div className="relative">

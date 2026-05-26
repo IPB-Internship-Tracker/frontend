@@ -5,6 +5,7 @@ const TrafikCard = ({
     icon,
     programCount,
     participantCount,
+    showParticipant = true,
 }) => {
 
     return (
@@ -35,11 +36,17 @@ const TrafikCard = ({
             </h2>
 
             {/* CONTENT */}
-            <div className="flex gap-3">
+            <div
+            className={`
+                flex
+                gap-3
+                ${!showParticipant ? "justify-center" : ""}
+            `}
+            >
 
                 {/* TOTAL PROGRAM */}
-                <div className="
-                    flex-1
+                <div
+                className={`
                     bg-kuning-muda
                     rounded-xl
                     border
@@ -49,7 +56,10 @@ const TrafikCard = ({
                     flex
                     items-center
                     gap-3
-                ">
+
+                    ${showParticipant ? "flex-1" : "w-[40%]"}
+                `}
+                >
                     {/* ICON */}
                     <div className="text-kuning-tua">
                         {icon}
@@ -79,43 +89,50 @@ const TrafikCard = ({
                 </div>
 
                 {/* TOTAL PARTICIPANT */}
-                <div className="
-                    flex-1
-                    bg-kuning-muda
-                    rounded-xl
-                    border
-                    border-kuning-tua
-                    px-3
-                    py-2
-                    flex
-                    items-center
-                    gap-3
-                ">
-                    {/* ICON */}
-                    <div className="text-kuning-tua font-bold">
-                        <UserRoundPlus size={45}/>
-                    </div>
-                    {/* TEXT */}
-                    <div>
-                        {/* PROGRAM COUNT */}
-                        <h3 className="
-                            text-3xl
-                            font-bold
-                            text-gray-900
-                            leading-none
-                        ">
-                            {participantCount}
-                        </h3>
+                {showParticipant && (
 
-                        <p className="
-                            text-[10px]
-                            text-gray-500
-                        ">
-                            Total Pendaftar
-                        </p>
-                        
+                    <div className="
+                        flex-1
+                        bg-kuning-muda
+                        rounded-xl
+                        border
+                        border-kuning-tua
+                        px-3
+                        py-2
+                        flex
+                        items-center
+                        gap-3
+                    ">
+
+                        {/* ICON */}
+                        <div className="text-kuning-tua font-bold">
+                            <UserRoundPlus size={45}/>
+                        </div>
+
+                        {/* TEXT */}
+                        <div>
+
+                            <h3 className="
+                                text-3xl
+                                font-bold
+                                text-gray-900
+                                leading-none
+                            ">
+                                {participantCount}
+                            </h3>
+
+                            <p className="
+                                text-[10px]
+                                text-gray-500
+                            ">
+                                Total Pendaftar
+                            </p>
+
+                        </div>
+
                     </div>
-                </div>
+
+                )}
 
 
 

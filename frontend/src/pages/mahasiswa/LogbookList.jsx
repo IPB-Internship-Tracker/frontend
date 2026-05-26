@@ -88,7 +88,7 @@ const LogbookList = () => {
 
         {/* LIHAT LOGBOOK */}
         <Button
-        label={<Eye size={18} />}
+        icon={<Eye size={18} />}
         to={`/logbook-detail/${row.id}`}
         iconOnly
         className="
@@ -100,7 +100,7 @@ const LogbookList = () => {
 
         {/* FINALISASI */}
         <Button
-        label={<Send size={18} />}
+        icon={<Send size={18} />}
         iconOnly
         className="
             bg-green-600
