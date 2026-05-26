@@ -87,7 +87,6 @@ const FormPendaftaran = () => {
     email: "fatiyyailmi@apps.ipb.ac.id",
     nim: "G6401231016",
     faculty: "SSMI",
-    phone: "081234568910",
     semester: "6",
     major: "Ilmu Komputer",
   };
@@ -216,20 +215,11 @@ const FormPendaftaran = () => {
                 value={personalData.nim}
             />
 
-            <PersonalInfoItem
-                label="Fakultas"
-                value={personalData.faculty}
-            />
-
             </div>
 
             {/* RIGHT */}
             <div className="space-y-6">
 
-            <PersonalInfoItem
-                label="Nomor HP"
-                value={personalData.phone}
-            />
 
             <PersonalInfoItem
                 label="Semester"
@@ -239,6 +229,11 @@ const FormPendaftaran = () => {
             <PersonalInfoItem
                 label="Program Studi"
                 value={personalData.major}
+            />
+
+            <PersonalInfoItem
+                label="Fakultas"
+                value={personalData.faculty}
             />
 
             </div>

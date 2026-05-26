@@ -19,7 +19,7 @@ import{
 
 const userData = {
     name: "Shopee Indonesia"
-};
+}
 
 const trafficData = [
   {

@@ -121,20 +121,10 @@ const PelamarDetail = () => {
                 value={applicantDetail.nim}
               />
 
-              <PersonalInfoItem
-                label="Fakultas"
-                value={applicantDetail.faculty}
-              />
-
             </div>
 
             {/* RIGHT */}
             <div className="space-y-6">
-
-              <PersonalInfoItem
-                label="Nomor HP"
-                value={applicantDetail.phone}
-              />
 
               <PersonalInfoItem
                 label="Semester"
@@ -144,6 +134,11 @@ const PelamarDetail = () => {
               <PersonalInfoItem
                 label="Program Studi"
                 value={applicantDetail.major}
+              />
+
+              <PersonalInfoItem
+                label="Fakultas"
+                value={applicantDetail.faculty}
               />
 
             </div>

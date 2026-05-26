@@ -47,11 +47,6 @@ const ProfileMhs = () => {
         },
 
         {
-            label: "Nomor HP",
-            name: "hp",
-        },
-
-        {
             label: "NIM",
             name: "nim",
         },
