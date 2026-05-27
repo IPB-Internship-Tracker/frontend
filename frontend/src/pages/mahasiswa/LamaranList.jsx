@@ -64,9 +64,9 @@ const LamaranList = () => {
         {
             id: 4,
             logo: logoShopee,
-            title: "Capture The Flag Challenge",
-            company: "BINUS University",
-            category: "Kompetisi",
+            title: "Internship",
+            company: "Traveloka",
+            category: "Magang",
             appliedDate: "29 Desember 2025",
             updatedDate: "1 Januari 2026",
             status: "Wawancara",
@@ -155,75 +155,102 @@ const LamaranList = () => {
             {/* FILTER CATEGORY SEARCH */}
             <div className="
                 flex
-                items-center
+                items-end
                 justify-between
-                gap-6
-                mt-8
+                gap-3
+                
             ">
+                {/* FILTER STATUS */}
+                <div className="mt-8">
 
-                {/* FILTER CATEGORY */}
-                <div className="
-                    flex
-                    gap-3
-                    flex-wrap
-                ">
+                    {/* TITLE */}
+                    <h2 className="
+                        text-lg
+                        font-semibold
+                        text-bold-blue
+                        mb-4
+                    ">
+                        Filter status lamaran
+                    </h2>
 
-                    <FilterButton
-                        label="Semua"
-                        active={
-                            selectedCategory ===
-                            "Semua"
-                        }
-                        onClick={() =>
-                            setSelectedCategory(
+                    {/* BUTTON LIST */}
+                    <div className="
+                        flex
+                        gap-3
+                        flex-wrap
+                    ">
+
+                        <FilterButton
+                            label="Semua"
+                            active={
+                                selectedStatus ===
                                 "Semua"
-                            )
-                        }
-                    />
+                            }
+                            onClick={() =>
+                                setSelectedStatus(
+                                    "Semua"
+                                )
+                            }
+                        />
 
-                    <FilterButton
-                        label="Magang"
-                        active={
-                            selectedCategory ===
-                            "Magang"
-                        }
-                        onClick={() =>
-                            setSelectedCategory(
-                                "Magang"
-                            )
-                        }
-                    />
+                        <FilterButton
+                            label="Telah Mendaftar"
+                            active={
+                                selectedStatus ===
+                                "Telah Mendaftar"
+                            }
+                            onClick={() =>
+                                setSelectedStatus(
+                                    "Telah Mendaftar"
+                                )
+                            }
+                        />
 
-                    <FilterButton
-                        label="Kompetisi"
-                        active={
-                            selectedCategory ===
-                            "Kompetisi"
-                        }
-                        onClick={() =>
-                            setSelectedCategory(
-                                "Kompetisi"
-                            )
-                        }
-                    />
+                        <FilterButton
+                            label="Diterima"
+                            active={
+                                selectedStatus ===
+                                "Diterima"
+                            }
+                            onClick={() =>
+                                setSelectedStatus(
+                                    "Diterima"
+                                )
+                            }
+                        />
 
-                    <FilterButton
-                        label="Studi Independen"
-                        active={
-                            selectedCategory ===
-                            "Studi Independen"
-                        }
-                        onClick={() =>
-                            setSelectedCategory(
-                                "Studi Independen"
-                            )
-                        }
-                    />
+                        <FilterButton
+                            label="Ditolak"
+                            active={
+                                selectedStatus ===
+                                "Ditolak"
+                            }
+                            onClick={() =>
+                                setSelectedStatus(
+                                    "Ditolak"
+                                )
+                            }
+                        />
+
+                        <FilterButton
+                            label="Wawancara"
+                            active={
+                                selectedStatus ===
+                                "Wawancara"
+                            }
+                            onClick={() =>
+                                setSelectedStatus(
+                                    "Wawancara"
+                                )
+                            }
+                        />
+
+                    </div>
 
                 </div>
 
                 {/* SEARCH BAR */}
-                <div className="w-[420px]">
+                <div className="w-auto">
 
                     <SearchBar
                         placeholder="Cari..."
@@ -237,94 +264,7 @@ const LamaranList = () => {
 
             </div>
 
-            {/* FILTER STATUS */}
-            <div className="mt-8">
-
-                {/* TITLE */}
-                <h2 className="
-                    text-lg
-                    font-semibold
-                    text-bold-blue
-                    mb-4
-                ">
-                    Filter status lamaran
-                </h2>
-
-                {/* BUTTON LIST */}
-                <div className="
-                    flex
-                    gap-3
-                    flex-wrap
-                ">
-
-                    <FilterButton
-                        label="Semua"
-                        active={
-                            selectedStatus ===
-                            "Semua"
-                        }
-                        onClick={() =>
-                            setSelectedStatus(
-                                "Semua"
-                            )
-                        }
-                    />
-
-                    <FilterButton
-                        label="Telah Mendaftar"
-                        active={
-                            selectedStatus ===
-                            "Telah Mendaftar"
-                        }
-                        onClick={() =>
-                            setSelectedStatus(
-                                "Telah Mendaftar"
-                            )
-                        }
-                    />
-
-                    <FilterButton
-                        label="Diterima"
-                        active={
-                            selectedStatus ===
-                            "Diterima"
-                        }
-                        onClick={() =>
-                            setSelectedStatus(
-                                "Diterima"
-                            )
-                        }
-                    />
-
-                    <FilterButton
-                        label="Ditolak"
-                        active={
-                            selectedStatus ===
-                            "Ditolak"
-                        }
-                        onClick={() =>
-                            setSelectedStatus(
-                                "Ditolak"
-                            )
-                        }
-                    />
-
-                    <FilterButton
-                        label="Interview"
-                        active={
-                            selectedStatus ===
-                            "Interview"
-                        }
-                        onClick={() =>
-                            setSelectedStatus(
-                                "Interview"
-                            )
-                        }
-                    />
-
-                </div>
-
-            </div>
+            
 
             {/* LIST PROGRAM LAMARAN */}
             <div className="

@@ -32,7 +32,7 @@ const StupenDetail = () => {
   return (
     <ProgramDetailCard
       programDetail={programDetail}
-      backTo="/kompetisi-list"
+      backTo="/stupen-list"
       actionButton={
         <Button
           label="Daftar"

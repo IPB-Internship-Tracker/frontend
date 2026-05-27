@@ -46,7 +46,7 @@ const aktivitasData = [
         logo: logoShopee,
         title: "Frontend Developer Internship",
         company: "Tokopedia",
-        status: "Interview",
+        status: "Wawancara",
     },
 
     {

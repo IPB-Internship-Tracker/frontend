@@ -131,7 +131,7 @@ const LoginForm = ({
           <button
             type="button"
             onClick={() =>
-              navigate("/forgot-password", {
+              navigate("/forget-password", {
                 state: {
                 loginPath,
               },
