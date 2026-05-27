@@ -1,14 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import bgImage from "../../assets/bg-ahn.png";
 import Logo from "../../components/common/Logo";
 import LoginForm from "../../components/forms/LoginForm";
 import BackButton from "../../components/ui/BackButton";
+import ForgetPasswordForm from "../../components/forms/ForgetPasswordForm";
 
-const role = "Mitra";
-const emailPlaceholder = "Masukkan email perusahaan Anda";
+const role = "Mahasiswa IPB";
+const emailPlaceholder = "Masukkan email IPB Anda";
 
-const LoginMitra = () => {
+const ForgetPasswordPage = () => {
   const navigate = useNavigate();
+
+const location = useLocation();
+
+const loginPath =
+  location.state?.loginPath ||
+  "/login-mahasiswa";
 
   return (
     <div
@@ -20,7 +27,7 @@ const LoginMitra = () => {
       {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-bold-blue via-bold-blue/80 to-bold-blue/40"></div>
         
-        <BackButton to="/select-role" />
+        <BackButton to={loginPath} />
 
       {/* Content */}
         <div className="relative z-10 text-center text-white px-6 items-center">
@@ -29,12 +36,9 @@ const LoginMitra = () => {
                     logoSize="w-100"
                     textSize="text-2xl"
                 />
-                <LoginForm
-                    role={role}
-                    signUpPath="/sign-up-mitra"
-                    dashboardPath="/dashboard-mitra"
+                <ForgetPasswordForm
                     emailPlaceholder={emailPlaceholder}
-                    loginPath="/login-mitra"
+                    loginPath={loginPath}
                 />
             </div>
         </div>
@@ -44,4 +48,4 @@ const LoginMitra = () => {
   );
 };
 
-export default LoginMitra;
+export default ForgetPasswordPage;

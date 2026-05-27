@@ -34,6 +34,7 @@ const LoginMhs = () => {
                     signUpPath="/sign-up-mahasiswa"
                     dashboardPath="/dashboard-mahasiswa"
                     emailPlaceholder={emailPlaceholder}
+                    loginPath="/login-mahasiswa"
                 />
             </div>
         </div>

@@ -10,6 +10,7 @@ const LoginForm = ({
   signUpPath = "/sign-up",
   dashboardPath = "/",
   emailPlaceholder = "Masukkan email",
+  loginPath,
 }) => {
 
   const [formData, setFormData] = useState({
@@ -18,6 +19,15 @@ const LoginForm = ({
 });
   
   const [errors, setErrors] = useState({});
+  
+  const [loginError, setLoginError] =
+  useState("");
+
+  const DUMMY_EMAIL =
+  "admin@gmail.com";
+
+  const DUMMY_PASSWORD =
+    "password123";
 
   const navigate = useNavigate();
   const validateForm = () => {
@@ -39,21 +49,30 @@ const LoginForm = ({
   return Object.keys(newErrors).length === 0;
 };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-
-  if (validateForm()) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    if (
+      formData.email !== DUMMY_EMAIL ||
+      formData.password !== DUMMY_PASSWORD
+    ) {
+      setLoginError(
+        "Email atau password yang Anda masukkan salah."
+      );
+      return;
+    }
+    setLoginError("");
     console.log("LOGIN BERHASIL");
     navigate(dashboardPath);
-  }
-};
+  };
 
   const handleChange = (e) => {
-  setFormData({
-    ...formData,
-    [e.target.name]: e.target.value,
-  });
-};
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    setLoginError("");
+  };
 
   return (
     <div>
@@ -93,15 +112,41 @@ const handleSubmit = (e) => {
         />
 
           {/* PASSWORD */}
-            <FormField
-              label="Password"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Masukkan password Anda"
-              error={errors.password}
-            />
+        <FormField
+          label="Password"
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Masukkan password Anda"
+          error={errors.password}
+        />
+
+        {loginError && (
+          <div className="mt-1">
+            <p className="text-red-500 text-sm">
+              {loginError}
+            </p>
+
+          <button
+            type="button"
+            onClick={() =>
+              navigate("/forgot-password", {
+                state: {
+                loginPath,
+              },
+              })
+            }
+            className="
+              text-sm
+              text-bold-blue
+              hover:underline
+            "
+          >
+            Lupa Password?
+          </button>
+          </div>
+        )}
 
           {/* BUTTON */}
             <Button
