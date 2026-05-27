@@ -244,7 +244,7 @@ const PelamarList = () => {
 
           {/* DETAIL */}
           <Button
-            label={
+            icon={
               <UserRoundSearch size={16} />
             }
             to={`/pelamar-detail/${row.id}`}

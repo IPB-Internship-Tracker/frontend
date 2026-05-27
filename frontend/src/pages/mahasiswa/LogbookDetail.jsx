@@ -3,8 +3,8 @@ import { useState } from "react";
 import Table from "../../components/ui/Table";
 import Button from "../../components/ui/Button";
 import FormField from "../../components/forms/FormField";
-
-import { X } from "lucide-react";
+import PopUpNotif from "../../components/ui/PopUpNotif";
+import { X, CircleAlert, Pencil, Trash } from "lucide-react";
 import BackButton from "../../components/ui/BackButton";
 
 const LogbookDetail = () => {
@@ -30,6 +30,44 @@ const LogbookDetail = () => {
     });
   };
 
+  const [selectedRow, setSelectedRow] =
+    useState(null);
+
+  const [openDeletePopup, setOpenDeletePopup] =
+    useState(false);
+
+  const [isEdit, setIsEdit] =
+    useState(false);
+
+    const handleEdit = (row) => {
+      setIsEdit(true);
+      setFormData({
+        tanggal: row.tanggal,
+        waktuMulai: row.waktuMulai,
+        waktuSelesai: row.waktuSelesai,
+        aktivitas: row.aktivitas,
+        media: row.media,
+        lokasi: row.lokasi,
+      });
+      setSelectedRow(row);
+      setOpenPopup(true);
+    };
+
+ 
+  const handleDelete = (row) => {
+    setSelectedRow(row);
+    setOpenDeletePopup(true);
+  };
+
+  const confirmDelete = () => {
+    setData(
+      data.filter(
+        (item) =>
+          item.id !== selectedRow.id
+      )
+    );
+    setOpenDeletePopup(false);
+  };  
 
   const validateForm = () => {
     let newErrors = {};
@@ -57,24 +95,35 @@ const LogbookDetail = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    if (!validateForm()) return;
+    if (isEdit) {
+      setData(
+        data.map((item) =>
+          item.id === selectedRow.id
+            ? {
+                ...item,
+                ...formData,
+              }
+            : item
+        )
+      );
+    } else {
       const newLog = {
+        id: Date.now(),
         no: data.length + 1,
-        tanggal: formData.tanggal,
-        waktuMulai: formData.waktuMulai,
-        waktuSelesai: formData.waktuSelesai,
-        aktivitas: formData.aktivitas,
-        media: formData.media,
-        lokasi: formData.lokasi,
-
+        ...formData,
+        durasi: "8 Jam",
       };
-
-      console.log(newLog);
-      setOpenPopup(false);
+      setData([
+        ...data,
+        newLog,
+      ]);
     }
+    setOpenPopup(false);
+    setIsEdit(false);
+    setSelectedRow(null);
   };
 
 
@@ -133,10 +182,44 @@ const LogbookDetail = () => {
         </button>
       ),
     },
+    {
+      header: "Aksi",
+      render: (row) => (
+        <div className="flex gap-2 justify-center">
+          <Button
+            icon={<Pencil size={18} />}
+            iconOnly
+            onClick={() =>
+              handleEdit(row)
+            }
+            className="
+                bg-blue-600
+                text-white
+                hover:bg-blue-700
+            "
+          />
+          <Button
+            icon={<Trash size={18} />}
+            iconOnly
+            onClick={() =>
+              handleDelete(row)
+            }
+            className="
+              bg-red-500
+              text-white
+              text-sm
+              hover:bg-red-700
+            "
+          />
+        </div>
+      ),
+    },
+  
   ];
 
-  const data = [
-    {
+const [data, setData] = useState([
+  {
+      id: 1,
       no: 1,
       tanggal: "29 Agustus 2025",
       waktuMulai: "08:00",
@@ -148,6 +231,7 @@ const LogbookDetail = () => {
     },
 
     {
+      id: 2,
       no: 2,
       tanggal: "29 Agustus 2025",
       waktuMulai: "08:00",
@@ -159,6 +243,7 @@ const LogbookDetail = () => {
     },
 
     {
+      id: 3,
       no: 3,
       tanggal: "29 Agustus 2025",
       waktuMulai: "08:00",
@@ -170,6 +255,7 @@ const LogbookDetail = () => {
     },
 
     {
+      id: 4,
       no: 4,
       tanggal: "29 Agustus 2025",
       waktuMulai: "08:00",
@@ -179,7 +265,7 @@ const LogbookDetail = () => {
       media: "Offline",
       lokasi: "Di kantor",
     },
-  ];
+]);
 
   const [errors, setErrors] = useState({});
 
@@ -282,8 +368,12 @@ const LogbookDetail = () => {
             </button>
 
             {/* TITLE */}
-            <h1 className="text-xl text-center font-bold mb-2 text-black">
-              Tambah Aktivitas
+            <h1 className="text-xl text-center font-bold mb-2">
+
+              {isEdit
+                ? "Edit Aktivitas"
+                : "Tambah Aktivitas"}
+
             </h1>
 
             <p className="text-md text-center text-bold-blue mb-8">
@@ -417,6 +507,57 @@ const LogbookDetail = () => {
           </div>
         </div>
       )}
+
+      {/* POPUP HAPUS */}
+      <PopUpNotif
+        isOpen={openDeletePopup}
+        onClose={() =>
+          setOpenDeletePopup(false)
+        }
+
+        icon={
+          <CircleAlert
+            size={90}
+            className="text-yellow-500"
+          />
+        }
+
+        title="Apakah Anda yakin?"
+
+        description="
+          Log aktivitas ini akan dihapus
+          secara permanen.
+        "
+      >
+
+        <Button
+          label="Batal"
+
+          onClick={() =>
+            setOpenDeletePopup(false)
+          }
+
+          className="
+            border
+            border-bold-blue
+            text-bold-blue
+            bg-white
+          "
+        />
+
+        <Button
+          label="Hapus"
+
+          onClick={confirmDelete}
+
+          className="
+            bg-red-500
+            text-white
+            hover:bg-red-700
+          "
+        />
+
+      </PopUpNotif>
     </div>
   );
 };

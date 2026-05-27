@@ -97,17 +97,6 @@ const LogbookList = () => {
         "
         />
 
-        {/* FINALISASI */}
-        <Button
-        icon={<Send size={18} />}
-        iconOnly
-        className="
-            bg-green-600
-            text-white
-            hover:bg-green-700
-        "
-        />
-
         </div>
     ),
     },
