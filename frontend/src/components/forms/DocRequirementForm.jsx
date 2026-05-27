@@ -207,11 +207,31 @@ const DocRequirementForm = ({
                     }
 
                     title="Apakah kamu yakin?"
+
                     description="
                       Program akan langsung dipublikasikan
                       dan dapat diakses secara publik.
                     "
                   >
+
+                    {/* DRAFT */}
+                    <Button
+                      label="Simpan sebagai Draft"
+                      onClick={() => {
+                        console.log("SAVE DRAFT");
+
+                        setOpenConfirmPopup(false);
+
+                        navigate("/draft-list");
+                      }}
+
+                      className="
+                        border
+                        border-bold-blue
+                        text-bold-blue
+                        bg-white
+                      "
+                    />
 
                     {/* PUBLISH */}
                     <Button
@@ -221,6 +241,7 @@ const DocRequirementForm = ({
                         setOpenSuccessPopup(true);
                       }}
                     />
+
                   </PopUpNotif>
                   
                   {/* POPUP SUKSES */}
