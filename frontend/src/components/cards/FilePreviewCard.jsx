@@ -1,20 +1,18 @@
 import {
-  RPProvider,
-  RPDefaultLayout,
-  RPPages,
-} from "@pdf-viewer/react";
-
-import {
   ArrowRight,
   FileText,
 } from "lucide-react";
 
-import NextButton from "../ui/NextButton";
+import { useEffect } from "react";
 
 const FilePreviewCard = ({
   title,
   fileUrl,
 }) => {
+
+  useEffect(() => {
+    console.log("FILE URL:", fileUrl);
+  }, [fileUrl]);
 
   const isPDF =
     fileUrl?.toLowerCase().includes(".pdf");
@@ -31,7 +29,7 @@ const FilePreviewCard = ({
       {/* PREVIEW */}
       <div
         className="
-          h-56
+          h-[600px]
           overflow-hidden
           rounded-xl
           border
@@ -42,15 +40,11 @@ const FilePreviewCard = ({
 
         {isPDF ? (
 
-          <RPProvider src={fileUrl}>
-
-            <RPDefaultLayout>
-
-              <RPPages />
-
-            </RPDefaultLayout>
-
-          </RPProvider>
+        <iframe
+          src={fileUrl}
+          title={title}
+          className="w-full h-full"
+        />
 
         ) : (
 
@@ -68,10 +62,24 @@ const FilePreviewCard = ({
 
       </div>
 
-    <NextButton
-    to={fileUrl}
-    label="Selengkapnya"
-    />
+    <a
+      href={fileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        inline-flex
+        items-center
+        gap-2
+        text-bold-blue
+        text-sm
+        hover:text-indigo-700
+        hover:underline
+        transition
+      "
+    >
+      Selengkapnya
+      <ArrowRight size={18} />
+    </a>
 
     </div>
   );

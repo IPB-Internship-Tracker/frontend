@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@pdf-viewer/react": "^1.19.0",
     "@tailwindcss/vite": "^4.2.4",
     "lucide-react": "^1.14.0",
     "react": "^19.2.0",
