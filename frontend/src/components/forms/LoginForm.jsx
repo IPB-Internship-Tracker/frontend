@@ -4,6 +4,8 @@ import FormField from "./FormField";
 import Logo from "../common/Logo";
 import daunIpb from "../../assets/daun-ipb.png";
 import Button from "../ui/Button";
+import PopUpNotif from "../ui/PopUpNotif";
+import { CircleAlert } from "lucide-react";
 
 const LoginForm = ({
   role = "User",
@@ -23,11 +25,26 @@ const LoginForm = ({
   const [loginError, setLoginError] =
   useState("");
 
-  const DUMMY_EMAIL =
+  const [openRolePopup, setOpenRolePopup] =
+  useState(false);
+
+  const [roleMessage, setRoleMessage] =
+    useState("");
+
+  const [redirectPath, setRedirectPath] =
+    useState("");
+
+const DUMMY_MHS_EMAIL =
+  "mahasiswa@apps.ipb.ac.id";
+
+const DUMMY_MITRA_EMAIL =
+  "admin@shopee.co.id";
+
+const DUMMY_EMAIL =
   "admin@gmail.com";
 
-  const DUMMY_PASSWORD =
-    "password123";
+const DUMMY_PASSWORD =
+  "password123";
 
   const navigate = useNavigate();
   const validateForm = () => {
@@ -51,7 +68,39 @@ const LoginForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!validateForm()) return;
+
+    // MITRA LOGIN PAKAI AKUN MAHASISWA
+    if (
+      role === "Mitra" &&
+      formData.email === DUMMY_MHS_EMAIL
+    ) {
+      setRoleMessage(
+        "Akun ini terdaftar sebagai Mahasiswa IPB. Silakan gunakan halaman Login Mahasiswa."
+      );
+      setRedirectPath(
+        "/login-mahasiswa"
+      );
+      setOpenRolePopup(true);
+      return;
+    }
+
+    // MAHASISWA LOGIN PAKAI AKUN MITRA
+    if (
+      role === "Mahasiswa IPB" &&
+      formData.email === DUMMY_MITRA_EMAIL
+    ) {
+      setRoleMessage(
+        "Akun ini terdaftar sebagai Mitra. Silakan gunakan halaman Login Mitra."
+      );
+      setRedirectPath(
+        "/login-mitra"
+      );
+      setOpenRolePopup(true);
+      return;
+    }
+
     if (
       formData.email !== DUMMY_EMAIL ||
       formData.password !== DUMMY_PASSWORD
@@ -173,6 +222,39 @@ const LoginForm = ({
 
         </form>
       </div>
+
+      {/* POPUP */}  
+      <PopUpNotif
+        isOpen={openRolePopup}
+        onClose={() =>
+          setOpenRolePopup(false)
+        }
+
+        icon={
+          <CircleAlert
+            size={90}
+            className="text-yellow-500"
+          />
+        }
+
+        title="Akses Ditolak"
+        description={roleMessage}
+      >
+
+        <Button
+          label="Ke Halaman Login"
+
+          onClick={() => {
+
+            setOpenRolePopup(false);
+
+            navigate(redirectPath);
+
+          }}
+        />
+
+      </PopUpNotif>
+
     </div>
   );
 };
