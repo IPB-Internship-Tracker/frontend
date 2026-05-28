@@ -34,84 +34,104 @@ const LoginForm = ({
   const [redirectPath, setRedirectPath] =
     useState("");
 
-const DUMMY_MHS_EMAIL =
-  "mahasiswa@apps.ipb.ac.id";
+  const DUMMY_ACCOUNTS = [
+    {
+      email: "mahasiswa@apps.ipb.ac.id",
+      password: "mahasiswa123",
+      role: "Mahasiswa IPB",
+    },
 
-const DUMMY_MITRA_EMAIL =
-  "admin@shopee.co.id";
+    {
+      email: "admin@shopee.co.id",
+      password: "mitra123",
+      role: "Mitra",
+    },
 
-const DUMMY_EMAIL =
-  "admin@gmail.com";
-
-const DUMMY_PASSWORD =
-  "password123";
+    {
+      email: "admin@gmail.com",
+      password: "password123",
+      role: "Admin",
+    },
+  ];
 
   const navigate = useNavigate();
+
   const validateForm = () => {
-  let newErrors = {};
+    let newErrors = {};
 
-  // EMAIL
-  if (!formData.email) {
-    newErrors.email = "Email wajib diisi.";
-  }
+    // EMAIL
+    if (!formData.email) {
+      newErrors.email = "Email wajib diisi.";
+    }
 
-  // PASSWORD
-  if (!formData.password) {
-    newErrors.password = "Password wajib diisi.";
-  } else if (formData.password.length < 8) {
-    newErrors.password = "Password minimal 8 karakter.";
-  }
+    // PASSWORD
+    if (!formData.password) {
+      newErrors.password = "Password wajib diisi.";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password minimal 8 karakter.";
+    }
 
-  setErrors(newErrors);
-  return Object.keys(newErrors).length === 0;
-};
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
-    // MITRA LOGIN PAKAI AKUN MAHASISWA
-    if (
-      role === "Mitra" &&
-      formData.email === DUMMY_MHS_EMAIL
-    ) {
-      setRoleMessage(
-        "Akun ini terdaftar sebagai Mahasiswa IPB. Silakan gunakan halaman Login Mahasiswa."
-      );
-      setRedirectPath(
-        "/login-mahasiswa"
-      );
-      setOpenRolePopup(true);
-      return;
-    }
+    const account = DUMMY_ACCOUNTS.find(
+      (acc) => acc.email === formData.email
+    );
 
-    // MAHASISWA LOGIN PAKAI AKUN MITRA
-    if (
-      role === "Mahasiswa IPB" &&
-      formData.email === DUMMY_MITRA_EMAIL
-    ) {
-      setRoleMessage(
-        "Akun ini terdaftar sebagai Mitra. Silakan gunakan halaman Login Mitra."
-      );
-      setRedirectPath(
-        "/login-mitra"
-      );
-      setOpenRolePopup(true);
-      return;
-    }
-
-    if (
-      formData.email !== DUMMY_EMAIL ||
-      formData.password !== DUMMY_PASSWORD
-    ) {
+    // email tidak ditemukan
+    if (!account) {
       setLoginError(
         "Email atau password yang Anda masukkan salah."
       );
       return;
     }
+
+    // role tidak sesuai
+    if (account.role !== role) {
+
+      setRoleMessage(
+        `Akun ini terdaftar sebagai ${account.role}.`
+      );
+
+      setRedirectPath(
+        account.role === "Mahasiswa IPB"
+          ? "/login-mahasiswa"
+          : "/login-mitra"
+      );
+
+      setOpenRolePopup(true);
+
+      return;
+    }
+
+    // password salah
+    if (account.password !== formData.password) {
+
+      setLoginError(
+        "Email atau password yang Anda masukkan salah."
+      );
+
+      return;
+    }
+
     setLoginError("");
-    console.log("LOGIN BERHASIL");
+
+    localStorage.setItem(
+      "isLoggedIn",
+      "true"
+    );
+
+    localStorage.setItem(
+      "role",
+      account.role
+    );
+
     navigate(dashboardPath);
   };
 

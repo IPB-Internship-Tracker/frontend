@@ -10,6 +10,8 @@ import SignUpMhs from './pages/auth/SignUpMhs';
 import SignUpMitra from './pages/auth/SignUpMitra';
 import ForgetPasswordPage from './pages/auth/ForgetPasswordPage';
 import NewPasswordPage from './pages/auth/NewPasswordPage';
+import ProtectedRoute from './pages/auth/ProtectedRoute';
+import UnauthorizedPage from './pages/auth/UnauthorizedPage';
 
 //mahasiswa
 import DashboardLayoutMhs from './components/layout/mahasiswa/DashboardLayoutMhs';
@@ -63,9 +65,16 @@ function App() {
         <Route path="/sign-up-mitra" element={<SignUpMitra />}/>
         <Route path="/forget-password" element={<ForgetPasswordPage />}/>
         <Route path="/new-password" element={<NewPasswordPage />} />
+        <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
         {/* Mahasiswa */}
-        <Route element={<DashboardLayoutMhs />}>
+        <Route
+          element={
+            <ProtectedRoute
+              allowedRole="Mahasiswa IPB">
+              <DashboardLayoutMhs />
+            </ProtectedRoute>
+          }>
           <Route path="/dashboard-mahasiswa" element={<DashboardMhs />} />
           <Route path="/formpendaftaran" element={<FormPendaftaran />} />
           <Route path="/lamaran-list" element={<LamaranList />} />
@@ -84,7 +93,13 @@ function App() {
         </Route>
 
         {/* Mitra */}
-        <Route element={<DashboardLayoutMitra />}>
+        <Route
+          element={
+            <ProtectedRoute
+              allowedRole="Mitra">
+              <DashboardLayoutMitra />
+            </ProtectedRoute>
+          }>
           <Route path="/dashboard-mitra" element={<DashboardMitra />} />
           <Route path="/pelamar-list/:id" element={<PelamarList />} />
           <Route path="/pelamar-detail/:id" element={<PelamarDetail />} />

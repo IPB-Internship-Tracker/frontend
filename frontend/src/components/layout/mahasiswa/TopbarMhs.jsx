@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../utils/auth";
 
 import {
     Bell,
@@ -514,24 +515,18 @@ const TopbarMhs = () => {
                             {/* LOGOUT */}
                             <button
                                 onClick={() =>
-                                    navigate("/")
+                                    logout(navigate)
                                 }
-
                                 className="
                                     block
                                     w-full
-
                                     px-5
                                     py-4
-
                                     text-left
                                     text-sm
-
                                     text-red-600
-
                                     hover:bg-red-50
                                     transition
-
                                     cursor-pointer
                                 "
                             >

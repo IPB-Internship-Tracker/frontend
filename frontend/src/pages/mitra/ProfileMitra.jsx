@@ -7,6 +7,7 @@ import Button from "../../components/ui/Button";
 import BackButton from "../../components/ui/BackButton";
 import ProfileCard from "../../components/profile/ProfileCard";
 import logoShopee from "../../assets/logo-shopee.png";
+import { logout } from "../../components/utils/auth";
 
 const ProfileMitra = () => {
 
@@ -74,16 +75,17 @@ const ProfileMitra = () => {
                 mt-8
             ">
 
-                <Button
-                    label="Logout"
-                    to="/"
-
-                    className="
-                        bg-red-700
-                        text-white
-                        hover:bg-red-800
-                    "
-                />
+            <Button
+                label="Logout"
+                onClick={() =>
+                    logout(navigate)
+                }
+                className="
+                    bg-red-700
+                    text-white
+                    hover:bg-red-800
+                "
+            />
 
             </div>
 

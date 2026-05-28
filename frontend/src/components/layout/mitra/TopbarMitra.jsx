@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {ChevronDown} from "lucide-react";
 import logoShopee from "../../../assets/logo-shopee.png";
+import { logout } from "../../utils/auth";
 
 const TopbarMitra = () => {
 
@@ -125,13 +126,13 @@ const TopbarMitra = () => {
                             {/* LOGOUT */}
                             <button
                                 onClick={() =>
-                                    navigate("/")
+                                    logout(navigate)
                                 }
                                 className="
                                     block
                                     w-full
-                                    px-4
-                                    py-3
+                                    px-5
+                                    py-4
                                     text-left
                                     text-sm
                                     text-red-600
