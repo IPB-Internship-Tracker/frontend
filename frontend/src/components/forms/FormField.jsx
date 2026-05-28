@@ -21,16 +21,15 @@ const FormField = ({
 
       {/* SELECT */}
       {type === "select" ? (
-
-      <select
-        name={name}
-        value={value}
-        onChange={onChange}
-          className="
+      <>
+        <select
+          name={name}
+          value={value}
+          onChange={onChange}
+          className={`
             w-full
             rounded-lg
             border
-            border-light-blue
             bg-light-blue-2
             px-4
             py-2
@@ -38,27 +37,52 @@ const FormField = ({
             text-bold-blue
             focus:outline-none
             focus:ring-1
-            focus:ring-light-blue
-          ">
+
+            ${
+              error
+                ? `
+                  border-red-500
+                  focus:ring-red-500
+                `
+                : `
+                  border-light-blue
+                  focus:ring-light-blue
+                `
+            }
+          `}
+        >
 
           <option value="">
             {placeholder}
           </option>
 
           {options.map((option, index) => (
-
             <option
               key={index}
               value={option}
             >
               {option}
             </option>
-
           ))}
 
         </select>
 
-      ) : (
+        {error && (
+          <p
+            className="
+            text-left
+              mt-1
+              text-sm
+              text-red-500
+              italic
+            "
+          >
+            {error}
+          </p>
+        )}
+      </>
+
+    ) : (
 
   <>
   

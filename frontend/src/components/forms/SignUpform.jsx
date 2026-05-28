@@ -59,6 +59,15 @@ const SignUpForm = ({
         }
       }
 
+      // NIM VALIDATION
+      if (field.name === "nim") {
+
+        if (value.length < 11) {
+          newErrors[field.name] =
+            "NIM minimal 11 karakter.";
+        }
+      }
+
       // PASSWORD VALIDATION
       if (field.name === "password") {
 
