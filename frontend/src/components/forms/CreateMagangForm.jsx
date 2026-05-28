@@ -210,10 +210,18 @@ useEffect(() => {
       newErrors.berakhir =
         "Program berakhir harus setelah tanggal dimulai.";
     }
+
+    // DESKRIPSI
     if (!formData.deskripsi.trim()) {
       newErrors.deskripsi =
         "Deskripsi program wajib diisi.";
+    } else if (
+      formData.deskripsi.trim().length < 10
+    ) {
+      newErrors.deskripsi =
+        "Deskripsi program minimal 10 karakter.";
     }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
 };

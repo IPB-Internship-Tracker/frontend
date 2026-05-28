@@ -107,14 +107,12 @@ const handleImageChange = (
 
   // VALIDATE
   const validateForm = () => {
-
+    
     let newErrors = {};
 
     Object.keys(formData).forEach(
       (key) => {
-
         if (!formData[key]) {
-
           newErrors[key] =
             "Kolom ini wajib diisi.";
         }
@@ -123,11 +121,15 @@ const handleImageChange = (
 
     if (!formData.description.trim()) {
       newErrors.description =
-        "Deskripsi wajib diisi.";
+        "Deskripsi program wajib diisi.";
+    } else if (
+      formData.description.trim().length < 10
+    ) {
+      newErrors.description =
+        "Deskripsi program minimal 10 karakter.";
     }
 
     setErrors(newErrors);
-
     return (
       Object.keys(newErrors).length === 0
     );
