@@ -9,6 +9,7 @@ import LoginMitra from './pages/auth/LoginMitra';
 import SignUpMhs from './pages/auth/SignUpMhs';
 import SignUpMitra from './pages/auth/SignUpMitra';
 import ForgetPasswordPage from './pages/auth/ForgetPasswordPage';
+import NewPasswordPage from './pages/auth/NewPasswordPage';
 
 //mahasiswa
 import DashboardLayoutMhs from './components/layout/mahasiswa/DashboardLayoutMhs';
@@ -61,6 +62,7 @@ function App() {
         <Route path="/sign-up-mahasiswa" element={<SignUpMhs />} />
         <Route path="/sign-up-mitra" element={<SignUpMitra />}/>
         <Route path="/forget-password" element={<ForgetPasswordPage />}/>
+        <Route path="/new-password" element={<NewPasswordPage />} />
 
         {/* Mahasiswa */}
         <Route element={<DashboardLayoutMhs />}>

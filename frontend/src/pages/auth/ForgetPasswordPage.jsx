@@ -5,17 +5,17 @@ import LoginForm from "../../components/forms/LoginForm";
 import BackButton from "../../components/ui/BackButton";
 import ForgetPasswordForm from "../../components/forms/ForgetPasswordForm";
 
-const role = "Mahasiswa IPB";
-const emailPlaceholder = "Masukkan email IPB Anda";
+const emailPlaceholder = "Masukkan email Anda";
 
 const ForgetPasswordPage = () => {
+  
   const navigate = useNavigate();
 
-const location = useLocation();
+  const location = useLocation();
 
-const loginPath =
-  location.state?.loginPath ||
-  "/login-mahasiswa";
+  const loginPath =
+    location.state?.loginPath ||
+    "/login-mahasiswa";
 
   return (
     <div
